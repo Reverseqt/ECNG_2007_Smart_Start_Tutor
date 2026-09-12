@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Map BCD digits to seven segments, then extend the decoder to hexadecimal by designing the shapes for A to F.">
+  <title>BCD and Hexadecimal Seven-Segment Displays | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../arithmetic.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="arithmetic-comparison" data-activity="seven-segment" data-title="BCD and Hexadecimal Seven-Segment Displays">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 7 &middot; Interactive activity</p>
+            <h1>BCD and Hexadecimal Seven-Segment Displays</h1>
+            <p>Four bits give sixteen codes but BCD uses only ten. Give the other six shapes and the same display becomes hexadecimal.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/arithmetic-comparison/">Arithmetic and Comparison</a> / BCD and Hexadecimal Seven-Segment Displays</p>
+
+          <section class="activity-panel" aria-labelledby="explore-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="explore-heading">Understanding the display</h2></div>
+              <p class="instruction">A BCD-to-seven-segment decoder drives seven labelled segments, whose combinations form the decimal digits.</p>
+            </div>
+            <div class="logic-layout">
+              <div>
+                <div class="control-card">
+                  <label for="digit">Decimal digit</label>
+                  <input id="digit" type="range" min="0" max="9" value="5">
+                  <div class="result-box"><strong>BCD input D C B A</strong><span id="bcd" class="code-display">0101</span></div>
+                  <div class="result-box"><strong>Active segments a&ndash;g</strong><span id="segments" class="code-display"></span></div>
+                </div>
+                <p class="callout">A common-cathode, active-high display is assumed throughout: an output of 1 illuminates the corresponding segment.</p>
+              </div>
+              <div class="diagram-box"><svg class="seven-display" viewBox="0 0 240 400" role="img" aria-label="Interactive seven-segment display"><polygon id="seg-a" class="segment" points="55,30 185,30 205,50 185,70 55,70 35,50"/><polygon id="seg-b" class="segment" points="190,60 210,80 210,185 190,205 170,185 170,80"/><polygon id="seg-c" class="segment" points="190,215 210,235 210,340 190,360 170,340 170,235"/><polygon id="seg-d" class="segment" points="55,350 185,350 205,370 185,390 55,390 35,370"/><polygon id="seg-e" class="segment" points="30,215 50,235 50,340 30,360 10,340 10,235"/><polygon id="seg-f" class="segment" points="30,60 50,80 50,185 30,205 10,185 10,80"/><polygon id="seg-g" class="segment" points="55,190 185,190 205,210 185,230 55,230 35,210"/></svg></div>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="hex-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="hex-heading">Six patterns BCD never uses</h2></div>
+              <p class="instruction">Four bits give sixteen codes. BCD only defines ten of them.</p>
+            </div>
+            <p>The decoder above takes four bits, so it has sixteen possible inputs &mdash; but only <code>0000</code> to <code>1001</code> mean anything in BCD. The remaining six, <code>1010</code> through <code>1111</code>, are invalid BCD codes. A real BCD decoder either blanks the display for them or produces meaningless shapes.</p>
+            <p>Those same six codes are exactly the hexadecimal digits <strong>A, B, C, D, E and F</strong>. Give them sensible shapes and the same seven segments become a <strong>hexadecimal</strong> display, which is what you find on debugging hardware and old front panels.</p>
+            <div class="callout">
+              <h3>Why two of them are lowercase</h3>
+              <p>Written as capitals, <strong>B</strong> would be identical to <strong>8</strong>, and <strong>D</strong> would be identical to <strong>0</strong>. Neither is distinguishable on seven segments, so the convention is uppercase <strong>A C E F</strong> and lowercase <strong>b d</strong>. That is a display constraint driving a notation choice, not an arbitrary style decision.</p>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="build-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="build-heading">Design the six hex digits</h2></div>
+              <p class="instruction">Work out which segments each letter needs. Nothing above tells you &mdash; the explorer only covers 0 to 9.</p>
+            </div>
+            <p>Pick a letter, toggle segments until the preview reads correctly, then check. Build all six to complete this activity.</p>
+            <div class="logic-layout">
+              <div>
+                <div class="control-card">
+                  <span class="label">Target</span>
+                  <div class="hex-targets" id="hex-targets"></div>
+                </div>
+                <div class="control-card">
+                  <span class="label">Segment controls</span>
+                  <div class="segment-controls">
+                    <button class="segment-toggle" type="button" data-segment="a">a</button>
+                    <button class="segment-toggle" type="button" data-segment="b">b</button>
+                    <button class="segment-toggle" type="button" data-segment="c">c</button>
+                    <button class="segment-toggle" type="button" data-segment="d">d</button>
+                    <button class="segment-toggle" type="button" data-segment="e">e</button>
+                    <button class="segment-toggle" type="button" data-segment="f">f</button>
+                    <button class="segment-toggle" type="button" data-segment="g">g</button>
+                  </div>
+                  <div class="result-box"><strong>Your pattern a&ndash;g</strong><span id="build-pattern" class="code-display">0000000</span></div>
+                </div>
+                <div class="action-row">
+                  <button class="action-button primary" id="check" type="button">Check this letter</button>
+                  <button class="action-button secondary" id="clear" type="button">Clear segments</button>
+                </div>
+                <div class="progress-line"><progress id="hex-progress" max="6" value="0"></progress><span id="hex-progress-text">0 of 6</span></div>
+              </div>
+              <div class="diagram-box"><svg class="seven-display" viewBox="0 0 240 400" role="img" aria-label="Preview of the segments you have selected"><polygon id="pv-a" class="segment" points="55,30 185,30 205,50 185,70 55,70 35,50"/><polygon id="pv-b" class="segment" points="190,60 210,80 210,185 190,205 170,185 170,80"/><polygon id="pv-c" class="segment" points="190,215 210,235 210,340 190,360 170,340 170,235"/><polygon id="pv-d" class="segment" points="55,350 185,350 205,370 185,390 55,390 35,370"/><polygon id="pv-e" class="segment" points="30,215 50,235 50,340 30,360 10,340 10,235"/><polygon id="pv-f" class="segment" points="30,60 50,80 50,185 30,205 10,185 10,80"/><polygon id="pv-g" class="segment" points="55,190 185,190 205,210 185,230 55,230 35,210"/></svg><p class="result-box" id="preview-note" aria-live="polite">Toggle segments and the preview follows.</p></div>
+            </div>
+            <div class="feedback" id="feedback" aria-live="polite">Choose a letter, build it, then check.</div>
+            <details class="hint"><summary>Hint</summary><p>Start from a digit you already know. <strong>A</strong> is an 8 with the bottom bar removed. <strong>b</strong> is an 8 with the top bar and top-right removed. <strong>C</strong> is a 0 with the two right-hand segments removed. <strong>E</strong> is a C with the middle bar added, and <strong>F</strong> is an E without the bottom bar.</p></details>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="table-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 4</p><h2 id="table-heading">The full sixteen-code table</h2></div>
+              <p class="instruction">Letters you have solved are filled in. The rest stay hidden.</p>
+            </div>
+            <div class="table-wrap">
+              <table id="hex-table">
+                <caption>Hexadecimal seven-segment decoder</caption>
+                <thead><tr><th>Hex</th><th>D C B A</th><th>a</th><th>b</th><th>c</th><th>d</th><th>e</th><th>f</th><th>g</th></tr></thead>
+                <tbody id="hex-body"></tbody>
+              </table>
+            </div>
+            <p class="source-note">Rows 0 to 9 constitute the BCD decoder; rows A to F are the hexadecimal extension.</p>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../../../modules/arithmetic-comparison/"><small>Module overview</small><strong>&larr; Arithmetic and Comparison</strong></a>
+            <a href="../comparator/"><small>Next activity</small><strong>Binary Comparators &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

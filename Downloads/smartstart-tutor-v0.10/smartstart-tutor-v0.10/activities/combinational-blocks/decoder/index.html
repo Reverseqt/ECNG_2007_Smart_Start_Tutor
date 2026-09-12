@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore an active-high 2-to-4 binary decoder, then recover the eight enabled rows of the 3-to-8 decoder truth table.">
+  <title>Binary Decoders | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../blocks.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="logic.js" defer></script><script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="combinational-blocks" data-activity="decoder" data-title="Binary Decoders">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">☰</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 5 · Interactive activity</p>
+            <h1>Binary Decoders</h1>
+            <p>A decoder is a multiple-input, multiple-output logic circuit that converts a coded input into a unique output. Explore a 2-to-4 decoder, then complete the original 3-to-8 decoder exercise.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/combinational-blocks/">Combinational Building Blocks</a> / Binary Decoders</p>
+
+          <section class="activity-panel" aria-labelledby="explore-heading">
+            <div class="section-heading">
+              <div>
+                <p class="step">Part 1</p>
+                <h2 id="explore-heading">Explore a 2-to-4 decoder</h2>
+              </div>
+              <p class="instruction">Set the enable and input bits, then observe the active-high outputs.</p>
+            </div>
+
+            <div class="explorer-grid">
+              <div class="controls-card" aria-label="Decoder inputs">
+                <h3>Inputs</h3>
+                <div class="switch-row">
+                  <span>Enable</span>
+                  <button class="bit-switch" type="button" role="switch" aria-checked="false" data-control="enable"><span>0</span></button>
+                </div>
+                <div class="switch-row">
+                  <span>A<sub>1</sub></span>
+                  <button class="bit-switch" type="button" role="switch" aria-checked="false" data-control="a1"><span>0</span></button>
+                </div>
+                <div class="switch-row">
+                  <span>A<sub>0</sub></span>
+                  <button class="bit-switch" type="button" role="switch" aria-checked="false" data-control="a0"><span>0</span></button>
+                </div>
+                <p class="binary-readout">Input code: <strong id="input-code">00</strong><br>Decimal value: <strong id="decimal-value">0</strong></p>
+              </div>
+
+              <div class="diagram-card">
+                <svg id="decoder-diagram" viewBox="0 0 780 420" role="img" aria-labelledby="diagram-title diagram-desc">
+                  <title id="diagram-title">Interactive 2-to-4 decoder</title>
+                  <desc id="diagram-desc">Enable and two input signals enter a decoder block. Four output indicators show the active output.</desc>
+                  <defs>
+                    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-opacity=".14"/>
+                    </filter>
+                  </defs>
+                  <rect class="decoder-block" x="275" y="75" width="245" height="270" rx="20" filter="url(#soft-shadow)"/>
+                  <text class="block-title" x="397.5" y="185" text-anchor="middle">2-to-4</text>
+                  <text class="block-subtitle" x="397.5" y="225" text-anchor="middle">DECODER</text>
+                  <text class="block-note" x="397.5" y="270" text-anchor="middle">active-high</text>
+
+                  <g class="input-wire" data-wire="enable">
+                    <line x1="70" y1="120" x2="275" y2="120"/>
+                    <circle cx="70" cy="120" r="15"/>
+                    <text x="45" y="126" text-anchor="end">EN</text>
+                  </g>
+                  <g class="input-wire" data-wire="a1">
+                    <line x1="70" y1="205" x2="275" y2="205"/>
+                    <circle cx="70" cy="205" r="15"/>
+                    <text x="45" y="211" text-anchor="end">A₁</text>
+                  </g>
+                  <g class="input-wire" data-wire="a0">
+                    <line x1="70" y1="290" x2="275" y2="290"/>
+                    <circle cx="70" cy="290" r="15"/>
+                    <text x="45" y="296" text-anchor="end">A₀</text>
+                  </g>
+
+                  <g class="output-wire" data-output="3">
+                    <line x1="520" y1="120" x2="705" y2="120"/>
+                    <circle class="output-lamp" cx="705" cy="120" r="20"/>
+                    <text x="740" y="127">Y₃</text>
+                  </g>
+                  <g class="output-wire" data-output="2">
+                    <line x1="520" y1="185" x2="705" y2="185"/>
+                    <circle class="output-lamp" cx="705" cy="185" r="20"/>
+                    <text x="740" y="192">Y₂</text>
+                  </g>
+                  <g class="output-wire" data-output="1">
+                    <line x1="520" y1="250" x2="705" y2="250"/>
+                    <circle class="output-lamp" cx="705" cy="250" r="20"/>
+                    <text x="740" y="257">Y₁</text>
+                  </g>
+                  <g class="output-wire" data-output="0">
+                    <line x1="520" y1="315" x2="705" y2="315"/>
+                    <circle class="output-lamp" cx="705" cy="315" r="20"/>
+                    <text x="740" y="322">Y₀</text>
+                  </g>
+                </svg>
+                <p id="explorer-status" class="status-message" aria-live="polite">The decoder is disabled, so all outputs are 0.</p>
+              </div>
+            </div>
+
+            <div class="table-wrap compact-table">
+              <table id="decoder-2-table">
+                <caption>2-to-4 decoder truth table</caption>
+                <thead><tr><th>Enable</th><th>A<sub>1</sub></th><th>A<sub>0</sub></th><th>Y<sub>3</sub></th><th>Y<sub>2</sub></th><th>Y<sub>1</sub></th><th>Y<sub>0</sub></th></tr></thead>
+                <tbody>
+                  <tr data-key="0xx"><td>0</td><td>×</td><td>×</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                  <tr data-key="100"><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                  <tr data-key="101"><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                  <tr data-key="110"><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                  <tr data-key="111"><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="exercise-heading">
+            <div class="section-heading">
+              <div>
+                <p class="step">Part 2</p>
+                <h2 id="exercise-heading">The binary 3-to-8 decoder: Exercise 1</h2>
+              </div>
+              <p class="instruction">Change the values below to set the enable, inputs and output combination for a row of the truth table.</p>
+            </div>
+
+            <div class="exercise-layout">
+              <form id="decoder-exercise" class="exercise-card">
+                <fieldset>
+                  <legend>Choose the row</legend>
+                  <div class="select-grid four">
+                    <label>Enable<select id="ex-enable"><option value="0">0</option><option value="1">1</option></select></label>
+                    <label>A<sub>2</sub><select id="ex-a2"><option value="0">0</option><option value="1">1</option></select></label>
+                    <label>A<sub>1</sub><select id="ex-a1"><option value="0">0</option><option value="1">1</option></select></label>
+                    <label>A<sub>0</sub><select id="ex-a0"><option value="0">0</option><option value="1">1</option></select></label>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Predict the outputs</legend>
+                  <p class="field-help">Outputs are ordered Y<sub>7</sub> through Y<sub>0</sub>.</p>
+                  <div class="select-grid eight" id="output-selects">
+                    <label>Y<sub>7</sub><select data-output="7"><option value="0">0</option><option value="1">1</option></select></label>
+                    <label>Y<sub>6</sub><select data-output="6"><option value="0">0</option><option value="1">1</option></select></label>
+                    <label>Y<sub>5</sub><select data-output="5"><option value="0">0</option><option value="1">1</option></select></label>
+                    <label>Y<sub>4</sub><select data-output="4"><option value="0">0</option><option value="1">1</option></select></label>
+                    <label>Y<sub>3</sub><select data-output="3"><option value="0">0</option><option value="1">1</option></select></label>
+                    <label>Y<sub>2</sub><select data-output="2"><option value="0">0</option><option value="1">1</option></select></label>
+                    <label>Y<sub>1</sub><select data-output="1"><option value="0">0</option><option value="1">1</option></select></label>
+                    <label>Y<sub>0</sub><select data-output="0"><option value="0">0</option><option value="1">1</option></select></label>
+                  </div>
+                </fieldset>
+
+                <div class="action-row">
+                  <button class="action-button primary" type="submit">Check row</button>
+                  <button class="action-button secondary" type="button" id="next-row">Next incomplete row</button>
+                  <button class="action-button quiet" type="button" id="reset-exercise">Reset</button>
+                </div>
+
+                <details class="hint">
+                  <summary>Hint</summary>
+                  <p>When an active-high decoder is enabled, exactly one output is 1. The binary input identifies which numbered output becomes active.</p>
+                </details>
+
+                <div id="exercise-feedback" class="feedback" aria-live="polite">Start with any enabled input combination.</div>
+              </form>
+
+              <div class="progress-card">
+                <h3>Completed rows</h3>
+                <div class="progress-line"><progress id="row-progress" max="8" value="0"></progress><span id="progress-text">0 of 8</span></div>
+                <p>Each correct enabled combination reveals one row.</p>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table id="decoder-3-table">
+                <caption>3-to-8 decoder truth table</caption>
+                <thead>
+                  <tr><th>Enable</th><th>A<sub>2</sub></th><th>A<sub>1</sub></th><th>A<sub>0</sub></th><th>Y<sub>7</sub></th><th>Y<sub>6</sub></th><th>Y<sub>5</sub></th><th>Y<sub>4</sub></th><th>Y<sub>3</sub></th><th>Y<sub>2</sub></th><th>Y<sub>1</sub></th><th>Y<sub>0</sub></th></tr>
+                </thead>
+                <tbody id="decoder-3-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation"><a href="../../../modules/combinational-blocks/"><small>Module overview</small><strong>&larr; Combinational Building Blocks</strong></a><a href="../encoder/"><small>Next activity</small><strong>Binary Encoders &rarr;</strong></a></nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor · Neela Seegobin, original author · Azim Abdool, web edition · IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

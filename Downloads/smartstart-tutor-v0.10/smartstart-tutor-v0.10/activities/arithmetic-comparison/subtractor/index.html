@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Turn an adder into a subtractor with one control line: XOR gates invert B and the same line feeds the carry-in, giving A minus B from A plus B complement plus one.">
+  <title>Subtractors | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../arithmetic.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="arithmetic-comparison" data-activity="subtractor" data-title="Subtractors">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 7 &middot; Interactive activity</p>
+            <h1>Subtractors</h1>
+            <p>A single control line and one XOR gate per bit are sufficient to make an adder perform subtraction as well.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/arithmetic-comparison/">Arithmetic and Comparison</a> / Subtractors</p>
+
+          <section class="activity-panel" aria-labelledby="idea-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="idea-heading">Subtraction without a subtractor</h2></div>
+              <p class="instruction">A dedicated subtraction circuit would approximately double the arithmetic hardware.</p>
+            </div>
+            <p>A subtractor may be constructed directly, propagating borrows in place of carries. Such circuits exist, but they are seldom built.</p>
+            <p>Since <strong>A &minus; B is equivalent to A + (&minus;B)</strong>, subtraction reduces to addition with one operand negated, provided that negative values can themselves be represented as bit patterns. A single adder then performs both operations.</p>
+            <p>The representation that permits this is <strong>two&rsquo;s complement</strong>, introduced in <a href="../../data-representation/signed-numbers/">Signed Number Representations</a>. A value is negated by inverting every bit and adding 1.</p>
+            <div class="twos-panel">
+              <div class="twos-row"><span class="ripple-label">B</span><div class="ripple-bits" id="tc-b"></div><span class="ripple-value" id="tc-b-val">0</span></div>
+              <div class="twos-row"><span class="ripple-label">invert</span><div class="ripple-bits" id="tc-inv"></div><span class="ripple-value"></span></div>
+              <div class="twos-row"><span class="ripple-label">add 1</span><div class="ripple-bits" id="tc-neg"></div><span class="ripple-value" id="tc-neg-val">0</span></div>
+            </div>
+            <p class="result-box" id="tc-status" aria-live="polite"></p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="trick-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="trick-heading">One control line does both jobs</h2></div>
+              <p class="instruction">Both the inversion and the addition of 1 are obtained at negligible cost.</p>
+            </div>
+            <p>Subtraction requires two operations on the second operand: inversion of B, and the addition of 1. Both are obtained from a single control line, denoted <strong>SUB</strong>.</p>
+            <div class="trick-grid">
+              <div class="trick-card">
+                <h3>Inverting with XOR</h3>
+                <p>Put an XOR gate on each B bit with SUB as its other input. Recall from Module 2 that XOR outputs 1 when its inputs differ:</p>
+                <div class="table-wrap"><table><thead><tr><th>SUB</th><th>B<sub>i</sub></th><th>B<sub>i</sub> &oplus; SUB</th></tr></thead><tbody>
+                  <tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr>
+                  <tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr>
+                </tbody></table></div>
+                <p>With SUB = 0 the bit passes unchanged; with SUB = 1 it emerges inverted. Each gate therefore acts as a controlled inverter, at a cost of one gate per bit.</p>
+              </div>
+              <div class="trick-card">
+                <h3>The +1 costs nothing</h3>
+                <p>The carry-in of the least significant full adder is unused in a plain adder and is tied to 0. Connecting it to <strong>SUB</strong> instead supplies the required increment.</p>
+                <p>When SUB = 1 a 1 enters the least significant column, which is the increment that two&rsquo;s complement negation requires. No additional adder or stage is needed.</p>
+                <p class="formula">result = A + (B &oplus; SUB) + SUB</p>
+                <p>With SUB = 0 this evaluates to A + B; with SUB = 1 it evaluates to A + B&prime; + 1, which is A &minus; B.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="live-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="live-heading">The adder&ndash;subtractor in operation</h2></div>
+              <p class="instruction">Change SUB and observe the same hardware perform a different operation.</p>
+            </div>
+            <div class="sub-layout">
+              <div class="gate-controls">
+                <div class="switch-row"><span>SUB control</span><button class="bit-switch" id="sub-ctl" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="expression-card"><span>Operation</span><strong id="sub-op">A + B</strong></div>
+                <div class="expression-card"><span>Carry-in</span><strong id="sub-cin">0</strong></div>
+                <div class="action-row"><button class="action-button secondary" id="sub-demo" type="button">Show a borrow</button></div>
+              </div>
+              <div>
+                <div class="ripple-panel">
+                  <div class="ripple-row"><span class="ripple-label">A</span><div class="ripple-bits" id="sub-a"></div><span class="ripple-value" id="sub-a-val">0</span></div>
+                  <div class="ripple-row"><span class="ripple-label">B</span><div class="ripple-bits" id="sub-b"></div><span class="ripple-value" id="sub-b-val">0</span></div>
+                  <div class="ripple-row carries"><span class="ripple-label">B &oplus; SUB</span><div class="ripple-bits" id="sub-x"></div><span class="ripple-value"></span></div>
+                  <div class="ripple-row sum"><span class="ripple-label">Result</span><div class="ripple-bits" id="sub-r"></div><span class="ripple-value" id="sub-r-val">0</span></div>
+                </div>
+                <div class="flag-row">
+                  <div class="flag" id="sub-flag-c"><span>Carry out</span><strong>0</strong></div>
+                  <div class="flag" id="sub-flag-z"><span>Result is zero</span><strong>1</strong></div>
+                </div>
+                <p class="result-box" id="sub-status" aria-live="polite"></p>
+              </div>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="borrow-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 4</p><h2 id="borrow-heading">Reading the carry out as a borrow</h2></div>
+              <p class="instruction">During subtraction the carry output carries a different and useful interpretation.</p>
+            </div>
+            <p>When SUB = 1 the carry out is no longer an overflow signal. For unsigned operands it tells you whether the subtraction needed to borrow:</p>
+            <div class="table-wrap">
+              <table>
+                <caption>Carry out during subtraction, unsigned operands</caption>
+                <thead><tr><th>Carry out</th><th>Meaning</th><th>Relationship</th><th>Result is</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>No borrow needed</td><td>A &ge; B</td><td>the correct difference</td></tr>
+                  <tr><td>0</td><td>A borrow was needed</td><td>A &lt; B</td><td>the difference plus 16, i.e. negative in two&rsquo;s complement</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>A single bit produced by the subtraction therefore establishes whether one operand is at least as large as the other. The following activity develops a magnitude comparator from this result.</p>
+            <p class="source-note">Some processor families invert this bit and call it a borrow flag instead. The information is identical; only the convention differs.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 5</p><h2 id="check-heading">Check your understanding</h2></div>
+              <p class="instruction">Four correct predictions in a row completes this activity.</p>
+            </div>
+            <p class="expression-prompt" id="predict-prompt">Loading&hellip;</p>
+            <form id="predict-form">
+              <div class="predict-fields">
+                <div><label for="predict-result"><strong>Four-bit result</strong></label><input id="predict-result" type="text" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="e.g. 0110"></div>
+                <div><label for="predict-carry"><strong>Carry out</strong></label><select id="predict-carry"><option value="">?</option><option value="0">0</option><option value="1">1</option></select></div>
+              </div>
+              <details class="hint"><summary>Hint</summary><p>For SUB = 1, either subtract directly and write the answer in four-bit two&rsquo;s complement, or follow the hardware: invert B, add it to A, add one more, and keep the bottom four bits. The carry out is 1 when A is at least as large as B.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check</button>
+                <button class="action-button secondary" id="predict-restart" type="button">Start again</button>
+              </div>
+              <div class="feedback" id="predict-feedback" aria-live="polite">Streak: 0 of 4.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../ripple-adder/"><small>Previous activity</small><strong>&larr; Four-Bit Ripple-Carry Addition</strong></a>
+            <a href="../comparator-internals/"><small>Next activity</small><strong>Comparators Revisited &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

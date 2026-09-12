@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare how different physical technologies represent one bit, from relay contacts and fibre optics to compact discs and memory cells.">
+  <title>Representing Two States | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../foundations.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="digital-foundations" data-activity="two-state-representations" data-title="Representing Two States">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 1 &middot; Interactive activity</p>
+            <h1>Representing Two States</h1>
+            <p>Any two distinguishable physical states can carry one bit. Compare the technologies below.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/digital-foundations/">Digital Foundations</a> / Representing Two States</p>
+
+          <section class="activity-panel" aria-labelledby="explore-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="explore-heading">Two states can have many physical meanings</h2></div>
+              <p class="instruction">The symbols 0 and 1 do not always mean voltage.</p>
+            </div>
+            <p>Examples drawn from mechanics, memory, optics and storage show that any two distinguishable physical states can represent one bit. Step through the technologies and compare what each one uses for 0 and for 1. Voltage levels are a special case, handled in <a href="../analogue-digital/">Analogue and Digital Values</a>.</p>
+            <div class="tech-grid">
+              <div class="tech-card"><label for="technology"><strong>Select a technology</strong></label><select id="technology"></select></div>
+              <div class="tech-card state-zero"><span>LOW / 0</span><strong id="state-zero"></strong></div>
+              <div class="tech-card state-one"><span>HIGH / 1</span><strong id="state-one"></strong></div>
+            </div>
+            <p class="source-note">Several of these technologies are of historical rather than current importance, but each illustrates the same principle.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="check-heading">Check your understanding</h2></div>
+              <p class="instruction">Decide which logic state each physical condition represents.</p>
+            </div>
+            <form id="check-form">
+              <ul class="match-list">
+                <li class="match-row"><span>Fibre optics: <strong>light on</strong></span><select data-answer="1" aria-label="Fibre optics, light on"><option value="">Choose</option><option value="0">0</option><option value="1">1</option></select></li>
+                <li class="match-row"><span>Relay logic: <strong>circuit open</strong></span><select data-answer="0" aria-label="Relay logic, circuit open"><option value="">Choose</option><option value="0">0</option><option value="1">1</option></select></li>
+                <li class="match-row"><span>Dynamic memory: <strong>capacitor charged</strong></span><select data-answer="1" aria-label="Dynamic memory, capacitor charged"><option value="">Choose</option><option value="0">0</option><option value="1">1</option></select></li>
+                <li class="match-row"><span>Read-only compact disc: <strong>no pit</strong></span><select data-answer="0" aria-label="Compact disc, no pit"><option value="">Choose</option><option value="0">0</option><option value="1">1</option></select></li>
+                <li class="match-row"><span>Non-volatile memory: <strong>fuse intact</strong></span><select data-answer="1" aria-label="Non-volatile memory, fuse intact"><option value="">Choose</option><option value="0">0</option><option value="1">1</option></select></li>
+              </ul>
+              <details class="hint"><summary>Hint</summary><p>Use the selector above. For each technology the tutor lists the LOW state first and the HIGH state second.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check answers</button>
+                <button class="action-button secondary" id="clear-check" type="button">Clear answers</button>
+              </div>
+              <div class="feedback" id="check-feedback" aria-live="polite">Match all five conditions, then check your work.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../logic-levels/"><small>Previous activity</small><strong>&larr; Logic Levels and Noise Margins</strong></a>
+            <a href="../bits/"><small>Next activity</small><strong>Bits &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

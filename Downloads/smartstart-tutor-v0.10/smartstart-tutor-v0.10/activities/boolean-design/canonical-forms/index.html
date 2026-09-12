@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Minterms, maxterms, canonical SOP and POS in the SmartStart Digital Electronics Tutor.">
+  <title>Minterms, Maxterms, SOP and POS | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../boolean.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="boolean-design" data-activity="canonical-forms" data-title="Minterms, Maxterms, SOP and POS">
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">☰</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero"><div class="content-wrap">
+          <p class="eyebrow">Module 4 · Interactive activity</p>
+          <h1>Minterms, Maxterms, SOP and POS</h1>
+          <p>Map truth-table rows to canonical expressions, proceeding from minterms and sums of products to maxterms and products of sums.</p>
+        </div></section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/boolean-design/">Boolean Design</a> / Minterms, Maxterms, SOP and POS</p>
+
+          <section class="activity-panel" aria-labelledby="terms-heading">
+            <div class="section-heading"><div><p class="step">Part 1</p><h2 id="terms-heading">One row, one minterm and one maxterm</h2></div><p class="instruction">For three variables, every truth-table row has a normal product term that is 1 only on that row and a normal sum term that is 0 only on that row.</p></div>
+            <div class="canonical-grid">
+              <div>
+                <p><strong>Select a row index</strong></p>
+                <div class="index-selector" id="term-selector"></div>
+                <div class="table-wrap" style="margin-top:1rem"><table>
+                  <thead><tr><th>Index</th><th>A</th><th>B</th><th>C</th></tr></thead>
+                  <tbody><tr id="selected-row"><td>0</td><td>0</td><td>0</td><td>0</td></tr></tbody>
+                </table></div>
+              </div>
+              <div class="term-display">
+                <article class="summary-card"><h3 id="minterm-title">Minterm m₀</h3><p class="formula" id="minterm-expression">A′ · B′ · C′</p><p>This product is 1 only for the selected input row.</p></article>
+                <article class="summary-card"><h3 id="maxterm-title">Maxterm M₀</h3><p class="formula" id="maxterm-expression">A + B + C</p><p>This sum is 0 only for the selected input row.</p></article>
+              </div>
+            </div>
+            <div class="callout" style="margin-top:1rem"><p><strong>Remember:</strong> in a minterm, a 0 input produces a complemented literal. In a maxterm, a 1 input produces a complemented literal.</p></div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="builder-heading">
+            <div class="section-heading"><div><p class="step">Part 2</p><h2 id="builder-heading">Build a function from its truth table</h2></div><p class="instruction">Click the eight output values to define any three-variable function. The canonical SOP includes rows set to 1; the canonical POS includes rows set to 0.</p></div>
+            <div class="function-builder">
+              <div class="output-grid" id="output-grid"></div>
+              <div class="canonical-results">
+                <div><strong>Canonical SOP notation</strong><code id="sigma-result">F = 0</code></div>
+                <div><strong>Expanded canonical SOP</strong><code id="sop-result">F = 0</code></div>
+                <div><strong>Canonical POS notation</strong><code id="pi-result">F = ΠM(0,1,2,3,4,5,6,7)</code></div>
+                <div><strong>Expanded canonical POS</strong><code id="pos-result"></code></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="challenge-heading">
+            <div class="section-heading"><div><p class="step">Part 3</p><h2 id="challenge-heading">Recover the canonical forms of the original function</h2></div><p class="instruction">For F = ((X·Z)·(X·Y) + (Z+X)), select the row indices used by the canonical SOP and POS.</p></div>
+            <form id="challenge-form">
+              <div class="canonical-grid">
+                <fieldset class="summary-card"><legend><strong>Rows included in Σm</strong></legend><div class="choice-grid" id="minterm-choices"></div></fieldset>
+                <fieldset class="summary-card"><legend><strong>Rows included in ΠM</strong></legend><div class="choice-grid" id="maxterm-choices"></div></fieldset>
+              </div>
+              <div class="control-stack" style="margin-top:1rem">
+                <label for="simplified-choice">Choose the simplified expression
+                  <select id="simplified-choice">
+                    <option value="">Select an expression</option>
+                    <option value="x+z">F = X + Z</option>
+                    <option value="xy">F = X · Y</option>
+                    <option value="xz">F = X · Z</option>
+                    <option value="x+y+z">F = X + Y + Z</option>
+                  </select>
+                </label>
+              </div>
+              <div class="callout" style="margin-top:1rem"><h3>The combining theorem</h3><p class="formula">X · Y + X · Y′ = X</p><p>Combining adjacent minterms removes the variable that changes between them.</p></div>
+              <div class="action-row"><button class="action-button primary" type="submit">Check canonical forms</button><button class="action-button secondary" id="reset-challenge" type="button">Reset</button></div>
+            </form>
+            <div class="feedback" id="challenge-feedback" aria-live="polite">Select the SOP rows, the POS rows and the simplified expression.</div>
+          </section>
+
+          <section class="callout" style="margin-top:1.25rem"><h3>Two-level implementations</h3><p><strong>SOP:</strong> a first stage of AND gates followed by an OR gate. <strong>POS:</strong> a first stage of OR gates followed by an AND gate.</p></section>
+
+          <nav class="page-nav" aria-label="Activity navigation"><a href="../truth-tables/"><small>Previous activity</small><strong>← Compound Truth Tables</strong></a><a href="../karnaugh-maps/"><small>Next activity</small><strong>Karnaugh Maps →</strong></a></nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor · Neela Seegobin, original author · Azim Abdool, web edition · IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,2 @@
+"use strict";
+document.querySelector('#check').addEventListener('click',()=>{const got=[0,1,2,3].map(i=>document.querySelector('#d'+i).value),expected=['Z′','Z','Z′','1'],ok=got.every((v,i)=>v===expected[i]),fb=document.querySelector('#feedback');fb.className='feedback '+(ok?'correct':'incorrect');fb.textContent=ok?'Correct: D0=Z′, D1=Z, D2=Z′ and D3=1.':'Not yet. Remember D2 corresponds to WX=10 even though the K-map rows are shown in Gray order.';if(ok)SmartStartProgress.complete('mux-synthesis');});

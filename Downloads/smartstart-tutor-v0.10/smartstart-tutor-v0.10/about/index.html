@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive digital electronics tutor: logic gates, Boolean design, combinational and sequential circuits, and hardware practice.">
+  <title>About &amp; Credits | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../assets/site.css">
+  
+  <script src="../assets/site.js" defer></script>
+  
+</head>
+<body data-root="../" data-section="about" data-title="About &amp; credits">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">☰</button>
+        <a class="toolbar-title" href="../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+<main class="page-content"><div class="content-wrap">
+  <p class="breadcrumbs"><a href="../">Home</a> / About &amp; credits</p>
+  <header class="module-header"><h1>About &amp; credits</h1><p class="lead">The SmartStart Digital Electronics Tutor was created as a Flash-based learning aid for digital electronics students. This edition rebuilds it for modern browsers so it can go on being used.</p></header>
+
+  <section class="content-card">
+    <h2>Credits</h2>
+    <p><strong>Neela Seegobin</strong> — original author. The tutor's structure, worked examples, exercises and answer logic are hers, and the reconstruction follows them closely.</p>
+    <p><strong>Azim Abdool</strong> — web edition. Translation of the original Flash source into HTML, CSS, JavaScript and SVG, and the interface presented here.</p>
+    <p>Published by the <strong>IEEE EDS Trinidad and Tobago Chapter</strong>. Chapter branding is applied to the interface only; IEEE did not author the original tutor.</p>
+  </section>
+
+  <section class="content-card">
+    <h2>How the rebuild was done</h2>
+    <p>The original was distributed as a Shockwave application. Its instructional text and ActionScript were recovered from the source <code>.fla</code> file and reimplemented as ordinary web pages, so that the material now works on phones and tablets, requires no plugin, and can be read by a screen reader.</p>
+    <ul>
+      <li>The original topics, worked examples and exercise logic are retained wherever practical.</li>
+      <li>Flash controls are replaced with accessible, keyboard-operable web controls.</li>
+      <li>Artwork is redrawn in SVG only where the original vector timeline could not be recovered.</li>
+      <li>Broken external dependencies, including the EVITA executable launcher, were dropped rather than reproduced.</li>
+      <li>Electrical values are those used by the original; current data sheets should be consulted for real devices.</li>
+    </ul>
+    <p>The activities themselves carry no commentary on any of this. They are written for students working through the subject, and the record of what was preserved is kept here instead.</p>
+  </section>
+
+  <section class="content-card">
+    <h2>What was preserved</h2>
+    <p>The following material derives directly from the original tutor, and its instructional content and answer logic are reproduced as recovered.</p>
+    <dl class="provenance">
+      <dt>Digital Foundations</dt>
+      <dd>The analogue-to-digital threshold example; the table of physical two-state technologies; the integrated-circuit classification controls for transistor technology, package and scale of integration; and representative TTL and CMOS threshold values.</dd>
+
+      <dt>Logic Fundamentals</dt>
+      <dd>The three-gate introduction, the list of common gate symbols, the Boolean expressions attached to each, and the De Morgan relationships.</dd>
+
+      <dt>Digital Hardware Practice</dt>
+      <dd>The MOSFET and CMOS explanations, the diode review, the TTL/CMOS comparison categories, floating-input behaviour and remedies, the open-collector truth table, the tri-state OR gate, the decoupling and breadboard sequence, Schmitt-trigger hysteresis, the free-wheeling diode and the LED series-resistor calculation.</dd>
+
+      <dt>Boolean Design</dt>
+      <dd>The notation and worked compound expression, the duality treatment, the progression from minterms and sums of products to maxterms and products of sums, the Karnaugh-map prime-implicant set, the hazard treatment and the Petrick coverage example.</dd>
+
+      <dt>Combinational Building Blocks</dt>
+      <dd>The 3-to-8 decoder exercise and its answer logic, the decoder-as-minterm and cascading examples, the 74×151 multiplexer activity, the demultiplexer routing logic and the multiplexer synthesis K-map.</dd>
+
+      <dt>Data Representation</dt>
+      <dd>The number-system demonstrations and base-conversion examples, the fixed and floating-point treatment, IEEE 754 formats, the packed and unpacked BCD distinction, the reflected Gray-code method with its rotary encoder, and the ASCII treatment.</dd>
+
+      <dt>Arithmetic and Comparison</dt>
+      <dd>The BCD-to-seven-segment decoder and its segment mapping, and the magnitude comparator exercise.</dd>
+
+      <dt>Sequential Logic</dt>
+      <dd>The random bistable power-up behaviour, the SR and D latch progression, the falling-edge D flip-flop, JK transition behaviour, the register and modulo-four counter, the Moore and Mealy definitions, the state-table derivation and the finite-string recogniser.</dd>
+    </dl>
+  </section>
+
+  <section class="content-card">
+    <h2>What was added</h2>
+    <p>Some material in this edition has no counterpart in the original. It was written to close gaps that became apparent once the sequence was assembled, and follows the same conventions as the rest.</p>
+    <ul>
+      <li>Signal flow through a multi-gate circuit, bridging single gates to Boolean design.</li>
+      <li>Exclusive-OR and exclusive-NOR, which the original did not treat.</li>
+      <li>Synthesis with gates, stated explicitly as the conclusion of Boolean design.</li>
+      <li>Signed number representations: sign-magnitude, two’s complement and biased forms.</li>
+      <li>Half and full adders, ripple-carry addition, subtraction by complement, the derivation of a comparator from a subtractor, and an arithmetic and logic unit.</li>
+      <li>Synthesis with lookup tables, and the comparison of the four synthesis methods.</li>
+      <li>The hexadecimal extension of the seven-segment decoder, and DIP pin numbering.</li>
+    </ul>
+    <p>Textbooks and class notes cited by the original are collected on the <a href="../references/">references page</a>.</p>
+  </section>
+
+  <section class="content-card">
+    <h2>Your progress</h2>
+    <p>Completed activities are recorded in your own browser and never leave your device. Clearing site data, switching browsers or using a private window will reset them. If the tutor is embedded in another page, some browsers block that storage entirely — opening it in its own tab avoids the problem.</p>
+    <p class="progress-summary"><progress data-global-progress max="54" value="0"></progress> <strong data-global-progress-text>0 of 54 activities completed</strong></p>
+    <p class="notice warning" data-storage-warning hidden><strong>Progress is not being saved in this window.</strong> Storage is blocked for embedded pages here. Open the tutor in its own tab to keep your progress.</p>
+    <div class="action-row"><button class="site-button" type="button" id="export-progress">Copy my progress code</button> <button class="site-button quiet" type="button" id="import-progress">Restore from a code</button></div>
+    <p id="progress-io-status" aria-live="polite" class="section-intro"></p>
+  </section>
+</div></main>
+<script>
+document.getElementById("export-progress").addEventListener("click", async () => {
+  const status = document.getElementById("progress-io-status");
+  const code = SmartStartProgress.export();
+  try { await navigator.clipboard.writeText(code); status.textContent = "Progress code copied to the clipboard. Paste it somewhere safe."; }
+  catch { status.textContent = "Copy this code and keep it safe: " + code; }
+});
+document.getElementById("import-progress").addEventListener("click", () => {
+  const status = document.getElementById("progress-io-status");
+  const text = prompt("Paste your saved progress code:");
+  if (text === null) return;
+  status.textContent = SmartStartProgress.import(text.trim())
+    ? "Progress restored."
+    : "That code could not be read. Check that it was copied in full.";
+});
+</script>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor · Neela Seegobin, original author · Azim Abdool, web edition · IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chain four full adders into a four-bit ripple-carry adder, watch the carry propagate, and see what the final carry out means.">
+  <title>Four-Bit Ripple-Carry Addition | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../arithmetic.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="arithmetic-comparison" data-activity="ripple-adder" data-title="Four-Bit Ripple-Carry Addition">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 7 &middot; Interactive activity</p>
+            <h1>Four-Bit Ripple-Carry Addition</h1>
+            <p>Connecting each carry output to the next carry input extends a single-column adder to four bits. The carry propagates across the row as it does in manual addition.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/arithmetic-comparison/">Arithmetic and Comparison</a> / Four-Bit Ripple-Carry Addition</p>
+
+          <section class="activity-panel" aria-labelledby="chain-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="chain-heading">Chaining full adders</h2></div>
+              <p class="instruction">One full adder handles a single column; four handle four bits.</p>
+            </div>
+            <p>Manual addition proceeds column by column from the right, carrying into the next column as required. A four-bit adder performs the same operation in hardware: four full adders in parallel, with each carry output connected to the carry input of the column to its left.</p>
+            <p>Click the bits to set two four-bit numbers and watch the carry row.</p>
+            <div class="ripple-panel">
+              <div class="ripple-row"><span class="ripple-label">A</span><div class="ripple-bits" id="rip-a"></div><span class="ripple-value" id="rip-a-val">0</span></div>
+              <div class="ripple-row"><span class="ripple-label">B</span><div class="ripple-bits" id="rip-b"></div><span class="ripple-value" id="rip-b-val">0</span></div>
+              <div class="ripple-row carries"><span class="ripple-label">carry in</span><div class="ripple-bits" id="rip-c"></div><span class="ripple-value"></span></div>
+              <div class="ripple-row sum"><span class="ripple-label">Sum</span><div class="ripple-bits" id="rip-s"></div><span class="ripple-value" id="rip-s-val">0</span></div>
+            </div>
+            <p class="result-box" id="rip-status" aria-live="polite"></p>
+            <div class="action-row">
+              <button class="action-button secondary" id="rip-clear" type="button">Clear both</button>
+              <button class="action-button secondary" id="rip-demo" type="button">Make the carry ripple all the way</button>
+              <button class="action-button secondary" id="rip-overflow" type="button">Force an overflow</button>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="overflow-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="overflow-heading">When the answer does not fit</h2></div>
+              <p class="instruction">Four bits represent 0 to 15; not every sum lies within that range.</p>
+            </div>
+            <p>If the carry out of the most significant column is 1, the correct result required a fifth bit. The four sum bits then hold the true value <em>less 16</em>, which is incorrect if a result within range was expected.</p>
+            <p>For this reason a practical adder brings the final carry out to a pin rather than discarding it. In unsigned arithmetic that output <strong>is</strong> the overflow indication, and software is expected to test it.</p>
+            <div class="callout">
+              <h3>Propagation delay</h3>
+              <p>No column can settle until the carry from the column to its right has arrived. The carry therefore propagates across the width of the adder one stage at a time, and a wide ripple-carry adder is correspondingly slow. Faster arrangements, such as carry-lookahead, compute the carries in parallel at the cost of considerably more logic.</p>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="check-heading">Predict the adder</h2></div>
+              <p class="instruction">Give the four sum bits and say whether the carry out is set. Four in a row completes this activity.</p>
+            </div>
+            <p class="expression-prompt" id="predict-prompt">Loading&hellip;</p>
+            <form id="predict-form">
+              <div class="predict-fields">
+                <div><label for="predict-sum"><strong>Four-bit sum</strong></label><input id="predict-sum" type="text" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="e.g. 0110"></div>
+                <div><label for="predict-carry"><strong>Carry out</strong></label><select id="predict-carry"><option value="">?</option><option value="0">0</option><option value="1">1</option></select></div>
+              </div>
+              <details class="hint"><summary>Hint</summary><p>Add the two decimal values first. If the total is 16 or more, the carry out is 1 and the four sum bits show the total minus 16.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check</button>
+                <button class="action-button secondary" id="predict-restart" type="button">Start again</button>
+              </div>
+              <div class="feedback" id="predict-feedback" aria-live="polite">Streak: 0 of 4.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../adders/"><small>Previous activity</small><strong>&larr; Half and Full Adders</strong></a>
+            <a href="../subtractor/"><small>Next activity</small><strong>Subtractors &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

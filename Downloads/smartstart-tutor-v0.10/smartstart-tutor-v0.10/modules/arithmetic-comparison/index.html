@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Arithmetic and Comparison: combinational circuits whose behaviour depends on what the bit patterns represent.">
+  <title>Module 7: Arithmetic and Comparison | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-root="../../" data-section="arithmetic-comparison" data-title="Module 7: Arithmetic and Comparison">
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">☰</button>
+        <a class="toolbar-title" href="../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content"><div class="content-wrap">
+        <p class="breadcrumbs"><a href="../../">Home</a> / Module 7</p>
+        <header class="module-header"><h1>7. Arithmetic and Comparison</h1><p class="lead">Combinational circuits whose behaviour depends on the interpretation placed on their inputs. The module proceeds from display decoding and magnitude comparison through addition and subtraction, and concludes by deriving the comparator afresh and assembling an arithmetic and logic unit.</p></header>
+
+        <section class="section" aria-labelledby="activities-heading">
+          <h2 id="activities-heading">Activities</h2>
+          <div class="activity-list">
+            <article class="activity-list-item"><span class="activity-index">7.1</span><div><h3>BCD and Hexadecimal Seven-Segment Displays</h3><p>Map BCD digits to seven segments, then extend the decoder to hexadecimal by designing the shapes for A to F.</p></div><a class="activity-link" href="../../activities/arithmetic-comparison/seven-segment/">Open activity →</a></article>
+            <article class="activity-list-item"><span class="activity-index">7.2</span><div><h3>Binary Comparators</h3><p>Compare two binary words and indicate whether A is less than, equal to or greater than B.</p></div><a class="activity-link" href="../../activities/arithmetic-comparison/comparator/">Open activity →</a></article>
+            <article class="activity-list-item"><span class="activity-index">7.3</span><div><h3>Half and Full Adders</h3><p>Build a half adder from XOR and AND, then a full adder that accepts a carry from the column to its right.</p></div><a class="activity-link" href="../../activities/arithmetic-comparison/adders/">Open activity →</a></article>
+            <article class="activity-list-item"><span class="activity-index">7.4</span><div><h3>Four-Bit Ripple-Carry Addition</h3><p>Chain four full adders, watch the carry propagate across the row, and see what the final carry out means.</p></div><a class="activity-link" href="../../activities/arithmetic-comparison/ripple-adder/">Open activity →</a></article>
+            <article class="activity-list-item"><span class="activity-index">7.5</span><div><h3>Subtractors</h3><p>One control line, one XOR gate per bit, and the adder does subtraction too. The carry out becomes a borrow signal.</p></div><a class="activity-link" href="../../activities/arithmetic-comparison/subtractor/">Open activity →</a></article>
+            <article class="activity-list-item"><span class="activity-index">7.6</span><div><h3>Comparators Revisited</h3><p>Reopen the comparator: the zero and carry flags of a subtraction give all three magnitude outputs.</p></div><a class="activity-link" href="../../activities/arithmetic-comparison/comparator-internals/">Open activity →</a></article>
+            <article class="activity-list-item"><span class="activity-index">7.7</span><div><h3>A Simple ALU</h3><p>Four functions selected by a code, built from the adder, the subtractor trick and a multiplexer.</p></div><a class="activity-link" href="../../activities/arithmetic-comparison/alu/">Open activity →</a></article>
+          </div>
+        </section>
+
+        <section class="section content-card" aria-labelledby="coverage-heading">
+          <h2 id="coverage-heading">What this module covers</h2>
+          <p class="section-intro">The circuits treated here interpret their inputs as numbers. Establishing that <code>1011</code> exceeds <code>0111</code> requires both operands to be read as positional binary values, and a seven-segment decoder is defined only once BCD has been. Each therefore depends on the representations established in Data Representation.</p>
+          <ul class="topic-list"><li>Hexadecimal seven-segment extension</li><li>Subtraction as addition of a complement</li><li>Borrow signalling</li><li>Comparison by subtraction</li><li>BCD as a display input code</li><li>Seven-segment mapping</li><li>Magnitude comparison of binary words</li><li>Comparing most-significant bits first</li><li>Half and full adders</li><li>Ripple carry and overflow</li><li>Two’s complement subtraction</li><li>Function selection with a multiplexer</li></ul>
+        </section>
+
+        <nav class="page-nav" aria-label="Module navigation"><a href="../data-representation/"><small>Previous module</small><strong>← Module 6</strong></a><a href="../sequential-logic/"><small>Next module</small><strong>Module 8 →</strong></a></nav>
+      </div></main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor · Neela Seegobin, original author · Azim Abdool, web edition · IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+</body>
+</html>

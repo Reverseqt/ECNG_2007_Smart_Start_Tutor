@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare AND, OR, NAND, NOR, buffer and inverter symbols, see the De Morgan relationships, then identify gates from symbol and expression.">
+  <title>The Gate Family and De Morgan | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../logic.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="logic-fundamentals" data-activity="gate-family" data-title="The Gate Family and De Morgan">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 2 &middot; Interactive activity</p>
+            <h1>The Gate Family and De Morgan</h1>
+            <p>Recognise the six common gate symbols on sight, and see why De Morgan's identities let NAND and NOR be drawn more than one way.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/logic-fundamentals/">Logic Fundamentals</a> / The Gate Family and De Morgan</p>
+
+          <section class="activity-panel" aria-labelledby="family-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="family-heading">The common gate family</h2></div>
+              <p class="instruction">AND, OR, NAND, NOR, buffer and inverter are the symbols in routine use. XOR and XNOR are included with them because both appear in the comparators and adders treated later.</p>
+            </div>
+
+            <div class="family-grid">
+              <div>
+                <label for="family-gate"><strong>Select a gate family member</strong></label>
+                <select id="family-gate">
+                  <option value="AND">AND</option>
+                  <option value="OR">OR</option>
+                  <option value="NAND">NAND</option>
+                  <option value="NOR">NOR</option>
+                  <option value="BUFFER">BUFFER</option>
+                  <option value="INVERTER">INVERTER</option>
+                  <option value="XOR">XOR</option>
+                  <option value="XNOR">XNOR</option>
+                </select>
+                <div class="family-summary">
+                  <h3 id="family-title">AND gate</h3>
+                  <p id="family-description"></p>
+                  <p class="formula" id="family-formula"></p>
+                </div>
+              </div>
+              <div class="symbol-card" aria-live="polite">
+                <svg id="family-symbol" viewBox="0 0 520 300" role="img" aria-label="Selected logic gate symbol">
+                  <g class="family-input"><line x1="35" y1="95" x2="165" y2="95"></line><text x="20" y="102" text-anchor="end">X</text></g>
+                  <g class="family-input family-input-b"><line x1="35" y1="205" x2="165" y2="205"></line><text x="20" y="212" text-anchor="end">Y</text></g>
+                  <g id="family-shape"></g>
+                  <line class="family-output" x1="350" y1="150" x2="475" y2="150"></line>
+                  <text x="500" y="158">Z</text>
+                </svg>
+              </div>
+            </div>
+
+            <aside class="demorgan-note">
+              <h3>De Morgan relationships</h3>
+              <p><strong>X&prime; + Y&prime; = (X &middot; Y)&prime;</strong> and <strong>X&prime; &middot; Y&prime; = (X + Y)&prime;</strong>.</p>
+              <p>These identities explain why NAND and NOR functions can be represented using alternative gate symbols with inverted inputs or outputs.</p>
+              <p><strong>XOR is not a basic gate.</strong> It is built from the others: X &oplus; Y = X&prime;&middot;Y + X&middot;Y&prime;. It earns its own symbol because "the inputs differ" is needed so often &mdash; it is the sum bit of an adder and the not-equal test in a comparator.</p>
+            </aside>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="identify-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="identify-heading">Identify the gate</h2></div>
+              <p class="instruction">Name the gate from its symbol and from its Boolean expression.</p>
+            </div>
+            <form id="identify-form">
+              <div class="identify-grid">
+                <div class="symbol-card">
+                  <svg id="quiz-symbol" viewBox="0 0 520 300" role="img" aria-label="Unnamed logic gate symbol">
+                    <g class="family-input" id="quiz-input-a"><line x1="35" y1="95" x2="165" y2="95"></line><text x="20" y="102" text-anchor="end">X</text></g>
+                    <g class="family-input" id="quiz-input-b"><line x1="35" y1="205" x2="165" y2="205"></line><text x="20" y="212" text-anchor="end">Y</text></g>
+                    <g id="quiz-shape"></g>
+                    <line class="family-output" id="quiz-output" x1="350" y1="150" x2="475" y2="150"></line>
+                    <text x="500" y="158">Z</text>
+                  </svg>
+                </div>
+                <div class="identify-controls">
+                  <p><label for="symbol-answer"><strong>Which gate is drawn here?</strong></label></p>
+                  <select id="symbol-answer" data-answer=""><option value="">Choose</option><option>AND</option><option>OR</option><option>NAND</option><option>NOR</option><option>BUFFER</option><option>INVERTER</option><option>XOR</option><option>XNOR</option></select>
+                  <div class="action-row"><button class="action-button secondary" id="new-symbol" type="button">Show a different symbol</button></div>
+                </div>
+              </div>
+
+              <p class="expression-prompt" style="margin-top:1.2rem">Which gate does <strong id="expression-prompt">Z = (X + Y)&prime;</strong> describe?</p>
+              <div class="identify-controls">
+                <select id="expression-answer" data-answer=""><option value="">Choose</option><option>AND</option><option>OR</option><option>NAND</option><option>NOR</option><option>BUFFER</option><option>INVERTER</option><option>XOR</option><option>XNOR</option></select>
+              </div>
+
+              <details class="hint"><summary>Hint</summary><p>A small circle on the output means the function is complemented. A triangle body is a buffer or inverter; a flat back is AND or NAND; a curved back is OR or NOR.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check answers</button>
+              </div>
+              <div class="feedback" id="identify-feedback" aria-live="polite">Answer both questions, then check your work.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../basic-gates/"><small>Previous activity</small><strong>&larr; The Three Basic Gates</strong></a>
+            <a href="../gate-truth-tables/"><small>Next activity</small><strong>Complete the Truth Tables &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

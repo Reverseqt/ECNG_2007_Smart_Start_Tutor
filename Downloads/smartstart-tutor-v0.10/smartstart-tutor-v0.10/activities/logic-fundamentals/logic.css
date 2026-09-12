@@ -1,0 +1,128 @@
+/* Module 2: Logic Fundamentals — shared activity styles. */
+
+.activity-hero { padding: 2.3rem 0 2rem; color: white; background: linear-gradient(135deg, #17324d, #00629b); }
+.activity-hero .content-wrap { padding-top: 0; padding-bottom: 0; }
+.activity-hero h1 { margin: .25rem 0 .65rem; color: white; font-size: clamp(2rem, 4.5vw, 3.5rem); }
+.activity-hero p { max-width: 850px; margin-bottom: 0; color: #e4f5fb; }
+.activity-panel { margin-bottom: 1.25rem; padding: clamp(1rem, 3vw, 1.8rem); border: 1px solid var(--line); border-radius: 1rem; background: white; box-shadow: var(--shadow); }
+.section-heading { display: flex; gap: 2rem; align-items: end; justify-content: space-between; margin-bottom: 1.35rem; }
+.section-heading h2 { margin: .15rem 0 0; }
+.step { margin: 0; color: var(--ieee-blue); font-size: .76rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.instruction { max-width: 520px; margin: 0; color: var(--muted); }
+
+/* Gate explorer (2.1) */
+.gate-explorer-grid { display: grid; grid-template-columns: minmax(220px, .65fr) minmax(0, 1.6fr); gap: 1.2rem; }
+.gate-controls, .gate-stage, .symbol-card { border: 1px solid var(--line); border-radius: .85rem; background: #fbfdff; }
+.gate-controls { padding: 1rem; }
+.gate-controls select, .family-grid select { width: 100%; min-height: 2.7rem; margin-top: .35rem; padding: .45rem .6rem; border: 1px solid #9caab6; border-radius: .45rem; background: white; }
+.switch-row { display: flex; align-items: center; justify-content: space-between; margin-top: .9rem; padding: .75rem 0; border-top: 1px solid var(--line); font-weight: 800; }
+.switch-row.disabled { opacity: .42; }
+.bit-switch { position: relative; width: 4rem; height: 2.1rem; border: 0; border-radius: 999px; color: var(--ieee-blue-dark); background: #a9b7c3; cursor: pointer; }
+.bit-switch span { position: absolute; top: .25rem; left: .25rem; display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: white; box-shadow: 0 2px 6px rgb(0 0 0 / .18); transition: transform .16s ease; }
+.bit-switch[aria-checked="true"] { background: var(--ieee-blue); }
+.bit-switch[aria-checked="true"] span { transform: translateX(1.9rem); }
+.bit-switch:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible { outline: .2rem solid #ffca28; outline-offset: .14rem; }
+.expression-card { margin-top: 1rem; padding: .85rem 1rem; border-radius: .65rem; background: var(--surface-blue); }
+.expression-card span { display: block; color: var(--muted); font-size: .75rem; font-weight: 850; text-transform: uppercase; }
+.expression-card strong { color: var(--ieee-blue-dark); font-size: 1.25rem; }
+.gate-stage { min-width: 0; padding: .5rem 1rem 1rem; }
+#gate-diagram { width: 100%; height: auto; min-height: 280px; }
+.signal line, .output-signal line { stroke: #a9b7c3; stroke-width: 8; stroke-linecap: round; }
+.signal circle { fill: white; stroke: #a9b7c3; stroke-width: 7; }
+.signal text, .output-signal text { fill: var(--ieee-blue-dark); font-size: 27px; font-weight: 850; }
+.signal.active line, .signal.active circle, .output-signal.active line { stroke: #f6b700; }
+.signal.active circle { fill: #f6b700; }
+.output-lamp { fill: white; stroke: #a9b7c3; stroke-width: 7; }
+.output-signal.active .output-lamp { fill: #f6b700; stroke: #bd8700; }
+.gate-shape path { fill: #f5fbff; stroke: var(--ieee-blue); stroke-width: 7; stroke-linejoin: round; }
+.gate-shape .or-back { fill: none; }
+.gate-bubble { fill: white; stroke: var(--ieee-blue); stroke-width: 7; }
+.gate-label { fill: var(--ieee-blue-dark); font-size: 26px; font-weight: 900; }
+.result-box { margin: -.35rem .5rem .25rem; padding: .8rem 1rem; border-radius: .55rem; text-align: center; background: var(--surface-blue); }
+
+.table-wrap { overflow-x: auto; margin-top: 1.2rem; border: 1px solid var(--line); border-radius: .75rem; }
+table { width: 100%; border-collapse: collapse; background: white; }
+caption { padding: .8rem 1rem; color: var(--ieee-blue-dark); background: #edf4f8; font-weight: 850; text-align: left; }
+th, td { min-width: 3.4rem; padding: .65rem .55rem; border: 1px solid var(--line); text-align: center; }
+th { color: white; background: var(--ieee-blue-dark); }
+tbody tr.current { background: #fff8dc; outline: .18rem solid #f6b700; outline-offset: -.18rem; }
+
+/* Gate family (2.2) */
+.family-grid { display: grid; grid-template-columns: minmax(260px, .85fr) minmax(0, 1.2fr); gap: 1.2rem; }
+.family-summary { margin-top: 1rem; padding: 1rem; border: 1px solid var(--line); border-radius: .75rem; background: #fbfdff; }
+.family-summary h3 { margin-top: 0; }
+.formula { margin-bottom: 0; color: var(--ieee-blue-dark); font-size: 1.25rem; font-weight: 900; }
+.symbol-card { display: grid; place-items: center; padding: .75rem; }
+#family-symbol, #quiz-symbol { width: 100%; max-height: 300px; }
+.family-input line, .family-output { stroke: #647786; stroke-width: 7; stroke-linecap: round; }
+.family-input text, #family-symbol > text, #quiz-symbol text { fill: var(--ieee-blue-dark); font-size: 24px; font-weight: 850; }
+#family-shape path, #quiz-shape path { fill: #f5fbff; stroke: var(--ieee-blue); stroke-width: 7; stroke-linejoin: round; }
+#family-shape circle, #quiz-shape circle { fill: white; stroke: var(--ieee-blue); stroke-width: 7; }
+.demorgan-note { margin-top: 1rem; padding: 1rem 1.1rem; border-left: .35rem solid var(--ieee-blue); border-radius: .35rem; background: var(--surface-blue); }
+.demorgan-note h3 { margin-top: 0; }
+.identify-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.2rem; align-items: center; }
+.identify-controls select { width: 100%; min-height: 2.7rem; margin-top: .35rem; padding: .45rem .6rem; border: 1px solid #9caab6; border-radius: .45rem; background: white; }
+.identify-controls select.correct { border-color: var(--success); background: var(--success-soft); }
+.identify-controls select.incorrect { border-color: #b42318; background: #fff0ee; }
+.expression-prompt { margin: 0 0 .9rem; padding: .85rem 1rem; border-radius: .65rem; background: var(--surface-blue); color: var(--ieee-blue-dark); font-size: 1.2rem; font-weight: 900; }
+
+/* Truth-table practice (2.3) */
+.practice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; align-items: start; }
+.practice-card { margin: 0; padding: .8rem; border: 1px solid var(--line); border-radius: .75rem; }
+.practice-card legend { padding: 0 .35rem; color: var(--ieee-blue-dark); font-weight: 850; }
+.practice-card select { min-width: 4rem; min-height: 2.4rem; border: 1px solid #9caab6; border-radius: .4rem; text-align: center; }
+.practice-card select.correct { border-color: var(--success); background: var(--success-soft); }
+.practice-card select.incorrect { border-color: #b42318; background: #fff0ee; }
+
+/* Signal flow through a circuit (2.4) */
+.circuit-grid { display: grid; grid-template-columns: minmax(210px, .6fr) minmax(0, 1.7fr); gap: 1.2rem; }
+.circuit-stage { min-width: 0; padding: .5rem 1rem 1rem; border: 1px solid var(--line); border-radius: .85rem; background: #fbfdff; }
+#circuit-diagram { width: 100%; height: auto; min-height: 300px; }
+.wire line { stroke: #a9b7c3; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.wire polyline { fill: none; stroke: #a9b7c3; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.wire circle { fill: white; stroke: #a9b7c3; stroke-width: 7; }
+.wire text { fill: var(--ieee-blue-dark); font-size: 25px; font-weight: 850; }
+.wire.active line, .wire.active polyline { stroke: #f6b700; }
+.wire.active circle { fill: #f6b700; stroke: #f6b700; }
+.node-label { fill: var(--muted); font-size: 20px; font-weight: 800; }
+.circuit-gate path { fill: #f5fbff; stroke: var(--ieee-blue); stroke-width: 7; stroke-linejoin: round; }
+.circuit-gate .or-back { fill: none; }
+.circuit-gate circle { fill: white; stroke: var(--ieee-blue); stroke-width: 7; }
+.circuit-gate text { fill: var(--ieee-blue-dark); font-size: 21px; font-weight: 900; }
+.node-readout { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: .8rem; }
+.node-chip { flex: 1 1 130px; padding: .7rem .85rem; border-radius: .6rem; background: var(--surface-blue); text-align: center; }
+.node-chip span { display: block; color: var(--muted); font-size: .74rem; font-weight: 850; text-transform: uppercase; }
+.node-chip strong { color: var(--ieee-blue-dark); font-size: 1.5rem; }
+.predict-row { display: grid; grid-template-columns: minmax(0, 1fr) 6rem 6rem; gap: .7rem; align-items: center; margin-bottom: .6rem; }
+.trace-table select { min-width: 4rem; min-height: 2.4rem; border: 1px solid #9caab6; border-radius: .4rem; text-align: center; }
+.trace-table select.correct { border-color: var(--success); background: var(--success-soft); }
+.trace-table select.incorrect { border-color: #b42318; background: #fff0ee; }
+
+/* Shared */
+.quiz-question { margin: 0 0 1rem; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; }
+.quiz-question legend { padding: 0 .35rem; color: var(--ieee-blue-dark); font-weight: 850; }
+.quiz-question label { display: block; margin: .45rem 0; }
+
+.action-row { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1rem; }
+.action-button { min-height: 2.75rem; padding: .65rem 1rem; border: 1px solid var(--ieee-blue); border-radius: .55rem; font-weight: 850; cursor: pointer; }
+.action-button.primary { color: white; background: var(--ieee-blue); }
+.action-button.secondary { color: var(--ieee-blue); background: white; }
+.feedback { margin-top: 1rem; padding: .9rem 1rem; border-left: .35rem solid var(--ieee-blue); border-radius: .25rem; background: var(--surface-blue); }
+.feedback.correct { border-color: var(--success); color: #0d5a38; background: var(--success-soft); }
+.feedback.incorrect { border-color: #b42318; color: #7a2119; background: #fff0ee; }
+.hint { margin-top: 1rem; padding: .75rem .9rem; border-radius: .55rem; background: #fff8dc; }
+.hint summary { color: var(--warning); font-weight: 850; cursor: pointer; }
+.hint p { margin-bottom: 0; }
+.source-note { color: var(--muted); font-size: .88rem; }
+
+@media (max-width: 900px) {
+  .gate-explorer-grid, .family-grid, .circuit-grid, .identify-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 650px) {
+  .section-heading { align-items: start; flex-direction: column; gap: .5rem; }
+  .practice-grid { grid-template-columns: 1fr; }
+  .practice-card:last-child { grid-column: auto; }
+  #gate-diagram { min-height: 230px; }
+  .predict-row { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; } }

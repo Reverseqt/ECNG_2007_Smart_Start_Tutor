@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Boolean algebra, laws and duality in the SmartStart Digital Electronics Tutor.">
+  <title>Boolean Algebra and Duality | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../boolean.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="boolean-design" data-activity="algebra" data-title="Boolean Algebra and Duality">
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">☰</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero"><div class="content-wrap">
+          <p class="eyebrow">Module 4 · Interactive activity</p>
+          <h1>Boolean Algebra and Duality</h1>
+          <p>Establish the notation, examine the core Boolean identities, and apply the principle of duality to a compound expression.</p>
+        </div></section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/boolean-design/">Boolean Design</a> / Boolean Algebra and Duality</p>
+
+          <section class="activity-panel" aria-labelledby="notation-heading">
+            <div class="section-heading"><div><p class="step">Part 1</p><h2 id="notation-heading">Operators and definitions</h2></div><p class="instruction">A dot denotes AND, a plus sign denotes OR, and a prime mark denotes NOT, or complement.</p></div>
+            <div class="notation-strip">
+              <article class="notation-card"><strong>X · Y</strong><span>AND: both conditions must be 1.</span></article>
+              <article class="notation-card"><strong>X + Y</strong><span>OR: at least one condition must be 1.</span></article>
+              <article class="notation-card"><strong>X′</strong><span>NOT: the complement of X.</span></article>
+            </div>
+            <div class="callout" style="margin-top:1rem"><h3>Axiom and theorem</h3><p><strong>Axiom or postulate:</strong> a basic statement accepted as true within the Boolean algebraic system.</p><p><strong>Theorem:</strong> a statement that can be proved from the axioms and earlier results.</p></div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="laws-heading">
+            <div class="section-heading"><div><p class="step">Part 2</p><h2 id="laws-heading">Explore useful Boolean identities</h2></div><p class="instruction">Select each identity to view its meaning and its dual. These are the rules later used to simplify logic expressions.</p></div>
+            <div class="law-grid" id="law-grid"></div>
+            <div class="feedback" id="law-feedback" aria-live="polite">Choose a law to inspect it.</div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="duality-heading">
+            <div class="section-heading"><div><p class="step">Part 3</p><h2 id="duality-heading">The principle of duality</h2></div><p class="instruction">If a Boolean identity is true, its dual is also true. Form the dual by interchanging AND with OR and 0 with 1. Variables and complements do not change.</p></div>
+            <div class="duality-grid">
+              <div>
+                <div class="dual-pairs">
+                  <div class="dual-pair"><strong>AND (·)</strong><span>↔</span><strong>OR (+)</strong></div>
+                  <div class="dual-pair"><strong>0</strong><span>↔</span><strong>1</strong></div>
+                  <div class="dual-pair"><strong>X</strong><span>stays</span><strong>X</strong></div>
+                  <div class="dual-pair"><strong>X′</strong><span>stays</span><strong>X′</strong></div>
+                </div>
+              </div>
+              <div class="expression-card">
+                <p><strong>Worked expression</strong></p>
+                <p class="formula">F = ((X · Z) · (X · Y) + (Z + X))</p>
+                <form id="duality-form" class="control-stack">
+                  <label for="dual-choice">Choose its dual expression
+                    <select id="dual-choice">
+                      <option value="">Select an expression</option>
+                      <option value="a">Fᵈ = ((X + Z) + (X + Y) · (Z · X))</option>
+                      <option value="b">Fᵈ = ((X · Z) + (X · Y) · (Z + X))</option>
+                      <option value="c">Fᵈ = ((X′ + Z′) + (X′ + Y′) · (Z′ · X′))</option>
+                      <option value="d">Fᵈ = ((X + Z) · (X + Y) + (Z · X))</option>
+                    </select>
+                  </label>
+                  <div class="action-row"><button class="action-button primary" type="submit">Check dual</button><button class="action-button secondary" id="show-rule" type="button">Show replacements</button></div>
+                </form>
+                <div class="feedback" id="duality-feedback" aria-live="polite">Apply the two operator replacements without complementing the variables.</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading"><div><p class="step">Completion check</p><h2 id="check-heading">Match each statement to its dual</h2></div><p class="instruction">Answer all four items to complete this activity.</p></div>
+            <form id="matching-form" class="control-stack">
+              <label>X + 0 = X
+                <select data-answer="X · 1 = X"><option value="">Choose the dual</option><option>X · 1 = X</option><option>X + 1 = 1</option><option>X · 0 = 0</option></select>
+              </label>
+              <label>X + 1 = 1
+                <select data-answer="X · 0 = 0"><option value="">Choose the dual</option><option>X · 1 = X</option><option>X + X′ = 1</option><option>X · 0 = 0</option></select>
+              </label>
+              <label>X + X′ = 1
+                <select data-answer="X · X′ = 0"><option value="">Choose the dual</option><option>X · X′ = 0</option><option>X · X = X</option><option>X + X = X</option></select>
+              </label>
+              <label>X + X = X
+                <select data-answer="X · X = X"><option value="">Choose the dual</option><option>X + 0 = X</option><option>X · X = X</option><option>X · 1 = X</option></select>
+              </label>
+              <div class="action-row"><button class="action-button primary" type="submit">Check matches</button><button class="action-button secondary" id="clear-matches" type="button">Clear</button></div>
+            </form>
+            <div class="feedback" id="matching-feedback" aria-live="polite">Complete all four matches, then check your work.</div>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation"><a href="../../../modules/boolean-design/"><small>Module overview</small><strong>← Boolean Design</strong></a><a href="../truth-tables/"><small>Next activity</small><strong>Compound Truth Tables →</strong></a></nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor · Neela Seegobin, original author · Azim Abdool, web edition · IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+</body>
+</html>

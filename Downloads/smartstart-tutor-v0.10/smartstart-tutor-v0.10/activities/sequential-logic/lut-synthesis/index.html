@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Program a three-input lookup table so that stored bits implement a Boolean function, and compare LUT synthesis against gates, decoders and multiplexers.">
+  <title>Synthesis with Lookup Tables | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../sequential.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="sequential-logic" data-activity="lut-synthesis" data-title="Synthesis with Lookup Tables">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 8 &middot; Interactive activity</p>
+            <h1>Synthesis with Lookup Tables</h1>
+            <p>A lookup table realises a truth table directly as stored data rather than as gates. This is the mechanism by which field-programmable devices implement logic.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/sequential-logic/">Sequential Logic</a> / Synthesis with Lookup Tables</p>
+
+          <section class="activity-panel" aria-labelledby="idea-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="idea-heading">Storage that behaves like a gate</h2></div>
+              <p class="instruction">A lookup table is storage arranged so that its address lines are the inputs of the function.</p>
+            </div>
+            <p>A <strong>lookup table</strong> applies addressable storage to combinational logic. Rather than computing a function with gates, the results are stored and subsequently read out.</p>
+            <p>Consider any three-input function. Its truth table has eight rows and a single output column. Place those eight output bits in eight storage cells and connect the three inputs to the address lines. Applying an input then causes the addressed cell to drive the output. The truth table has ceased to be a description of the circuit and has become the circuit itself.</p>
+            <div class="callout">
+              <h3>Lookup tables in practice</h3>
+              <p>This is the mechanism by which a field-programmable gate array implements logic. Such a device contains many thousands of small lookup tables, typically of four to six inputs each, and programming it consists of loading bits into those cells. No gates are rearranged, since there are no gates to rearrange: only stored bits and the multiplexers that read them.</p>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="lut-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="lut-heading">Program a 3-input LUT</h2></div>
+              <p class="instruction">Click a cell to change the bit stored at that address, then drive the inputs and watch the output follow.</p>
+            </div>
+            <div class="lut-layout">
+              <div class="lut-controls">
+                <p><strong>Address inputs</strong></p>
+                <div class="switch-row"><span>A<sub>2</sub></span><button class="bit-switch" id="lut-a2" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="switch-row"><span>A<sub>1</sub></span><button class="bit-switch" id="lut-a1" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="switch-row"><span>A<sub>0</sub></span><button class="bit-switch" id="lut-a0" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="expression-card"><span>Addressing cell</span><strong id="lut-addr">0 (000)</strong></div>
+                <div class="expression-card"><span>Output</span><strong id="lut-out">0</strong></div>
+                <p><strong>Load a preset</strong></p>
+                <div class="action-row">
+                  <button class="action-button secondary" data-preset="and" type="button">3-input AND</button>
+                  <button class="action-button secondary" data-preset="xor" type="button">3-input XOR</button>
+                  <button class="action-button secondary" data-preset="maj" type="button">Majority</button>
+                  <button class="action-button secondary" data-preset="clear" type="button">All zero</button>
+                </div>
+              </div>
+              <div class="lut-stage">
+                <div class="lut-cells" id="lut-cells"></div>
+                <p class="result-box" id="lut-status" aria-live="polite"></p>
+                <p class="source-note">Eight stored bits admit 2<sup>8</sup> = 256 distinct contents, which is precisely the number of functions of three variables. Any such function is therefore realisable, and changing between them requires only different stored values.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="task-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="task-heading">Synthesise a function into the table</h2></div>
+              <p class="instruction">Program the LUT so it implements the given function exactly.</p>
+            </div>
+            <p class="expression-prompt" id="task-prompt">Loading&hellip;</p>
+            <form id="task-form">
+              <p class="instruction" style="max-width:none">Set the eight cells in Part 2 to match, then check. The table below shows what is required against what you have stored.</p>
+              <div class="table-wrap">
+                <table>
+                  <caption>Required output against stored contents</caption>
+                  <thead><tr><th>Address</th><th>A<sub>2</sub></th><th>A<sub>1</sub></th><th>A<sub>0</sub></th><th>Required</th><th>Stored</th></tr></thead>
+                  <tbody id="task-body"></tbody>
+                </table>
+              </div>
+              <details class="hint"><summary>Hint</summary><p>Work down the address column. For each row, evaluate the expression with those three input values, and set that cell to the answer. The address is just the three inputs read as a binary number.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check the table</button>
+                <button class="action-button secondary" id="task-new" type="button">Different function</button>
+              </div>
+              <div class="feedback" id="task-feedback" aria-live="polite">Program the eight cells above, then check your work.</div>
+            </form>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="compare-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 4</p><h2 id="compare-heading">Four ways to build the same function</h2></div>
+              <p class="instruction">All four have now been treated.</p>
+            </div>
+            <p>Four methods of implementing a function have now been presented. All produce identical outputs; they differ in what each consumes.</p>
+            <div class="table-wrap">
+              <table>
+                <caption>Comparing the synthesis methods</caption>
+                <thead><tr><th>Method</th><th>What you design</th><th>Cost grows with</th><th>Change the function by</th></tr></thead>
+                <tbody>
+                  <tr><td><a href="../../boolean-design/synthesis-with-gates/">Gates</a></td><td>A minimised Boolean expression</td><td>The complexity of the expression</td><td>Rewiring the gates</td></tr>
+                  <tr><td><a href="../../combinational-blocks/decoder-applications/">Decoder + OR</a></td><td>Which minterms to OR together</td><td>2<sup>n</sup> decoder outputs</td><td>Rewiring the OR gate inputs</td></tr>
+                  <tr><td><a href="../../combinational-blocks/mux-synthesis/">Multiplexer</a></td><td>What to tie each data input to</td><td>2<sup>n&minus;1</sup> data inputs</td><td>Rewiring the data inputs</td></tr>
+                  <tr class="highlight"><td>LUT</td><td>Nothing &mdash; you write down the truth table</td><td>2<sup>n</sup> stored bits</td><td>Loading different bits</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The lookup table is the only method in which altering the function requires no alteration to the circuit. This property is what renders a field-programmable device reconfigurable, and it is what justifies the storage the other three methods avoid.</p>
+            <p class="source-note">The saving is not without cost. Gate synthesis exploits structure within a function in order to reduce it; a lookup table disregards structure and requires 2<sup>n</sup> stored bits irrespective of the function's complexity. Lookup tables are therefore kept narrow and cascaded rather than widened.</p>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../string-recognizer/"><small>Previous activity</small><strong>&larr; Finite String Recogniser</strong></a>
+            <a href="../../../modules/hardware-practice/"><small>Next module</small><strong>Digital Hardware Practice &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

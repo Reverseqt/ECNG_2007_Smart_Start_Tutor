@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read an eight-bit pattern as an unsigned number using place value, and see the same byte in binary, decimal and hexadecimal.">
+  <title>Binary Values and Place Value | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../data.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="data-representation" data-activity="binary-values" data-title="Binary Values and Place Value">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 6 &middot; Interactive activity</p>
+            <h1>Binary Values and Place Value</h1>
+            <p>A byte is eight bits and 256 patterns. Deciding that those patterns mean numbers is the first act of data representation.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/data-representation/">Data Representation</a> / Binary Values and Place Value</p>
+
+          <section class="activity-panel" aria-labelledby="explore-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="explore-heading">Giving a pattern a numeric meaning</h2></div>
+              <p class="instruction">Eight bits give 256 patterns. Reading them as an unsigned number is one choice of meaning.</p>
+            </div>
+            <p>Module 1 established that a byte is eight bits and can take 256 distinct patterns. It said nothing about what a pattern <em>means</em>. Here we make the most common choice: treat each column as a place value, doubling from right to left, and add up the columns that hold a 1.</p>
+            <div class="byte-labels" aria-hidden="true"><span>128</span><span>64</span><span>32</span><span>16</span><span>8</span><span>4</span><span>2</span><span>1</span></div>
+            <div class="byte-grid" aria-label="Eight-bit byte">
+              <button class="byte-bit" type="button" aria-label="Bit 7, value 128" aria-pressed="false">0</button>
+              <button class="byte-bit" type="button" aria-label="Bit 6, value 64" aria-pressed="false">0</button>
+              <button class="byte-bit" type="button" aria-label="Bit 5, value 32" aria-pressed="false">0</button>
+              <button class="byte-bit" type="button" aria-label="Bit 4, value 16" aria-pressed="false">0</button>
+              <button class="byte-bit" type="button" aria-label="Bit 3, value 8" aria-pressed="false">0</button>
+              <button class="byte-bit" type="button" aria-label="Bit 2, value 4" aria-pressed="false">0</button>
+              <button class="byte-bit" type="button" aria-label="Bit 1, value 2" aria-pressed="false">0</button>
+              <button class="byte-bit" type="button" aria-label="Bit 0, value 1" aria-pressed="false">0</button>
+            </div>
+            <div class="byte-readout">
+              <div class="readout-box"><span>Binary</span><strong id="byte-binary">00000000</strong></div>
+              <div class="readout-box"><span>Unsigned decimal</span><strong id="byte-decimal">0</strong></div>
+              <div class="readout-box"><span>Hexadecimal</span><strong id="byte-hex">0x00</strong></div>
+            </div>
+            <p class="logic-result" id="sum-note" aria-live="polite"></p>
+            <div class="action-row">
+              <button class="action-button secondary" id="byte-clear" type="button">Clear byte</button>
+              <button class="action-button secondary" id="byte-all" type="button">Set all bits</button>
+            </div>
+            <p class="source-note">Unsigned is only one interpretation. The same eight bits can carry a signed value, a BCD pair, part of a floating-point number or an ASCII character &mdash; each covered later in this module.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="check-heading">Build a value</h2></div>
+              <p class="instruction">Set the byte above to the target, then answer both questions.</p>
+            </div>
+            <div class="target-box">Set the byte above to <strong id="target-value">0</strong>. <span id="target-state">Not yet reached.</span></div>
+            <form id="check-form">
+              <fieldset class="quiz-question">
+                <legend>What is the largest value an unsigned byte can hold?</legend>
+                <label><input type="radio" name="q1" value="255"> 255</label>
+                <label><input type="radio" name="q1" value="256"> 256</label>
+                <label><input type="radio" name="q1" value="128"> 128</label>
+              </fieldset>
+              <fieldset class="quiz-question">
+                <legend>How many hexadecimal digits does it take to write one byte exactly?</legend>
+                <label><input type="radio" name="q2" value="1"> One</label>
+                <label><input type="radio" name="q2" value="2"> Two</label>
+                <label><input type="radio" name="q2" value="4"> Four</label>
+              </fieldset>
+              <details class="hint"><summary>Hint</summary><p>Work down from the largest column. Ask whether 128 fits in the target; if it does, set that bit and subtract, then move to 64. For the second question, count how many bits one hexadecimal digit covers.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check answers</button>
+                <button class="action-button secondary" id="new-target" type="button">New target value</button>
+              </div>
+              <div class="feedback" id="check-feedback" aria-live="polite">Set the target value and answer both questions, then check your work.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../../../modules/combinational-blocks/"><small>Previous module</small><strong>&larr; Combinational Building Blocks</strong></a>
+            <a href="../number-systems/"><small>Next activity</small><strong>Number Systems and Base Conversion &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

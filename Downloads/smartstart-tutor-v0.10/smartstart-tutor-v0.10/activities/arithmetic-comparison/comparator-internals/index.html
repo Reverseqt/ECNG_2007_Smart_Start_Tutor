@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rebuild the magnitude comparator from a subtractor: the zero flag gives equality and the carry out gives the ordering, so three gates finish the job.">
+  <title>Comparators Revisited | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../arithmetic.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="arithmetic-comparison" data-activity="comparator-internals" data-title="Comparators Revisited">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 7 &middot; Interactive activity</p>
+            <h1>Comparators Revisited</h1>
+            <p>With subtraction available, the magnitude comparator can be derived rather than assumed: to compare two numbers is to determine the sign of their difference.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/arithmetic-comparison/">Arithmetic and Comparison</a> / Comparators Revisited</p>
+
+          <section class="activity-panel" aria-labelledby="recall-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="recall-heading">The box, reopened</h2></div>
+              <p class="instruction">The comparator introduced earlier was treated as a black box. Its interior is now examined.</p>
+            </div>
+            <p>In <a href="../comparator/">Binary Comparators</a> the circuit was treated as a black box: two words in, three mutually exclusive outputs out. The method described there is the one used in manual comparison: compare the most significant bits, and where these are equal move right and compare the next pair.</p>
+            <p>Dedicated comparator devices operate in precisely this way. A subtractor, however, already produces almost all of the information a comparator requires.</p>
+            <div class="callout">
+              <h3>Comparison as subtraction</h3>
+              <p>To compare A and B is to enquire after the sign of A &minus; B. If the difference is zero the operands are equal; if the subtraction required a borrow, A was the smaller. Two status flags therefore answer the question completely.</p>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="derive-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="derive-heading">Two flags, three answers</h2></div>
+              <p class="instruction">All three comparator outputs, derived from the status bits of the subtraction.</p>
+            </div>
+            <p>Run A &minus; B through the adder&ndash;subtractor and take two signals from it:</p>
+            <ul>
+              <li><strong>Zero</strong> &mdash; every result bit is 0. One NOR gate across the result bits produces it.</li>
+              <li><strong>Carry out</strong> &mdash; 1 when no borrow was needed, which for unsigned operands means A &ge; B.</li>
+            </ul>
+            <p>The three comparator outputs follow directly:</p>
+            <div class="table-wrap">
+              <table>
+                <caption>Deriving the comparator outputs</caption>
+                <thead><tr><th>Output</th><th>Expression</th><th>Reasoning</th></tr></thead>
+                <tbody>
+                  <tr><td>A = B</td><td><code>Zero</code></td><td>The difference is zero.</td></tr>
+                  <tr><td>A &lt; B</td><td><code>Carry&prime;</code></td><td>A borrow was needed, so A was too small.</td></tr>
+                  <tr><td>A &gt; B</td><td><code>Carry &middot; Zero&prime;</code></td><td>No borrow was needed and the difference is not zero.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The complete comparator therefore consists of one inverter, one AND gate and one NOR gate, added to a subtractor provided for other purposes.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="live-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="live-heading">Comparison by subtraction, live</h2></div>
+              <p class="instruction">Set A and B, and follow the derivation through to the three outputs.</p>
+            </div>
+            <div class="sub-layout">
+              <div class="gate-controls">
+                <div class="expression-card"><span>Computing</span><strong>A &minus; B</strong></div>
+                <div class="expression-card"><span>Difference</span><strong id="cmp-diff">0</strong></div>
+                <div class="action-row">
+                  <button class="action-button secondary" id="cmp-lt" type="button">Make A &lt; B</button>
+                  <button class="action-button secondary" id="cmp-eq" type="button">Make A = B</button>
+                  <button class="action-button secondary" id="cmp-gt" type="button">Make A &gt; B</button>
+                </div>
+              </div>
+              <div>
+                <div class="ripple-panel">
+                  <div class="ripple-row"><span class="ripple-label">A</span><div class="ripple-bits" id="cmp-a"></div><span class="ripple-value" id="cmp-a-val">0</span></div>
+                  <div class="ripple-row"><span class="ripple-label">B</span><div class="ripple-bits" id="cmp-b"></div><span class="ripple-value" id="cmp-b-val">0</span></div>
+                  <div class="ripple-row sum"><span class="ripple-label">A &minus; B</span><div class="ripple-bits" id="cmp-r"></div><span class="ripple-value" id="cmp-r-val">0</span></div>
+                </div>
+                <div class="flag-row">
+                  <div class="flag" id="cmp-flag-c"><span>Carry out</span><strong>0</strong></div>
+                  <div class="flag" id="cmp-flag-z"><span>Zero</span><strong>1</strong></div>
+                </div>
+                <div class="flag-row outputs">
+                  <div class="flag" id="out-lt"><span>A &lt; B</span><strong>0</strong></div>
+                  <div class="flag" id="out-eq"><span>A = B</span><strong>1</strong></div>
+                  <div class="flag" id="out-gt"><span>A &gt; B</span><strong>0</strong></div>
+                </div>
+                <p class="result-box" id="cmp-status" aria-live="polite"></p>
+              </div>
+            </div>
+            <p class="source-note">The three outputs are computed from the two flags alone, and never from A and B directly.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="cost-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 4</p><h2 id="cost-heading">Comparing the two designs</h2></div>
+              <p class="instruction">Both designs are correct; they differ in cost.</p>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <caption>Dedicated comparator against comparison by subtraction</caption>
+                <thead><tr><th></th><th>Dedicated comparator</th><th>Subtract and test flags</th></tr></thead>
+                <tbody>
+                  <tr><td>Method</td><td>Compare bit pairs from the most significant end</td><td>Compute A &minus; B, read the carry and zero flags</td></tr>
+                  <tr><td>Extra hardware</td><td>A full comparator per comparison</td><td>Three gates, if an adder already exists</td></tr>
+                  <tr><td>Best when</td><td>Comparison is the only job, as in a standalone chip</td><td>The circuit already does arithmetic</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Within a processor the second approach is preferred, since the arithmetic unit is present in any case and the additional cost is three gates. Instruction sets accordingly seldom provide a separate comparison unit: a compare instruction is generally a subtraction whose difference is discarded and whose status flags are retained.</p>
+            <p class="source-note">Both approaches assume unsigned operands. With signed values the carry flag alone is not enough, and processors add an overflow flag so that signed comparisons can be resolved correctly.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 5</p><h2 id="check-heading">Check your understanding</h2></div>
+              <p class="instruction">Answer all three to complete this activity.</p>
+            </div>
+            <form id="check-form">
+              <fieldset class="quiz-question">
+                <legend>A &minus; B is computed and the carry out is 0. What do you know?</legend>
+                <label><input type="radio" name="q1" value="lt"> A &lt; B, because a borrow was needed.</label>
+                <label><input type="radio" name="q1" value="gt"> A &gt; B, because no borrow was needed.</label>
+                <label><input type="radio" name="q1" value="eq"> A = B.</label>
+              </fieldset>
+              <fieldset class="quiz-question">
+                <legend>Which expression gives the A &gt; B output?</legend>
+                <label><input type="radio" name="q2" value="c"> Carry</label>
+                <label><input type="radio" name="q2" value="cz"> Carry &middot; Zero&prime;</label>
+                <label><input type="radio" name="q2" value="z"> Zero&prime;</label>
+              </fieldset>
+              <fieldset class="quiz-question">
+                <legend>Why do processors implement a compare instruction as a subtraction?</legend>
+                <label><input type="radio" name="q3" value="fast"> Subtraction is faster than comparison.</label>
+                <label><input type="radio" name="q3" value="reuse"> The ALU is already present, so the flags come almost free and no separate comparator is needed.</label>
+                <label><input type="radio" name="q3" value="only"> Comparison cannot be built any other way.</label>
+              </fieldset>
+              <details class="hint"><summary>Hint</summary><p>Use Part 3. Set A less than B and read the carry flag, then set them equal, then greater. Watch which combination of the two flags lights each output.</p></details>
+              <div class="action-row"><button class="action-button primary" type="submit">Check answers</button></div>
+              <div class="feedback" id="check-feedback" aria-live="polite">Answer all three questions, then check your work.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../subtractor/"><small>Previous activity</small><strong>&larr; Subtractors</strong></a>
+            <a href="../alu/"><small>Next activity</small><strong>A Simple ALU &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

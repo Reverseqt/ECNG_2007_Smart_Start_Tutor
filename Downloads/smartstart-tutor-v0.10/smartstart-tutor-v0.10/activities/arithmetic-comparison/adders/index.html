@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build a half adder from XOR and AND, then extend it to a full adder that accepts a carry from the column to its right.">
+  <title>Half and Full Adders | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../arithmetic.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="arithmetic-comparison" data-activity="adders" data-title="Half and Full Adders">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 7 &middot; Interactive activity</p>
+            <h1>Half and Full Adders</h1>
+            <p>Addition requires the circuit to interpret its inputs as numbers. Two gates form a half adder, and two half adders form the full adder from which wider adders are built.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/arithmetic-comparison/">Arithmetic and Comparison</a> / Half and Full Adders</p>
+
+          <section class="activity-panel" aria-labelledby="ha-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="ha-heading">The half adder</h2></div>
+              <p class="instruction">The sum of two bits requires two output bits, since 1 + 1 cannot be expressed in one.</p>
+            </div>
+            <p>The addition of two single bits admits four cases: 0+0=0, 0+1=1, 1+0=1 and 1+1=<strong>10</strong> in binary. The final case requires two output bits, conventionally termed the <strong>sum</strong> and the <strong>carry</strong>.</p>
+            <p>The sum column across the four cases reads 0, 1, 1, 0, which is 1 exactly when the inputs differ: this is the <strong>XOR</strong> function. The carry column reads 0, 0, 0, 1, which is 1 only when both inputs are 1: this is the <strong>AND</strong> function. The complete circuit therefore comprises two gates.</p>
+
+            <div class="circuit-grid">
+              <div class="gate-controls">
+                <div class="switch-row"><span>Input A</span><button class="bit-switch" id="ha-a" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="switch-row"><span>Input B</span><button class="bit-switch" id="ha-b" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="expression-card"><span>Sum</span><strong>S = A &oplus; B</strong></div>
+                <div class="expression-card"><span>Carry</span><strong>C = A &middot; B</strong></div>
+              </div>
+              <div class="circuit-stage">
+                <svg id="ha-diagram" viewBox="0 0 760 440" role="img" aria-labelledby="ha-title ha-desc">
+                  <title id="ha-title">Half adder</title>
+                  <desc id="ha-desc">Inputs A and B feed an XOR gate producing the sum and an AND gate producing the carry.</desc>
+                  <g class="wire" id="ha-wa">
+                    <polyline points="55,90 285,90"></polyline>
+                    <polyline points="170,90 170,300 280,300"></polyline>
+                    <circle cx="55" cy="90" r="14"></circle>
+                    <circle class="junction" cx="170" cy="90" r="9"></circle>
+                    <text x="34" y="98" text-anchor="end">A</text>
+                  </g>
+                  <g class="wire" id="ha-wb">
+                    <polyline points="55,200 285,200"></polyline>
+                    <polyline points="222,200 222,360 280,360"></polyline>
+                    <circle cx="55" cy="200" r="14"></circle>
+                    <circle class="junction" cx="222" cy="200" r="9"></circle>
+                    <text x="34" y="208" text-anchor="end">B</text>
+                  </g>
+                  <g class="circuit-gate">
+                    <path d="M285 75 Q330 145 285 215 Q385 215 430 145 Q385 75 285 75 Z"></path>
+                    <path class="or-back" d="M285 75 Q330 145 285 215"></path>
+                    <path class="or-back" d="M262 75 Q307 145 262 215"></path>
+                    <text x="350" y="155" text-anchor="middle">XOR</text>
+                  </g>
+                  <g class="circuit-gate">
+                    <path d="M280 265 H340 C395 265 430 292 430 330 C430 368 395 395 340 395 H280 Z"></path>
+                    <text x="340" y="340" text-anchor="middle">AND</text>
+                  </g>
+                  <g class="wire" id="ha-ws"><line x1="430" y1="145" x2="600" y2="145"></line><circle cx="618" cy="145" r="19"></circle><text x="652" y="153">S</text></g>
+                  <g class="wire" id="ha-wc"><line x1="430" y1="330" x2="600" y2="330"></line><circle cx="618" cy="330" r="19"></circle><text x="652" y="338">C</text></g>
+                </svg>
+                <p class="result-box" id="ha-status" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table id="ha-table">
+                <caption>Half adder</caption>
+                <thead><tr><th>A</th><th>B</th><th>Sum (A &oplus; B)</th><th>Carry (A &middot; B)</th><th>As binary</th></tr></thead>
+                <tbody>
+                  <tr data-key="00"><td>0</td><td>0</td><td>0</td><td>0</td><td>0 + 0 = 00</td></tr>
+                  <tr data-key="01"><td>0</td><td>1</td><td>1</td><td>0</td><td>0 + 1 = 01</td></tr>
+                  <tr data-key="10"><td>1</td><td>0</td><td>1</td><td>0</td><td>1 + 0 = 01</td></tr>
+                  <tr data-key="11"><td>1</td><td>1</td><td>0</td><td>1</td><td>1 + 1 = 10</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="source-note">It is termed a <em>half</em> adder because it cannot accept a carry from a preceding column, which restricts its use to the least significant bit position.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="fa-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="fa-heading">The full adder</h2></div>
+              <p class="instruction">Add a third input so a column can accept the carry from the column to its right.</p>
+            </div>
+            <p>In the manual addition of multi-digit numbers each column receives three quantities: the two digits and any carry from the column to its right. A <strong>full adder</strong> reproduces this, and therefore has three inputs: A, B and C<sub>in</sub>.</p>
+            <p>A full adder may be constructed from two half adders. The first forms the sum of A and B; the second adds that result to C<sub>in</sub>. A carry from <em>either</em> half adder constitutes a carry out of the column, so the two carries are combined by an OR gate.</p>
+
+            <div class="circuit-grid">
+              <div class="gate-controls">
+                <div class="switch-row"><span>Input A</span><button class="bit-switch" id="fa-a" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="switch-row"><span>Input B</span><button class="bit-switch" id="fa-b" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="switch-row"><span>Carry in</span><button class="bit-switch" id="fa-cin" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="expression-card"><span>Sum</span><strong>S = A &oplus; B &oplus; C<sub>in</sub></strong></div>
+                <div class="expression-card"><span>Carry out</span><strong>C<sub>out</sub> = A&middot;B + C<sub>in</sub>&middot;(A &oplus; B)</strong></div>
+              </div>
+              <div class="circuit-stage">
+                <svg id="fa-diagram" viewBox="0 0 820 430" role="img" aria-labelledby="fa-title fa-desc">
+                  <title id="fa-title">Full adder built from two half adders</title>
+                  <desc id="fa-desc">Inputs A and B enter the first half adder. Its sum and the carry in enter the second half adder. The two carries are combined by an OR gate.</desc>
+                  <g class="wire" id="fa-wa"><line x1="45" y1="70" x2="150" y2="70"></line><circle cx="45" cy="70" r="13"></circle><text x="26" y="78" text-anchor="end">A</text></g>
+                  <g class="wire" id="fa-wb"><line x1="45" y1="140" x2="150" y2="140"></line><circle cx="45" cy="140" r="13"></circle><text x="26" y="148" text-anchor="end">B</text></g>
+                  <g class="wire" id="fa-wcin"><polyline points="45,330 300,330 300,250 370,250"></polyline><circle cx="45" cy="330" r="13"></circle><text x="26" y="338" text-anchor="end">C<tspan font-size="17">in</tspan></text></g>
+
+                  <g class="block"><rect x="150" y="35" width="150" height="140" rx="14"></rect><text x="225" y="95" text-anchor="middle">HALF</text><text x="225" y="130" text-anchor="middle">ADDER 1</text></g>
+                  <g class="block"><rect x="370" y="145" width="150" height="140" rx="14"></rect><text x="445" y="205" text-anchor="middle">HALF</text><text x="445" y="240" text-anchor="middle">ADDER 2</text></g>
+
+                  <g class="wire" id="fa-s1"><polyline points="300,70 335,70 335,180 370,180"></polyline></g>
+                  <text class="node-label" x="336" y="58" text-anchor="middle">A&oplus;B</text>
+                  <g class="wire" id="fa-c1"><polyline points="300,140 320,140 320,395 560,395 560,340"></polyline></g>
+                  <text class="node-label" x="400" y="385" text-anchor="middle">carry from HA1</text>
+                  <g class="wire" id="fa-c2"><polyline points="520,250 545,250 545,290 545,290"></polyline></g>
+
+                  <g class="circuit-gate"><path d="M545 250 Q580 305 545 360 Q625 360 660 305 Q625 250 545 250 Z"></path><path class="or-back" d="M545 250 Q580 305 545 360"></path><text x="595" y="315" text-anchor="middle">OR</text></g>
+
+                  <g class="wire" id="fa-ws"><line x1="520" y1="180" x2="700" y2="180"></line><circle cx="718" cy="180" r="18"></circle><text x="750" y="188">S</text></g>
+                  <g class="wire" id="fa-wcout"><line x1="660" y1="305" x2="700" y2="305"></line><circle cx="718" cy="305" r="18"></circle><text x="750" y="313">C<tspan font-size="17">out</tspan></text></g>
+                </svg>
+                <p class="result-box" id="fa-status" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <form id="fa-form">
+              <p class="instruction" style="max-width:none;margin-top:1.2rem">Complete the full adder truth table. Work out the arithmetic first: add the three input bits and write the total as two binary digits.</p>
+              <div class="table-wrap trace-table">
+                <table>
+                  <caption>Full adder</caption>
+                  <thead><tr><th>A</th><th>B</th><th>C<sub>in</sub></th><th>Sum</th><th>C<sub>out</sub></th></tr></thead>
+                  <tbody><tr><td>0</td><td>0</td><td>0</td><td><select data-answer="0" aria-label="Sum for A0 B0 Cin0"><option value="">?</option><option>0</option><option>1</option></select></td><td><select data-answer="0" aria-label="Carry out for A0 B0 Cin0"><option value="">?</option><option>0</option><option>1</option></select></td></tr><tr><td>0</td><td>0</td><td>1</td><td><select data-answer="1" aria-label="Sum for A0 B0 Cin1"><option value="">?</option><option>0</option><option>1</option></select></td><td><select data-answer="0" aria-label="Carry out for A0 B0 Cin1"><option value="">?</option><option>0</option><option>1</option></select></td></tr><tr><td>0</td><td>1</td><td>0</td><td><select data-answer="1" aria-label="Sum for A0 B1 Cin0"><option value="">?</option><option>0</option><option>1</option></select></td><td><select data-answer="0" aria-label="Carry out for A0 B1 Cin0"><option value="">?</option><option>0</option><option>1</option></select></td></tr><tr><td>0</td><td>1</td><td>1</td><td><select data-answer="0" aria-label="Sum for A0 B1 Cin1"><option value="">?</option><option>0</option><option>1</option></select></td><td><select data-answer="1" aria-label="Carry out for A0 B1 Cin1"><option value="">?</option><option>0</option><option>1</option></select></td></tr><tr><td>1</td><td>0</td><td>0</td><td><select data-answer="1" aria-label="Sum for A1 B0 Cin0"><option value="">?</option><option>0</option><option>1</option></select></td><td><select data-answer="0" aria-label="Carry out for A1 B0 Cin0"><option value="">?</option><option>0</option><option>1</option></select></td></tr><tr><td>1</td><td>0</td><td>1</td><td><select data-answer="0" aria-label="Sum for A1 B0 Cin1"><option value="">?</option><option>0</option><option>1</option></select></td><td><select data-answer="1" aria-label="Carry out for A1 B0 Cin1"><option value="">?</option><option>0</option><option>1</option></select></td></tr><tr><td>1</td><td>1</td><td>0</td><td><select data-answer="0" aria-label="Sum for A1 B1 Cin0"><option value="">?</option><option>0</option><option>1</option></select></td><td><select data-answer="1" aria-label="Carry out for A1 B1 Cin0"><option value="">?</option><option>0</option><option>1</option></select></td></tr><tr><td>1</td><td>1</td><td>1</td><td><select data-answer="1" aria-label="Sum for A1 B1 Cin1"><option value="">?</option><option>0</option><option>1</option></select></td><td><select data-answer="1" aria-label="Carry out for A1 B1 Cin1"><option value="">?</option><option>0</option><option>1</option></select></td></tr></tbody>
+                </table>
+              </div>
+              <details class="hint"><summary>Hint</summary><p>Count how many of the three inputs are 1. Zero ones gives 00, one gives 01, two gives 10, three gives 11. The left digit is the carry out and the right digit is the sum.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check the table</button>
+                <button class="action-button secondary" id="fa-clear" type="button">Clear answers</button>
+              </div>
+              <div class="feedback" id="fa-feedback" aria-live="polite">Complete all sixteen cells, then check your work.</div>
+            </form>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="check-heading">Check your understanding</h2></div>
+              <p class="instruction">Both questions, plus the Part 2 table, complete this activity.</p>
+            </div>
+            <form id="check-form">
+              <fieldset class="quiz-question">
+                <legend>Which gate produces the sum bit of a half adder?</legend>
+                <label><input type="radio" name="q1" value="and"> AND</label>
+                <label><input type="radio" name="q1" value="or"> OR</label>
+                <label><input type="radio" name="q1" value="xor"> XOR</label>
+                <label><input type="radio" name="q1" value="nand"> NAND</label>
+              </fieldset>
+              <fieldset class="quiz-question">
+                <legend>Why can a half adder not be used for the second-from-right column of a multi-bit adder?</legend>
+                <label><input type="radio" name="q2" value="slow"> It is too slow.</label>
+                <label><input type="radio" name="q2" value="carryin"> It has no carry-in, so it cannot accept the carry from the column to its right.</label>
+                <label><input type="radio" name="q2" value="carryout"> It produces no carry out.</label>
+              </fieldset>
+              <div class="action-row"><button class="action-button primary" type="submit">Check answers</button></div>
+              <div class="feedback" id="check-feedback" aria-live="polite">Answer both questions, then check your work.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../comparator/"><small>Previous activity</small><strong>&larr; Binary Comparators</strong></a>
+            <a href="../ripple-adder/"><small>Next activity</small><strong>Four-Bit Ripple-Carry Addition &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

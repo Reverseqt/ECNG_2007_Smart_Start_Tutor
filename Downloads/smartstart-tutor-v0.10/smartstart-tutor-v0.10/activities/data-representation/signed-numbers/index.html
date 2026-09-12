@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare sign-magnitude, two's complement and biased representations on the same four-bit patterns, and see why each is used where it is.">
+  <title>Signed Number Representations | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../data.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="data-representation" data-activity="signed-numbers" data-title="Signed Number Representations">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 6 &middot; Interactive activity</p>
+            <h1>Signed Number Representations</h1>
+            <p>Hardware provides no minus sign, so negative values must be assigned to existing bit patterns. Several conventions for doing so are in use.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/data-representation/">Data Representation</a> / Signed Number Representations</p>
+
+          <section class="activity-panel" aria-labelledby="problem-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="problem-heading">Sixteen patterns, and now some must be negative</h2></div>
+              <p class="instruction">Hardware provides no minus sign. A negative value must be assigned to one of the existing bit patterns.</p>
+            </div>
+            <p>Four bits admit sixteen patterns. Read as unsigned values these are 0 to 15, and every pattern is accounted for. Representing negative numbers therefore requires that some patterns be <em>reassigned</em>, with a corresponding reduction in the positive range.</p>
+            <p>The manner of that reassignment is a design decision admitting more than one defensible answer. Three schemes are in common use.</p>
+            <div class="scheme-cards">
+              <div class="scheme-card">
+                <h3>Sign-magnitude</h3>
+                <p>The leftmost bit is a sign: 0 for positive, 1 for negative. The remaining bits are the magnitude, read as an ordinary unsigned number.</p>
+                <p class="formula">value = (&minus;1)<sup>s</sup> &times; magnitude</p>
+              </div>
+              <div class="scheme-card">
+                <h3>Two's complement</h3>
+                <p>The leftmost column carries a <em>negative</em> weight; every other column is positive as usual.</p>
+                <p class="formula">value = &minus;8b<sub>3</sub> + 4b<sub>2</sub> + 2b<sub>1</sub> + 1b<sub>0</sub></p>
+              </div>
+              <div class="scheme-card">
+                <h3>Biased (excess-<em>k</em>)</h3>
+                <p>Read the pattern as plain unsigned, then subtract a fixed bias. Nothing is special about any bit.</p>
+                <p class="formula">value = unsigned &minus; bias</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="explore-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="explore-heading">One pattern, three readings</h2></div>
+              <p class="instruction">Set a four-bit pattern and watch what each scheme says it means.</p>
+            </div>
+            <div class="signed-layout">
+              <div class="signed-controls">
+                <p><strong>Bit pattern</strong></p>
+                <div class="ripple-bits" id="sn-bits"></div>
+                <div class="action-row">
+                  <button class="action-button secondary" id="sn-clear" type="button">Clear</button>
+                  <button class="action-button secondary" id="sn-all" type="button">All ones</button>
+                </div>
+                <p style="margin-top:1.2rem"><strong>Bias for the excess scheme</strong></p>
+                <select id="sn-bias">
+                  <option value="7">7 &mdash; matches the IEEE 754 rule, 2&#8319;&#8315;&#185; &minus; 1</option>
+                  <option value="8">8 &mdash; a power of two, 2&#8319;&#8315;&#185;</option>
+                </select>
+                <p class="source-note" id="sn-bias-note"></p>
+              </div>
+              <div class="signed-readouts">
+                <div class="readout-box"><span>Unsigned</span><strong id="sn-unsigned">0</strong></div>
+                <div class="readout-box"><span>Sign-magnitude</span><strong id="sn-sm">+0</strong><em id="sn-sm-work"></em></div>
+                <div class="readout-box"><span>Two's complement</span><strong id="sn-tc">0</strong><em id="sn-tc-work"></em></div>
+                <div class="readout-box"><span>Excess / biased</span><strong id="sn-ex">&minus;7</strong><em id="sn-ex-work"></em></div>
+              </div>
+            </div>
+            <p class="result-box" id="sn-status" aria-live="polite"></p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="table-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="table-heading">All sixteen patterns at once</h2></div>
+              <p class="instruction">The differences between the schemes are easiest to see laid out in full.</p>
+            </div>
+            <div class="table-wrap">
+              <table class="signed-table">
+                <caption>Four-bit patterns under each scheme, bias 7</caption>
+                <thead><tr><th>Pattern</th><th>Unsigned</th><th>Sign-magnitude</th><th>Two's complement</th><th>Excess-7</th></tr></thead>
+                <tbody><tr class="zero-row"><td><code>0000</code></td><td>0</td><td>+0</td><td>0</td><td>&minus;7</td></tr><tr><td><code>0001</code></td><td>1</td><td>+1</td><td>1</td><td>&minus;6</td></tr><tr><td><code>0010</code></td><td>2</td><td>+2</td><td>2</td><td>&minus;5</td></tr><tr><td><code>0011</code></td><td>3</td><td>+3</td><td>3</td><td>&minus;4</td></tr><tr><td><code>0100</code></td><td>4</td><td>+4</td><td>4</td><td>&minus;3</td></tr><tr><td><code>0101</code></td><td>5</td><td>+5</td><td>5</td><td>&minus;2</td></tr><tr><td><code>0110</code></td><td>6</td><td>+6</td><td>6</td><td>&minus;1</td></tr><tr><td><code>0111</code></td><td>7</td><td>+7</td><td>7</td><td>0</td></tr><tr class="zero-row"><td><code>1000</code></td><td>8</td><td>&minus;0</td><td>&minus;8</td><td>1</td></tr><tr><td><code>1001</code></td><td>9</td><td>&minus;1</td><td>&minus;7</td><td>2</td></tr><tr><td><code>1010</code></td><td>10</td><td>&minus;2</td><td>&minus;6</td><td>3</td></tr><tr><td><code>1011</code></td><td>11</td><td>&minus;3</td><td>&minus;5</td><td>4</td></tr><tr><td><code>1100</code></td><td>12</td><td>&minus;4</td><td>&minus;4</td><td>5</td></tr><tr><td><code>1101</code></td><td>13</td><td>&minus;5</td><td>&minus;3</td><td>6</td></tr><tr><td><code>1110</code></td><td>14</td><td>&minus;6</td><td>&minus;2</td><td>7</td></tr><tr><td><code>1111</code></td><td>15</td><td>&minus;7</td><td>&minus;1</td><td>8</td></tr></tbody>
+              </table>
+            </div>
+            <div class="finding-grid">
+              <div class="finding">
+                <h3>Sign-magnitude wastes a pattern</h3>
+                <p>The two highlighted rows are both zero: <code>0000</code> is +0 and <code>1000</code> is &minus;0. Two patterns, one value. The range shrinks to &minus;7 to +7, and any circuit testing for zero has to check for both.</p>
+              </div>
+              <div class="finding">
+                <h3>Two's complement has one zero</h3>
+                <p>Range &minus;8 to +7 &mdash; sixteen values for sixteen patterns, nothing wasted. The asymmetry is the price: there is a &minus;8 but no +8.</p>
+              </div>
+              <div class="finding">
+                <h3>Biased preserves order</h3>
+                <p>Read the Excess-7 column top to bottom: &minus;7, &minus;6, &minus;5 &hellip; ascending all the way. The unsigned column ascends too. Sorting the raw bit patterns sorts the values.</p>
+              </div>
+            </div>
+            <div class="callout">
+              <h3>Why IEEE 754 stores a biased exponent</h3>
+              <p>The ordering property is the reason. Because a biased field preserves the order of the values it encodes, two floating-point numbers of the same sign may be compared by comparing their bit patterns as integers, without unpacking. Two's complement does not permit this, since its sequence passes from +7 directly to &minus;8. The biased exponent recurs in <a href="../ieee754/">IEEE 754 Floating-Point</a>, where an 8-bit exponent field uses a bias of 127 = 2<sup>7</sup> &minus; 1.</p>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="arith-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 4</p><h2 id="arith-heading">Why arithmetic prefers two's complement</h2></div>
+              <p class="instruction">Only one of these schemes permits an ordinary adder to handle negative values without special-case logic.</p>
+            </div>
+            <p>Take (&minus;3) + 5, which should give 2. Encode both operands in a scheme, add the bit patterns with a plain binary adder, discard any carry beyond four bits, and see what comes out.</p>
+            <div class="arith-panel">
+              <div class="action-row" id="arith-scheme">
+                <button class="action-button secondary active" data-scheme="tc" type="button">Two's complement</button>
+                <button class="action-button secondary" data-scheme="sm" type="button">Sign-magnitude</button>
+              </div>
+              <div class="sum-work" id="arith-work"></div>
+              <p class="result-box" id="arith-status" aria-live="polite"></p>
+            </div>
+            <p class="source-note">The consequence is that a processor requires a single adder, rather than an adder together with a separate signed-arithmetic path. This is why two's complement is the integer representation adopted in essentially every machine.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 5</p><h2 id="check-heading">Check your understanding</h2></div>
+              <p class="instruction">Encode the value, then answer the three questions.</p>
+            </div>
+            <form id="check-form">
+              <div class="target-box">Write <strong id="task-value">&minus;5</strong> as a four-bit pattern in <strong id="task-scheme">two's complement</strong>.</div>
+              <p><label for="task-answer"><strong>Your four-bit answer</strong></label></p>
+              <input id="task-answer" type="text" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="e.g. 1011">
+              <div class="action-row" style="margin-bottom:1rem"><button class="action-button secondary" id="task-new" type="button">Different value</button></div>
+
+              <fieldset class="quiz-question">
+                <legend>Which scheme has two different patterns meaning zero?</legend>
+                <label><input type="radio" name="q1" value="sm"> Sign-magnitude</label>
+                <label><input type="radio" name="q1" value="tc"> Two's complement</label>
+                <label><input type="radio" name="q1" value="ex"> Excess-7</label>
+              </fieldset>
+              <fieldset class="quiz-question">
+                <legend>What range does four-bit two's complement cover?</legend>
+                <label><input type="radio" name="q2" value="a"> &minus;7 to +7</label>
+                <label><input type="radio" name="q2" value="b"> &minus;8 to +7</label>
+                <label><input type="radio" name="q2" value="c"> &minus;8 to +8</label>
+              </fieldset>
+              <fieldset class="quiz-question">
+                <legend>Why does IEEE 754 store the exponent in biased form rather than two's complement?</legend>
+                <label><input type="radio" name="q3" value="range"> It gives a larger range.</label>
+                <label><input type="radio" name="q3" value="order"> It keeps the bit patterns in the same order as the values, so numbers can be compared without unpacking.</label>
+                <label><input type="radio" name="q3" value="gates"> It uses fewer gates to decode.</label>
+              </fieldset>
+              <details class="hint"><summary>Hint</summary><p>For two's complement, either count backwards from 0000, or take the positive value, invert every bit and add 1. For sign-magnitude, set the top bit and write the magnitude in the other three. For excess, add the bias and write the result as plain unsigned.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check answers</button>
+                <button class="action-button secondary" id="clear-check" type="button">Clear</button>
+              </div>
+              <div class="feedback" id="check-feedback" aria-live="polite">Encode the value and answer all three questions, then check your work.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../number-systems/"><small>Previous activity</small><strong>&larr; Number Systems and Base Conversion</strong></a>
+            <a href="../fixed-floating/"><small>Next activity</small><strong>Fixed Point and Floating Point &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

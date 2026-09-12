@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Map a continuously varying analogue voltage onto logic 0 and logic 1, and see how the thresholds move between TTL, CMOS and low-voltage families.">
+  <title>Analogue and Digital Values | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../foundations.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="digital-foundations" data-activity="analogue-digital" data-title="Analogue and Digital Values">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 1 &middot; Interactive activity</p>
+            <h1>Analogue and Digital Values</h1>
+            <p>Start with the distinction between analogue and digital values, then see how the voltage thresholds that separate logic 0 from logic 1 depend on the logic family.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/digital-foundations/">Digital Foundations</a> / Analogue and Digital Values</p>
+
+          <section class="activity-panel" aria-labelledby="explore-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="explore-heading">Analogue and digital values</h2></div>
+              <p class="instruction">Analogue values vary continuously. Digital values are discrete: only particular states or levels are recognised.</p>
+            </div>
+            <p>The difference is most clearly seen by mapping a range of analogue voltages onto logic 0 and logic 1. Drag the slider and watch which logic level the voltage is read as.</p>
+            <p>Where the thresholds sit is not a law of nature &mdash; it is a property of the <strong>logic family</strong> the chip belongs to. Change the family below and watch the bands move.</p>
+
+            <div class="explore-grid">
+              <div class="voltage-control">
+                <label for="family"><strong>Logic family</strong></label>
+                <select id="family"></select>
+                <p class="family-note" id="family-note"></p>
+                <label for="voltage"><strong>Move the analogue voltage</strong></label>
+                <input class="voltage-slider" id="voltage" type="range" min="0" max="5" step="0.1" value="1.0">
+                <div class="voltage-number" id="voltage-value">1.0 V</div>
+                <p id="threshold-note"></p>
+              </div>
+              <div class="voltage-display">
+                <div class="threshold-track" id="threshold-track" aria-hidden="true">
+                  <div class="threshold-low" id="band-low">LOW</div>
+                  <div class="threshold-undefined" id="band-undef">Undefined</div>
+                  <div class="threshold-high" id="band-high">HIGH</div>
+                </div>
+                <div class="marker-wrap"><span class="voltage-marker" id="voltage-marker">&#9660;</span></div>
+                <p class="logic-result" id="logic-result" aria-live="polite"></p>
+              </div>
+            </div>
+            <p class="source-note">The values quoted are representative. Consult the data sheet for any specific device. What TTL and CMOS actually are comes next, in <a href="../integrated-circuits/">Integrated Circuits, Families and Packaging</a>. The numbers behind these bands are set out in <a href="../logic-levels/">Logic Levels and Noise Margins</a>, and mixing families is covered in <a href="../../hardware-practice/logic-families/">TTL, CMOS and Interfacing</a>.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="check-heading">Check your understanding</h2></div>
+              <p class="instruction">The same voltage does not mean the same thing to every family.</p>
+            </div>
+            <form id="check-form">
+              <fieldset class="quiz-question">
+                <legend>Which description best matches a digital value?</legend>
+                <label><input type="radio" name="q1" value="continuous"> It varies continuously through every possible intermediate value.</label>
+                <label><input type="radio" name="q1" value="discrete"> It is selected from a defined set of discrete states.</label>
+              </fieldset>
+              <fieldset class="quiz-question">
+                <legend>A signal sitting at <strong>1.5 V</strong> is applied to an input of each family below. How is it read?</legend>
+                <ul class="match-list">
+                  <li class="match-row"><span><strong>TTL</strong>, 5 V supply <small>(LOW &le; 0.8 V, HIGH &ge; 2.0 V)</small></span><select data-answer="undefined" aria-label="1.5 volts into TTL"><option value="">Choose</option><option value="low">LOW / 0</option><option value="undefined">Undefined</option><option value="high">HIGH / 1</option></select></li>
+                  <li class="match-row"><span><strong>CMOS</strong>, 5 V supply <small>(LOW &le; 1.5 V, HIGH &ge; 3.5 V)</small></span><select data-answer="low" aria-label="1.5 volts into 5 volt CMOS"><option value="">Choose</option><option value="low">LOW / 0</option><option value="undefined">Undefined</option><option value="high">HIGH / 1</option></select></li>
+                  <li class="match-row"><span><strong>LVCMOS</strong>, 1.8 V supply <small>(LOW &le; 0.63 V, HIGH &ge; 1.17 V)</small></span><select data-answer="high" aria-label="1.5 volts into 1.8 volt LVCMOS"><option value="">Choose</option><option value="low">LOW / 0</option><option value="undefined">Undefined</option><option value="high">HIGH / 1</option></select></li>
+                </ul>
+              </fieldset>
+              <details class="hint"><summary>Hint</summary><p>Set the slider to 1.5 V in Part 1 and switch families without moving it. One voltage, three different answers. A voltage between the two thresholds is not a third logic value &mdash; it is a voltage the input is not guaranteed to read correctly either way.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check answers</button>
+                <button class="action-button secondary" id="clear-check" type="button">Clear answers</button>
+              </div>
+              <div class="feedback" id="check-feedback" aria-live="polite">Answer every question, then check your work.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../../../modules/digital-foundations/"><small>Module overview</small><strong>&larr; Digital Foundations</strong></a>
+            <a href="../integrated-circuits/"><small>Next activity</small><strong>Integrated Circuits, Families and Packaging &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

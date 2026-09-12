@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A bit holds one of two states. See how grouping bits multiplies the number of distinct patterns, and learn the names for common group sizes.">
+  <title>Bits | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../foundations.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="digital-foundations" data-activity="bits" data-title="Bits">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 1 &middot; Interactive activity</p>
+            <h1>Bits</h1>
+            <p>A bit holds one of two states. Grouping bits doubles the number of distinct patterns with each bit added.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/digital-foundations/">Digital Foundations</a> / Bits</p>
+
+          <section class="activity-panel" aria-labelledby="explore-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="explore-heading">The bit as a unit</h2></div>
+              <p class="instruction">A bit holds one of two states. All larger quantities are formed by grouping bits.</p>
+            </div>
+            <p>One bit can be in one of two states, written 0 and 1. Put two bits side by side and there are four possible patterns; three bits give eight. Each bit you add <strong>doubles</strong> the number of distinct patterns the group can take.</p>
+            <div class="explore-grid">
+              <div class="voltage-control">
+                <label for="width"><strong>How many bits in the group?</strong></label>
+                <input class="voltage-slider" id="width" type="range" min="1" max="8" step="1" value="3">
+                <div class="voltage-number" id="width-value">3 bits</div>
+                <p id="width-name"></p>
+              </div>
+              <div class="voltage-display">
+                <p class="logic-result" id="width-result" aria-live="polite"></p>
+                <div class="pattern-list" id="pattern-list" aria-label="All patterns for this group"></div>
+              </div>
+            </div>
+            <p class="source-note">These patterns are just the distinct arrangements of the bits. What a pattern <em>means</em> &mdash; a number, a character, a colour &mdash; is a separate decision, covered in <a href="../../../modules/data-representation/">Data Representation</a>.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="naming-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="naming-heading">Names for groups of bits</h2></div>
+              <p class="instruction">A few group sizes are used often enough to have their own names.</p>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <caption>Common groupings</caption>
+                <thead><tr><th>Name</th><th>Bits</th><th>Distinct patterns</th></tr></thead>
+                <tbody>
+                  <tr><td>Bit</td><td>1</td><td>2</td></tr>
+                  <tr><td>Nibble</td><td>4</td><td>16</td></tr>
+                  <tr><td>Byte</td><td>8</td><td>256</td></tr>
+                  <tr><td>Word</td><td>machine-dependent, often 16, 32 or 64</td><td>2<sup>n</sup></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="source-note">&ldquo;Word&rdquo; is not a fixed size. It means the natural unit the processor works with, so it differs between machines.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="check-heading">Check your understanding</h2></div>
+              <p class="instruction">Answer all three to complete this activity.</p>
+            </div>
+            <form id="check-form">
+              <fieldset class="quiz-question">
+                <legend>How many possible states can one bit hold at a time?</legend>
+                <label><input type="radio" name="q1" value="two"> Two</label>
+                <label><input type="radio" name="q1" value="eight"> Eight</label>
+              </fieldset>
+              <fieldset class="quiz-question">
+                <legend>How many bits form one byte?</legend>
+                <label><input type="radio" name="q2" value="four"> Four</label>
+                <label><input type="radio" name="q2" value="eight"> Eight</label>
+              </fieldset>
+              <fieldset class="quiz-question">
+                <legend>How many distinct patterns can a group of five bits take?</legend>
+                <label><input type="radio" name="q3" value="10"> 10</label>
+                <label><input type="radio" name="q3" value="25"> 25</label>
+                <label><input type="radio" name="q3" value="32"> 32</label>
+              </fieldset>
+              <details class="hint"><summary>Hint</summary><p>Adding one bit doubles the count. Start from one bit giving two patterns and double it four more times.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check answers</button>
+                <button class="action-button secondary" id="clear-check" type="button">Clear answers</button>
+              </div>
+              <div class="feedback" id="check-feedback" aria-live="polite">Answer all three questions, then check your work.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../two-state-representations/"><small>Previous activity</small><strong>&larr; Representing Two States</strong></a>
+            <a href="../../logic-fundamentals/basic-gates/"><small>Next module</small><strong>The Three Basic Gates &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

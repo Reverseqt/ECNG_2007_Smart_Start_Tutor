@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compound Boolean truth tables in the SmartStart Digital Electronics Tutor.">
+  <title>Compound Truth Tables | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../boolean.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="boolean-design" data-activity="truth-tables" data-title="Compound Truth Tables">
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">☰</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero"><div class="content-wrap">
+          <p class="eyebrow">Module 4 · Interactive activity</p>
+          <h1>Compound Truth Tables</h1>
+          <p>Build a step-by-step truth table for a compound function, then compare the function with its dual.</p>
+        </div></section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/boolean-design/">Boolean Design</a> / Compound Truth Tables</p>
+
+          <section class="activity-panel" aria-labelledby="method-heading">
+            <div class="section-heading"><div><p class="step">Part 1</p><h2 id="method-heading">Build a table one operation at a time</h2></div><p class="instruction">A compound expression is easier to evaluate when each parenthesised operation receives its own column.</p></div>
+            <div class="truth-workspace">
+              <div class="expression-card">
+                <p><strong>Original function</strong></p>
+                <p class="formula">F = ((X · Z) · (X · Y) + (Z + X))</p>
+                <ol>
+                  <li>Calculate X · Z.</li>
+                  <li>Calculate X · Y.</li>
+                  <li>AND those two intermediate results.</li>
+                  <li>Calculate Z + X.</li>
+                  <li>OR the two major terms to obtain F.</li>
+                </ol>
+              </div>
+              <div class="summary-card">
+                <p><strong>Select a row to inspect</strong></p>
+                <div class="index-selector" id="row-selector"></div>
+                <div id="row-explanation" class="feedback">Select any input row to see the evaluation sequence.</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="table-heading">
+            <div class="section-heading"><div><p class="step">Part 2</p><h2 id="table-heading">Complete the function outputs</h2></div><p class="instruction">The intermediate columns are shown. Choose the final value of F for every input combination.</p></div>
+            <form id="function-form">
+              <div class="table-wrap"><table>
+                <caption>Truth table for F = ((X · Z) · (X · Y) + (Z + X))</caption>
+                <thead><tr><th>Index</th><th>X</th><th>Y</th><th>Z</th><th>X·Z</th><th>X·Y</th><th>(X·Z)·(X·Y)</th><th>Z+X</th><th>F</th></tr></thead>
+                <tbody id="function-body"></tbody>
+              </table></div>
+              <div class="action-row"><button class="action-button primary" type="submit">Check F</button><button class="action-button secondary" id="clear-function" type="button">Clear</button></div>
+            </form>
+            <div class="feedback" id="function-feedback" aria-live="polite">Complete all eight F outputs, then check your work.</div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="dual-heading">
+            <div class="section-heading"><div><p class="step">Part 3</p><h2 id="dual-heading">Compare the dual function</h2></div><p class="instruction">The first table is followed by the dual expression. Predict its output for every row, then compare the two columns.</p></div>
+            <div class="callout"><p class="formula">Fᵈ = ((X + Z) + (X + Y) · (Z · X))</p></div>
+            <form id="dual-form" style="margin-top:1rem">
+              <div class="table-wrap"><table>
+                <caption>Function and dual comparison</caption>
+                <thead><tr><th>Index</th><th>X</th><th>Y</th><th>Z</th><th>F</th><th>Fᵈ</th></tr></thead>
+                <tbody id="dual-body"></tbody>
+              </table></div>
+              <div class="action-row"><button class="action-button primary" type="submit">Check Fᵈ</button><button class="action-button secondary" id="reveal-comparison" type="button">Explain the comparison</button></div>
+            </form>
+            <div class="feedback" id="dual-feedback" aria-live="polite">Complete the dual output column to finish the activity.</div>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation"><a href="../algebra/"><small>Previous activity</small><strong>← Algebra and Duality</strong></a><a href="../canonical-forms/"><small>Next activity</small><strong>Canonical SOP and POS →</strong></a></nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor · Neela Seegobin, original author · Azim Abdool, web edition · IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+</body>
+</html>

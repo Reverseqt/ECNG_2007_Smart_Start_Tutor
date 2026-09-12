@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="What an integrated circuit is, what the TTL and CMOS logic families actually are, and how DIP pin numbering works.">
+  <title>Integrated Circuits, Families and Packaging | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../electrical.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="digital-foundations" data-activity="integrated-circuits" data-title="Integrated Circuits, Families and Packaging">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 1 &middot; Interactive activity</p>
+            <h1>Integrated Circuits, Families and Packaging</h1>
+            <p>The composition of the TTL and CMOS logic families, the packages integrated circuits are supplied in, and the convention for numbering their pins.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/digital-foundations/">Digital Foundations</a> / Integrated Circuits, Families and Packaging</p>
+
+          <section class="activity-panel" aria-labelledby="what-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="what-heading">What is an integrated circuit?</h2></div>
+              <p class="instruction">An integrated circuit is a semiconductor crystal carrying interconnected components realised as transistors.</p>
+            </div>
+            <p>An integrated circuit combines many components on one piece of semiconductor material. The external <strong>package</strong> protects that fragile die and makes its terminals reachable. Three things characterise any chip you might pick up: the <strong>transistor technology</strong> it is built from, the <strong>package</strong> it arrives in, and its <strong>scale of integration</strong>.</p>
+            <p>The first of these determines the electrical behaviour examined in the preceding activity, where TTL and CMOS thresholds were quoted without definition. Those families are defined below.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="family-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="family-heading">What a logic family actually is</h2></div>
+              <p class="instruction">A logic family is a set of devices of common construction, sharing electrical characteristics and therefore freely interconnectable.</p>
+            </div>
+            <p>Two devices of the same family employ the same type of transistor, operate from the same supply, and guarantee the same input and output voltages. Devices within a family may therefore be interconnected without further analysis, whereas connections between families must be verified.</p>
+            <div class="family-cards">
+              <div class="family-card">
+                <h3>TTL &mdash; Transistor&ndash;Transistor Logic</h3>
+                <p>Built from <strong>bipolar junction transistors</strong> and diodes. Runs from a 5 V supply. An input actually draws current, so a driving output has to supply it, and this is what limits how many inputs one output can feed.</p>
+                <p>Its thresholds sit low in the supply range &mdash; guaranteed LOW below 0.8 V, guaranteed HIGH above 2.0 V &mdash; which is why an unconnected TTL input tends to float HIGH.</p>
+              </div>
+              <div class="family-card">
+                <h3>CMOS &mdash; Complementary MOS</h3>
+                <p>Built from <strong>complementary pairs of MOSFETs</strong>, one n-channel and one p-channel. A MOSFET gate is an insulated plate, so a CMOS input draws essentially no steady current and the chip consumes almost no power while it is sitting still.</p>
+                <p>Its thresholds scale with the supply, around 30% and 70% of V<sub>DD</sub>, which is why a CMOS part can run from 3 V or 5 V and keep the same proportions.</p>
+              </div>
+            </div>
+            <p class="source-note">How the two families behave when connected to one another, and how many loads each can drive, is treated in <a href="../../hardware-practice/logic-families/">TTL, CMOS and Interfacing</a>.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="package-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="package-heading">Packages and pin numbering</h2></div>
+              <p class="instruction">Misreading the pin numbering is among the commonest causes of damage to a device on a breadboard.</p>
+            </div>
+            <div class="package-choice">
+              <div class="control-card">
+                <label for="package">Package style</label>
+                <select id="package">
+                  <option value="dip">Through-hole, dual in-line (DIP)</option>
+                  <option value="smd">Surface-mounted (SMD)</option>
+                </select>
+                <div class="result-box"><strong id="package-name">Dual in-line through-hole package</strong><span id="package-detail"></span></div>
+              </div>
+              <div id="package-visual" class="package-visual"></div>
+            </div>
+
+            <p>A <strong>DIP</strong> has two rows of pins on a 0.1 inch pitch &mdash; exactly the spacing of a breadboard, which is why it is the package you build with by hand. One end carries a <strong>notch</strong>, and sometimes a dot beside pin 1.</p>
+            <p>Numbering runs <strong>counter-clockwise from pin 1</strong>, viewed from above. With the notch on the left, pin 1 is the bottom-left pin, the numbers increase along the bottom row to the right, then continue along the top row from right to left. Power and ground land diagonally opposite each other: on a 14-pin logic chip, ground is pin 7 and V<sub>CC</sub> is pin 14.</p>
+
+            <div class="dip-explorer">
+              <div class="dip-stage"><svg id="dip" viewBox="0 0 560 260" role="img" aria-label="Fourteen-pin dual in-line package seen from above, notch on the left">
+                  <rect class="dip-body" x="90" y="70" width="380" height="120" rx="8"/>
+                  <path class="dip-notch-mark" d="M90 105 A 26 26 0 0 0 90 155 Z"/>
+                  <text class="dip-caption" x="280" y="138" text-anchor="middle">DIP-14, viewed from above</text>
+                  <g id="dip-pins"></g>
+                </svg></div>
+              <div class="dip-controls">
+                <p class="target-box">Click <strong id="pin-target">pin 9</strong> on the package.</p>
+                <p class="result-box" id="pin-note" aria-live="polite">Work round from pin 1 at the bottom-left.</p>
+                <div class="progress-line"><progress id="pin-progress" max="4" value="0"></progress><span id="pin-progress-text">0 of 4</span></div>
+                <div class="action-row"><button class="action-button secondary" id="pin-restart" type="button">Start again</button></div>
+              </div>
+            </div>
+            <p class="source-note">Surface-mount parts are smaller and cheaper to assemble by machine, but cannot be inserted into a breadboard. The dual in-line package therefore remains the standard choice for prototyping.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="scale-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 4</p><h2 id="scale-heading">Scale of integration</h2></div>
+              <p class="instruction">The third classification: how much circuitry the die carries.</p>
+            </div>
+            <div class="control-grid">
+              <div class="control-card">
+                <label for="scale">Scale of integration</label>
+                <select id="scale">
+                  <option value="ssi">SSI</option><option value="msi">MSI</option><option value="lsi">LSI</option>
+                  <option value="vlsi">VLSI</option><option value="ulsi">ULSI</option>
+                </select>
+              </div>
+              <div class="control-card"><span class="label">Transistor count</span><strong id="scale-count"></strong></div>
+              <div class="control-card"><span class="label">Typical application</span><strong id="scale-application"></strong></div>
+            </div>
+            <p class="source-note">These ranges are historical classifications. Modern integrated circuits comfortably exceed the upper category.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 5</p><h2 id="check-heading">Check your understanding</h2></div>
+              <p class="instruction">The pin exercise above plus these two questions complete this activity.</p>
+            </div>
+            <form id="check-form">
+              <fieldset class="quiz-question">
+                <legend>Which feature belongs to the package rather than to the circuit inside?</legend>
+                <label><input type="radio" name="q1" value="a"> Whether the chip uses bipolar transistors or MOSFETs.</label>
+                <label><input type="radio" name="q1" value="b"> How the protected die connects mechanically and electrically to a circuit board.</label>
+                <label><input type="radio" name="q1" value="c"> The Boolean function the circuit implements.</label>
+              </fieldset>
+              <fieldset class="quiz-question">
+                <legend>Why does a CMOS input draw almost no steady current?</legend>
+                <label><input type="radio" name="q2" value="a"> Because the supply voltage is lower.</label>
+                <label><input type="radio" name="q2" value="b"> Because the MOSFET gate is insulated, so there is no DC path into it.</label>
+                <label><input type="radio" name="q2" value="c"> Because CMOS chips contain fewer transistors.</label>
+              </fieldset>
+              <div class="action-row"><button class="action-button primary" type="submit">Check answers</button></div>
+              <div class="feedback" id="feedback" aria-live="polite">Answer both questions, then check your work.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../analogue-digital/"><small>Previous activity</small><strong>&larr; Analogue and Digital Values</strong></a>
+            <a href="../logic-levels/"><small>Next activity</small><strong>Logic Levels and Noise Margins &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

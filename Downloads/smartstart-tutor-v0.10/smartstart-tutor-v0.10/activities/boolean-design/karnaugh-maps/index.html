@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Karnaugh maps and prime implicants in the SmartStart Digital Electronics Tutor.">
+<title>Karnaugh Maps | SmartStart Digital Electronics Tutor</title>
+<link rel="stylesheet" href="../../../assets/site.css"><link rel="stylesheet" href="../boolean.css">
+<script src="../../../assets/site.js" defer></script><script src="activity.js" defer></script>
+</head><body data-root="../../../" data-section="boolean-design" data-activity="karnaugh-maps" data-title="Karnaugh Maps">
+<div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">☰</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+<main class="page-content">
+<section class="activity-hero"><div class="content-wrap"><p class="eyebrow">Module 4 · Interactive activity</p><h1>Karnaugh Maps</h1><p>Map truth-table outputs into Gray-code order, examine wrap-around adjacency, and identify the six prime implicants of the worked function.</p></div></section>
+<div class="content-wrap">
+<p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/boolean-design/">Boolean Design</a> / Karnaugh Maps</p>
+
+<section class="activity-panel" aria-labelledby="mapping-heading">
+<div class="section-heading"><div><p class="step">Part 1</p><h2 id="mapping-heading">A truth table arranged for adjacency</h2></div><p class="instruction">A K-map is a graphical form of a truth table. Rows and columns use Gray-code order so adjacent cells differ in only one variable.</p></div>
+<div class="kmap-layout">
+<div><div id="adjacency-map" class="kmap-shell" aria-label="Four-variable Karnaugh map adjacency explorer"></div><div class="kmap-toolbar"><button class="action-button secondary" id="clear-adjacency" type="button">Clear selection</button></div></div>
+<div class="summary-card"><h3>Explore adjacency</h3><p>Select any cell. Its horizontal and vertical neighbours will be highlighted—including neighbours across the outer edges.</p><p id="adjacency-description" class="formula">Select a cell to begin.</p><div class="legend-row"><span class="legend-chip"><span class="legend-swatch"></span> Adjacent cell</span><span class="legend-chip">Diagonal cells are not adjacent</span></div><div class="callout" style="margin-top:1rem"><p><strong>Why the edges connect:</strong> the map wraps horizontally and vertically. The left and right edges meet, and the top and bottom edges meet.</p></div></div>
+</div></section>
+
+<section class="activity-panel" aria-labelledby="pi-heading">
+<div class="section-heading"><div><p class="step">Part 2</p><h2 id="pi-heading">Find the original six prime implicants</h2></div><p class="instruction">The function is F = Σm(0,1,2,4,7,8,9,11,13,14,15). Select all cells in one prime implicant, then check the group.</p></div>
+<div class="kmap-layout">
+<div><div id="pi-map" class="kmap-shell" aria-label="Prime implicant selection Karnaugh map"></div><div class="kmap-toolbar"><button class="action-button primary" id="check-group" type="button">Check selected group</button><button class="action-button secondary" id="clear-group" type="button">Clear selection</button><button class="action-button secondary" id="reveal-groups" type="button">Reveal all</button></div><div class="feedback" id="pi-feedback" aria-live="polite">Find any largest rectangular group containing 1-cells only. Groups may wrap around the edges.</div></div>
+<div><h3>Prime implicants identified</h3><div class="pi-list" id="pi-list"></div><div class="callout" style="margin-top:1rem"><p>A group of 2<sup>k</sup> cells eliminates <em>k</em> changing variables from its product term. Prime implicants may overlap, but one should not be completely contained in another.</p></div></div>
+</div></section>
+
+<section class="activity-panel" aria-labelledby="dont-care-heading">
+<div class="section-heading"><div><p class="step">Part 3</p><h2 id="dont-care-heading">Using don't-care conditions</h2></div><p class="instruction">A don't-care cell may be treated as 1 where doing so forms a larger implicant, but it need not be covered.</p></div>
+<div class="canonical-grid"><div class="summary-card"><h3>While finding prime implicants</h3><p>Treat a don't-care as either 0 or 1—whichever produces a simpler result. Do not select a group containing only don't-care cells.</p></div><div class="summary-card"><h3>While selecting essential prime implicants</h3><p>Treat don't-cares as 0. A don't-care covered by only one prime implicant is not a distinguished 1-cell.</p></div></div>
+<form id="kmap-check" style="margin-top:1rem"><fieldset class="summary-card"><legend><strong>Completion check</strong></legend><label for="wrap-choice">Which pair is adjacent in a four-variable K-map?</label><select id="wrap-choice"><option value="">Choose a pair</option><option value="diagonal">Two diagonal cells</option><option value="edge">Cells at opposite horizontal edges in the same row</option><option value="different-two">Cells differing in two variables</option></select><label for="group-choice" style="margin-top:.8rem">What group size is valid?</label><select id="group-choice"><option value="">Choose a size</option><option value="three">3 cells</option><option value="six">6 cells</option><option value="power">A power of two</option></select><div class="action-row"><button class="action-button primary" type="submit">Check activity</button></div></fieldset></form><div class="feedback" id="kmap-feedback" aria-live="polite">Find the prime implicants and answer both questions.</div>
+</section>
+
+<nav class="page-nav" aria-label="Activity navigation"><a href="../canonical-forms/"><small>Previous activity</small><strong>← Minterms, Maxterms, SOP and POS</strong></a><a href="../hazards/"><small>Next activity</small><strong>Logic Hazards →</strong></a></nav>
+</div></main>
+<footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor · Neela Seegobin, original author · Azim Abdool, web edition · IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div></body></html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build a four-function ALU from AND and OR banks, a ripple-carry adder and a multiplexer, using two's complement so one adder does both addition and subtraction.">
+  <title>A Simple ALU | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../arithmetic.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="arithmetic-comparison" data-activity="alu" data-title="A Simple ALU">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 7 &middot; Interactive activity</p>
+            <h1>A Simple ALU</h1>
+            <p>An arithmetic and logic unit computes every candidate result in parallel and selects between them with a multiplexer.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/arithmetic-comparison/">Arithmetic and Comparison</a> / A Simple ALU</p>
+
+          <section class="activity-panel" aria-labelledby="idea-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="idea-heading">One block, several functions</h2></div>
+              <p class="instruction">The arithmetic and logic unit is the computational element at the centre of a processor.</p>
+            </div>
+            <p>Each circuit considered so far performs a single operation. An <strong>arithmetic and logic unit</strong> performs several, selected at the time of use by a <em>function select</em> code. That code is what a program instruction ultimately resolves to.</p>
+            <p>The construction is straightforward: compute every candidate result in parallel, then use a <strong>multiplexer</strong> to select the one indicated by the function code.</p>
+            <div class="callout">
+              <h3>What this ALU is made of</h3>
+              <ul>
+                <li>A bank of <strong>AND</strong> gates, one per bit</li>
+                <li>A bank of <strong>OR</strong> gates, one per bit</li>
+                <li>The four-bit <strong>ripple-carry adder</strong> from the previous activity</li>
+                <li>A <strong>multiplexer</strong> selecting which result reaches the output</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="twos-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="twos-heading">Subtraction, already solved</h2></div>
+              <p class="instruction">Subtraction is obtained by the method established in the preceding activity.</p>
+            </div>
+            <p><a href="../subtractor/">Subtractors</a> showed that a single SUB control line turns an adder into a subtractor: XOR gates invert B, and the same line feeds the carry-in to supply the &ldquo;add 1&rdquo; of two&rsquo;s complement. The ALU needs nothing more than that.</p>
+            <p>So the arithmetic half of this ALU is one adder and four XOR gates. The SUB line is simply driven by the function select code: it is 0 for ADD and 1 for SUB.</p>
+            <div class="callout">
+              <h3>What the function select actually controls</h3>
+              <ul>
+                <li><strong>S<sub>1</sub></strong> chooses arithmetic (1) or logic (0).</li>
+                <li><strong>S<sub>0</sub></strong> picks which of the pair: OR against AND, or SUB against ADD.</li>
+                <li>For arithmetic, S<sub>0</sub> is also the SUB line feeding the XOR gates and the carry-in.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="alu-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="alu-heading">The ALU in operation</h2></div>
+              <p class="instruction">Set two four-bit inputs and a function code, and watch the selected result appear.</p>
+            </div>
+            <div class="alu-layout">
+              <div class="alu-controls">
+                <p><strong>Function select S<sub>1</sub>S<sub>0</sub></strong></p>
+                <div class="func-grid" id="func-grid">
+                  <button class="func-button" data-op="0" type="button"><span>00</span>AND</button>
+                  <button class="func-button" data-op="1" type="button"><span>01</span>OR</button>
+                  <button class="func-button" data-op="2" type="button"><span>10</span>ADD</button>
+                  <button class="func-button" data-op="3" type="button"><span>11</span>SUB</button>
+                </div>
+                <div class="expression-card"><span>Selected operation</span><strong id="op-name">A AND B</strong></div>
+                <div class="expression-card"><span>Adder carry-in</span><strong id="cin-note">0</strong></div>
+              </div>
+              <div class="alu-stage">
+                <div class="ripple-panel">
+                  <div class="ripple-row"><span class="ripple-label">A</span><div class="ripple-bits" id="alu-a"></div><span class="ripple-value" id="alu-a-val">0</span></div>
+                  <div class="ripple-row"><span class="ripple-label">B</span><div class="ripple-bits" id="alu-b"></div><span class="ripple-value" id="alu-b-val">0</span></div>
+                  <div class="ripple-row sum"><span class="ripple-label">Result</span><div class="ripple-bits" id="alu-r"></div><span class="ripple-value" id="alu-r-val">0</span></div>
+                </div>
+                <div class="flag-row">
+                  <div class="flag" id="flag-carry"><span>Carry / borrow</span><strong>0</strong></div>
+                  <div class="flag" id="flag-zero"><span>Zero</span><strong>1</strong></div>
+                  <div class="flag" id="flag-neg"><span>Negative (as signed)</span><strong>0</strong></div>
+                </div>
+                <p class="result-box" id="alu-status" aria-live="polite"></p>
+              </div>
+            </div>
+            <p class="source-note">The three flags are the quantities a processor tests when executing a conditional branch. The zero flag is a NOR taken across every result bit.</p>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 4</p><h2 id="check-heading">Predict the ALU</h2></div>
+              <p class="instruction">Five correct predictions in a row completes this activity.</p>
+            </div>
+            <p class="expression-prompt" id="predict-prompt">Loading&hellip;</p>
+            <form id="predict-form">
+              <label for="predict-answer"><strong>Result in binary, four bits</strong></label>
+              <input id="predict-answer" type="text" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="e.g. 0110">
+              <details class="hint"><summary>Hint</summary><p>For AND and OR, work column by column. For ADD, add the two values. For SUB, either subtract directly or invert B, add 1, and add that to A &mdash; both give the same four bits.</p></details>
+              <div class="action-row">
+                <button class="action-button primary" type="submit">Check</button>
+                <button class="action-button secondary" id="predict-restart" type="button">Start again</button>
+              </div>
+              <div class="feedback" id="predict-feedback" aria-live="polite">Streak: 0 of 5.</div>
+            </form>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../comparator-internals/"><small>Previous activity</small><strong>&larr; Comparators Revisited</strong></a>
+            <a href="../../../modules/sequential-logic/"><small>Next module</small><strong>Sequential Logic &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>

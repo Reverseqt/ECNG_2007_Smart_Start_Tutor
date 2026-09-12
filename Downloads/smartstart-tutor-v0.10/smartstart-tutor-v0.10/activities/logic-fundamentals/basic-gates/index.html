@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore AND, OR and NOT with live switches, a gate diagram and a truth table that highlights the current row.">
+  <title>The Three Basic Gates | SmartStart Digital Electronics Tutor</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../logic.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="logic-fundamentals" data-activity="basic-gates" data-title="The Three Basic Gates">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 2 &middot; Interactive activity</p>
+            <h1>The Three Basic Gates</h1>
+            <p>AND, OR and NOT are the three basic operations every other gate is built from. Set the inputs and watch the output and truth table respond.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/logic-fundamentals/">Logic Fundamentals</a> / The Three Basic Gates</p>
+
+          <section class="activity-panel" aria-labelledby="explore-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="explore-heading">The three basic logic gates</h2></div>
+              <p class="instruction">AND, OR and NOT are the three basic gates, corresponding to the Boolean operations of conjunction, disjunction and complement.</p>
+            </div>
+
+            <div class="gate-explorer-grid">
+              <div class="gate-controls">
+                <label for="basic-gate"><strong>Select a gate</strong></label>
+                <select id="basic-gate">
+                  <option value="AND">AND</option>
+                  <option value="OR">OR</option>
+                  <option value="NOT">NOT</option>
+                </select>
+                <div class="switch-row"><span>Input X</span><button class="bit-switch" id="input-x" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="switch-row" id="input-y-row"><span>Input Y</span><button class="bit-switch" id="input-y" type="button" role="switch" aria-checked="false"><span>0</span></button></div>
+                <div class="expression-card"><span>Boolean expression</span><strong id="basic-expression">Z = X &middot; Y</strong></div>
+              </div>
+
+              <div class="gate-stage">
+                <svg id="gate-diagram" viewBox="0 0 760 390" role="img" aria-labelledby="gate-title gate-desc">
+                  <title id="gate-title">Interactive logic gate</title>
+                  <desc id="gate-desc">Input signals enter a selected logic gate and produce output Z.</desc>
+                  <g class="signal signal-x" data-signal="x"><line x1="55" y1="125" x2="245" y2="125"></line><circle cx="55" cy="125" r="15"></circle><text x="28" y="133" text-anchor="end">X</text></g>
+                  <g class="signal signal-y" data-signal="y"><line x1="55" y1="255" x2="245" y2="255"></line><circle cx="55" cy="255" r="15"></circle><text x="28" y="263" text-anchor="end">Y</text></g>
+                  <g id="shape-and" class="gate-shape"><path d="M245 80 H355 C455 80 505 125 505 190 C505 255 455 300 355 300 H245 Z"></path></g>
+                  <g id="shape-or" class="gate-shape" hidden><path d="M240 80 Q315 190 240 300 Q390 300 510 190 Q390 80 240 80 Z"></path><path class="or-back" d="M240 80 Q315 190 240 300"></path></g>
+                  <g id="shape-not" class="gate-shape" hidden><path d="M260 85 L500 190 L260 295 Z"></path><circle class="gate-bubble" cx="526" cy="190" r="20"></circle></g>
+                  <g class="output-signal" data-signal="z"><line x1="505" y1="190" x2="690" y2="190"></line><circle class="output-lamp" cx="690" cy="190" r="23"></circle><text x="730" y="198">Z</text></g>
+                  <text id="gate-name" class="gate-label" x="375" y="350" text-anchor="middle">AND gate</text>
+                </svg>
+                <p class="result-box" id="basic-result" aria-live="polite">0 AND 0 gives 0.</p>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table id="basic-table">
+                <caption id="basic-caption">AND gate truth table</caption>
+                <thead><tr><th>X</th><th id="basic-y-head">Y</th><th>Z</th></tr></thead>
+                <tbody id="basic-table-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="predict-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="predict-heading">Predict the output</h2></div>
+              <p class="instruction">Work out each output before you check. Five in a row completes this activity.</p>
+            </div>
+            <p class="expression-prompt" id="predict-prompt">Loading&hellip;</p>
+            <div class="action-row">
+              <button class="action-button primary" data-predict="0" type="button">Output is 0</button>
+              <button class="action-button primary" data-predict="1" type="button">Output is 1</button>
+              <button class="action-button secondary" id="predict-restart" type="button">Start again</button>
+            </div>
+            <div class="feedback" id="predict-feedback" aria-live="polite">Streak: 0 of 5.</div>
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../../../modules/logic-fundamentals/"><small>Module overview</small><strong>&larr; Logic Fundamentals</strong></a>
+            <a href="../gate-family/"><small>Next activity</small><strong>The Gate Family &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>
