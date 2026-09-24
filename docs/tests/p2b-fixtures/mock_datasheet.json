@@ -1,0 +1,35 @@
+{
+  "datasheetId": "SN74LS00",
+  "documentPath": "../../assets/p2b-datasheets/sn74ls00.pdf",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "parameters": [
+        {
+          "id": "param-vih",
+          "name": "V_IH (High-Level Input Voltage)",
+          "value": "2.0 V (Min)",
+          "bbox": { "x": 185, "y": 247, "width": 45, "height": 11 }
+        },
+        {
+          "id": "param-vil",
+          "name": "V_IL (Low-Level Input Voltage)",
+          "value": "0.8 V (Max)",
+          "bbox": { "x": 65, "y": 260, "width": 60, "height": 11 }
+        },
+        {
+          "id": "param-logic-inputs",
+          "name": "Logic Level Compatibility",
+          "value": "3.3-V or 2.5-V Logic Inputs",
+          "bbox": { "x": 65, "y": 273, "width": 210, "height": 12 }
+        },
+        {
+          "id": "param-temp-range",
+          "name": "Military Temperature Range",
+          "value": "-55°C to 125°C",
+          "bbox": { "x": 62, "y": 312, "width": 185, "height": 12 }
+        }
+      ]
+    }
+  ]
+}
