@@ -2,45 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>P2B Datasheet Viewer Prototype</title>
+  <title>P2B Datasheet Explorer Prototype</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <style>
-    #viewer-container {
+    .viewer-container {
       position: relative;
       display: inline-block;
       border: 1px solid #ccc;
     }
-    #pdf-canvas { display: block; }
+    #overlay-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
     .hotspot {
       position: absolute;
-      border: 2px solid #007bff;
-      background-color: rgba(0, 123, 255, 0.2);
+      border: 2px solid rgba(255, 165, 0, 0.8);
+      background-color: rgba(255, 255, 0, 0.25);
+      pointer-events: auto;
       cursor: pointer;
+      box-sizing: border-box;
     }
-    .hotspot:hover { background-color: rgba(0, 123, 255, 0.4); }
+    .hotspot:hover {
+      background-color: rgba(0, 120, 255, 0.35);
+      border-color: #0078ff;
+    }
     .tooltip {
       visibility: hidden;
-      position: absolute;
-      bottom: 105%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #222;
+      background-color: #333;
       color: #fff;
+      font-size: 12px;
       padding: 4px 8px;
       border-radius: 4px;
-      font-size: 12px;
+      position: absolute;
+      bottom: 100%;
+      left: 0;
       white-space: nowrap;
+      z-index: 10;
     }
-    .hotspot:hover .tooltip { visibility: visible; }
+    .hotspot:hover .tooltip {
+      visibility: visible;
+    }
   </style>
 </head>
 <body>
-  <h2>P2B Datasheet Explorer Activity</h2>
-  <div id="viewer-container">
+  <h2>P2B Datasheet Hotspot Viewer (FR-P2B-01)</h2>
+  <div class="viewer-container">
+    <div class="controls">
+  <label for="datasheet-select">Datasheet:</label>
+  <select id="datasheet-select">
+    <option value="SN74LS00">SN74LS00</option>
+    <option value="SN74HC00">SN74HC00</option>
+  </select>
+
+  <label for="page-select">Page:</label>
+  <select id="page-select">
+    <!-- Populated dynamically by JS -->
+  </select>
+
+  <button id="prev-btn">Previous Page</button>
+  <button id="next-btn">Next Page</button>
+  <span>Page <span id="current-page-num">1</span> of <span id="total-pages">1</span></span>
+</div>
+
+<div class="viewer-container">
+  <canvas id="pdf-canvas"></canvas>
+  <div id="overlay-layer"></div>
+</div>
     <canvas id="pdf-canvas"></canvas>
     <div id="overlay-layer"></div>
   </div>
-
-  <!-- Note type="module" -->
   <script type="module" src="viewer.js"></script>
 </body>
 </html>
