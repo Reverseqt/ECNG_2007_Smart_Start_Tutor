@@ -1,33 +1,109 @@
 {
-  "datasheetId": "SN74LS00",
-  "documentPath": "../../assets/p2b-datasheets/sn74ls00.pdf",
-  "pages": [
+  "version": "1.0",
+  "datasheets": [
     {
-      "pageNumber": 1,
-      "parameters": [
+      "datasheetId": "SN74LS00",
+      "manufacturer": "Texas Instruments",
+      "documentPath": "../../assets/p2b-datasheets/sn74ls00.pdf",
+      "pages": [
         {
-          "id": "param-vih",
-          "name": "V_IH (High-Level Input Voltage)",
-          "value": "2.0 V (Min)",
-          "bbox": { "x": 185, "y": 247, "width": 45, "height": 11 }
+          "pageNumber": 4,
+          "parameters": [
+            {
+              "id": "sn74ls00-vih",
+              "symbol": "V_IH",
+              "name": "High-Level Input Voltage",
+              "value": "2.0 V (Min)",
+              "unit": "V",
+              "condition": "VCC = 5V",
+              "bbox": { "x": 423, "y": 605, "width": 15, "height": 14 }
+            },
+            {
+              "id": "sn74ls00-vil",
+              "symbol": "V_IL",
+              "name": "Low-Level Input Voltage",
+              "value": "0.8 V or 0.7V (Max)",
+              "unit": "V",
+              "condition": "VCC = 5V",
+              "bbox": { "x": 502, "y": 618, "width": 15, "height": 30 }
+            }
+          ]
         },
         {
-          "id": "param-vil",
-          "name": "V_IL (Low-Level Input Voltage)",
-          "value": "0.8 V (Max)",
-          "bbox": { "x": 65, "y": 260, "width": 60, "height": 11 }
+          "pageNumber": 7,
+          "parameters": [
+            {
+              "id": "sn74ls00-tplh",
+              "symbol": "t_PLH",
+              "name": "Propagation Delay (Low-to-High)",
+              "value": "11 ns (Typ) / 22 ns (Max)",
+              "unit": "ns",
+              "condition": "CL = 15 pF, RL = 2 kΩ",
+              "bbox": { "x": 480, "y": 213, "width": 50, "height": 12 }
+            },
+            {
+              "id": "sn74ls00-tphl",
+              "symbol": "t_PHL",
+              "name": "Propagation Delay (High-to-Low)",
+              "value": "7 ns (Typ) / 15 ns (Max)",
+              "unit": "ns",
+              "condition": "CL = 15 pF, RL = 2 kΩ",
+              "bbox": { "x": 480, "y": 227, "width": 50, "height": 12 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "datasheetId": "SN74HC00",
+      "manufacturer": "Texas Instruments",
+      "documentPath": "../../assets/p2b-datasheets/sn74hc00.pdf",
+      "pages": [
+        {
+          "pageNumber": 4,
+          "parameters": [
+            {
+              "id": "sn74hc00-vih",
+              "symbol": "V_IH",
+              "name": "High-Level Input Voltage",
+              "value": "3.15 V (Min at VCC = 4.5V)",
+              "unit": "V",
+              "condition": "VCC = 4.5V",
+              "bbox": { "x": 420, "y": 515, "width": 30, "height": 14 }
+            },
+            {
+              "id": "sn74hc00-vil",
+              "symbol": "V_IL",
+              "name": "Low-Level Input Voltage",
+              "value": "1.35 V (Max at VCC = 4.5V)",
+              "unit": "V",
+              "condition": "VCC = 4.5V",
+              "bbox": { "x": 490, "y": 557, "width": 30, "height": 14 }
+            }
+          ]
         },
         {
-          "id": "param-logic-inputs",
-          "name": "Logic Level Compatibility",
-          "value": "3.3-V or 2.5-V Logic Inputs",
-          "bbox": { "x": 65, "y": 273, "width": 210, "height": 12 }
-        },
-        {
-          "id": "param-temp-range",
-          "name": "Military Temperature Range",
-          "value": "-55°C to 125°C",
-          "bbox": { "x": 62, "y": 312, "width": 185, "height": 12 }
+          "pageNumber": 6,
+          "parameters": [
+            {
+              "id": "sn74hc00-tplh",
+              "symbol": "t_PD",
+              "name": "Propagation Delay (Commercial)",
+              "value": "9 ns (Typ) / 18 ns (Max)",
+              "unit": "ns",
+              "condition": "CL = 50 pF, VCC = 4.5V",
+              "bbox": { "x": 390, "y": 520, "width": 45, "height": 14 }
+            },
+            {
+              "id": "sn74hc00-tphl",
+              "symbol": "t_t",
+              "name": "Transition Time (Commercial)",
+              "value": "8 ns (Typ) / 15 ns (Max)",
+              "unit": "ns",
+              "condition": "CL = 50 pF, VCC = 4.5V",
+              "bbox": { "x": 390, "y": 562, "width": 45, "height": 14 }
+            }
+          ]
         }
       ]
     }
