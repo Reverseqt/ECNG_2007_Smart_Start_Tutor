@@ -1,1 +1,0 @@
-Andre is not gay
