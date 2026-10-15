@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build a four-function ALU from AND and OR banks, a ripple-carry adder and a multiplexer, using two's complement so one adder does both addition and subtraction.">
+  <title>P2A test</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../../../activities/hardware-practice/hardware.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+</head>
+<body data-root="../../../" data-section="hardware-practice" data-activity="p2a-cmos" data-title="Test P2A">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">☰</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 3 &middot; Interactive activity</p>
+            <h1>P2A tmp</h1>
+            <p>tmp logic description.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/hardware-practice/">Digital Hardware Practice</a> / P2A test</p>
+
+          <!-- Part 1: Modified to contain the full interactive NOT Gate demonstration -->
+          <section class="activity-panel" aria-labelledby="idea-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="idea-heading">One block, several functions</h2></div>
+              <p class="instruction">The arithmetic and logic unit is the computational element at the centre of a processor.</p>
+            </div>
+            <p>Each circuit considered so far performs a single operation. An <strong>arithmetic and logic unit</strong> performs several, selected at the time of use by a <em>function select</em> code. That code is what a program instruction ultimately resolves to.</p>
+            <p>The construction is straightforward: compute every candidate result in parallel, then use a <strong>multiplexer</strong> to select the one indicated by the function code.</p>
+            
+            <div class="callout">
+              <h3>What this ALU is made of</h3>
+              <ul>
+                <li>A bank of <strong>AND</strong> gates, one per bit</li>
+                <li>A bank of <strong>OR</strong> gates, one per bit</li>
+                <li>The four-bit <strong>ripple-carry adder</strong> from the previous activity</li>
+                <li>A <strong>multiplexer</strong> selecting which result reaches the output</li>
+              </ul>
+            </div>
+
+            <!-- Embedded Interactive NOT Gate Demonstration Segment -->
+            <div class="section" style="margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 1.5rem;">
+              <h3>Interactive Visualizer: Understanding Logic Inversion (NOT Gate)</h3>
+              <p>Before jumping into multi-gate ALU architectures, look at how a basic logic inverter flips states. Use the control button to update the circuit trace below.</p>
+              
+              <div class="two-column">
+                <!-- Live SVG Block -->
+                <div class="diagram-box">
+                  <svg viewBox="0 0 300 120">
+                    <!-- Input Wire -->
+                    <path id="notGateInputWire" d="M 20,60 L 100,60" class="signal low" />
+                    <text x="25" y="45" class="svg-small">Input (A)</text>
+                    
+                    <!-- NOT Triangle Symbol -->
+                    <polygon points="100,30 100,90 160,60" class="logic-block" />
+                    
+                    <!-- Inversion Bubble -->
+                    <circle cx="170" cy="60" r="10" class="logic-block" />
+                    
+                    <!-- Output Wire -->
+                    <path id="notGateOutputWire" d="M 180,60 L 260,60" class="signal high" />
+                    <text x="200" y="45" class="svg-small">Output (Q)</text>
+
+                    <!-- Binary Text Indicators -->
+                    <text id="notGateInputText" x="50" y="85" class="svg-label" fill="#00629b">0</text>
+                    <text id="notGateOutputText" x="215" y="85" class="svg-label" fill="#d69a00">1</text>
+                  </svg>
+                </div>
+
+                <!-- Status Readout Elements -->
+                <div class="status-display">
+                  <div class="status-cell">
+                    <small>Input Signal</small>
+                    <strong id="notGateReadoutA" style="color: var(--ieee-blue);">LOW</strong>
+                    <span>(Binary 0)</span>
+                  </div>
+                  <div class="status-cell">
+                    <small>Output Logic</small>
+                    <strong id="notGateReadoutQ" style="color: var(--warning);">HIGH</strong>
+                    <span>(Binary 1)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Framework Compliant Button Row -->
+              <div class="action-row">
+                <button type="button" class="action-button primary" onclick="toggleNotGateComponent()">Toggle Input State</button>
+              </div>
+
+              <!-- Contextual System Status Box -->
+              <div class="feedback" id="notGateComponentFeedback">
+                <strong>Inverter Status:</strong> Grounded state. Input is low (0 Volts), driving output high.
+              </div>
+            </div>
+
+            <!-- Scoped JavaScript controller for Part 1 Interactive Element -->
+            <script>
+              let notGateCurrentStateHigh = false;
+
+              function toggleNotGateComponent() {
+                notGateCurrentStateHigh = !notGateCurrentStateHigh;
+
+                const inputWire = document.getElementById('notGateInputWire');
+                const outputWire = document.getElementById('notGateOutputWire');
+                const inputText = document.getElementById('notGateInputText');
+                const outputText = document.getElementById('notGateOutputText');
+                const readoutA = document.getElementById('notGateReadoutA');
+                const readoutQ = document.getElementById('notGateReadoutQ');
+                const feedbackBox = document.getElementById('notGateComponentFeedback');
+
+                if (notGateCurrentStateHigh) {
+                  inputWire.setAttribute('class', 'signal high');
+                  outputWire.setAttribute('class', 'signal low');
+                  
+                  inputText.textContent = '1';
+                  inputText.setAttribute('fill', '#d69a00'); 
+                  outputText.textContent = '0';
+                  outputText.setAttribute('fill', '#00629b');
+
+                  readoutA.textContent = 'HIGH';
+                  readoutA.style.color = 'var(--warning)';
+                  readoutQ.textContent = 'LOW';
+                  readoutQ.style.color = 'var(--ieee-blue)';
+
+                  feedbackBox.innerHTML = '<strong>Inverter Status:</strong> Applied voltage high (1), pulling down the output trace to logic low (0).';
+                } else {
+                  inputWire.setAttribute('class', 'signal low');
+                  outputWire.setAttribute('class', 'signal high');
+                  
+                  inputText.textContent = '0';
+                  inputText.setAttribute('fill', '#00629b');
+                  outputText.textContent = '1';
+                  outputText.setAttribute('fill', '#d69a00');
+
+                  readoutA.textContent = 'LOW';
+                  readoutA.style.color = 'var(--ieee-blue)';
+                  readoutQ.textContent = 'HIGH';
+                  readoutQ.style.color = 'var(--warning)';
+
+                  feedbackBox.innerHTML = '<strong>Inverter Status:</strong> Grounded state. Input is low (0 Volts), driving output high.';
+                }
+              }
+            </script>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="twos-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="twos-heading">Subtraction, already solved</h2></div>
+              <p class="instruction">Subtraction is obtained by the method established in the preceding activity.</p>
+            </div>
+            <p><a href="../subtractor/">Subtractors</a> showed that a single SUB control line turns an adder into a subtractor: XOR gates invert B, and the same line feeds the carry-in to supply the &ldquo;add 1&rdquo; of two&rsquo;s complement. The ALU needs nothing more than that.</p>
+            <p>So the arithmetic half of this ALU is one adder and four XOR gates. The SUB line is simply driven by the function select code: it is 0 for ADD and 1 for SUB.</p>
+            <div class="callout">
+              <h3>What the function select actually controls</h3>
+              <ul>
+                <li><strong>S<sub>1</sub></strong> chooses arithmetic (1) or logic (0).</li>
+                <li><strong>S<sub>0</sub></strong> picks which of the pair: OR against AND, or SUB against ADD.</li>
+                <li>For arithmetic, S<sub>0</sub> is also the SUB line feeding the XOR gates and the carry-in.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="alu-heading">

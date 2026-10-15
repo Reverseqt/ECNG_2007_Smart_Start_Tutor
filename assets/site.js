@@ -40,7 +40,9 @@
       { n: "3.4", t: "Unused and Floating Inputs", s: "floating-inputs" },
       { n: "3.5", t: "Shared Buses, Open Outputs and Tri-State Logic", s: "buses" },
       { n: "3.6", t: "Decoupling Capacitors and Breadboarding", s: "decoupling-breadboard" },
-      { n: "3.7", t: "Schmitt Triggers, Protection Diodes and LEDs", s: "schmitt-protection-leds" }
+      { n: "3.7", t: "Schmitt Triggers, Protection Diodes and LEDs", s: "schmitt-protection-leds" },
+      { n: "3.8", t: "P2A test", s: "p2a-cmos" },
+      { n: "3.9", t: "P2B test", s: "p2b-datasheets" }
     ],
     "boolean-design": [
       { n: "4.1", t: "Boolean Algebra and Duality", s: "algebra" },
