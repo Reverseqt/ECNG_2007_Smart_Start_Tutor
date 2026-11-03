@@ -9,7 +9,7 @@ console.info(`[P2B] PDF.js version ${pdfjsLib.version}`); // the vendor/wasm fol
  *  repo root. 'documentPath' values in the JSON are read from there.  *
  * ------------------------------------------------------------------ */
 const SITE_ROOT = new URL('../../../', import.meta.url);
-const METADATA_URL = new URL('docs/tests/p2b-fixtures/mock_datasheet.json', SITE_ROOT);
+const METADATA_URL = new URL('assets/p2b-datasheets/datasheets.json', SITE_ROOT);
 
 /* Extra files PDF.js loads on demand. Copy the matching folders from the same
  * pdfjs-dist version as vendor/pdf.mjs into vendor/ (see the notes that came with this file).
