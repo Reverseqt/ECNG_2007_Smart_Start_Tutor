@@ -8,7 +8,7 @@ console.info(`[P2B] PDF.js version ${pdfjsLib.version}`); // the vendor/wasm fol
  *  viewer.js lives in modules/p2b-datasheets/, so '../../' is the     *
  *  repo root. 'documentPath' values in the JSON are read from there.  *
  * ------------------------------------------------------------------ */
-const SITE_ROOT = new URL('../../', import.meta.url);
+const SITE_ROOT = new URL('../../../', import.meta.url);
 const METADATA_URL = new URL('docs/tests/p2b-fixtures/mock_datasheet.json', SITE_ROOT);
 
 /* Extra files PDF.js loads on demand. Copy the matching folders from the same
@@ -580,7 +580,31 @@ async function init() {
   }
   populateDatasheetSelect();
   await checkDecoderFiles();
-  await loadDatasheet(state.metadata.datasheets[0].datasheetId);
+
+  // 1. Read injected routing state from the Digital Tutor platform (FR-JOINT-01)
+  const params = new URLSearchParams(window.location.search);
+  const injectedDevice = params.get('selectedDevice') || window.history.state?.selectedDevice;
+  const injectedParam = params.get('targetParameter') || window.history.state?.targetParameter;
+
+  // 2. Validate injected device against metadata, fallback to index 0
+  const startDevice = injectedDevice && state.metadata.datasheets.some(d => d.datasheetId === injectedDevice)
+    ? injectedDevice
+    : state.metadata.datasheets[0].datasheetId;
+
+  await loadDatasheet(startDevice);
+
+  // 3. Automatically highlight/pin the target parameter if provided in the payload
+  if (injectedParam) {
+    // Attempt to match by id or symbol (e.g., "VIH" or "param-vih")
+    const targetSpot = state.hotspots.find(h => 
+      h.rec.id === injectedParam || h.rec.symbol === injectedParam || h.rec.symbol?.replace('_', '') === injectedParam
+    );
+    if (targetSpot) {
+      togglePin(targetSpot.rec, targetSpot.btn);
+      // Optional: scroll the viewer wrap so the parameter is centered
+      targetSpot.btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
 }
 
 init().catch((err) => fail(UNAVAILABLE_MSG, 'Unexpected viewer error', err));
