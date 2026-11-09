@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="This activity explores the internal structure of CMOS logic gates, and how they are combined to form a simple circuit.">
+  <title>CMOS Logic Explorer</title>
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <link rel="stylesheet" href="../../../activities/hardware-practice/hardware.css">
+  <script src="../../../assets/site.js" defer></script>
+  <script src="activity.js" defer></script>
+  <!-- fbsibf -->
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+</head>
+<body data-root="../../../" data-section="hardware-practice" data-activity="CMOS-logic" data-title="CMOS Logic Explorer">
+
+  <div class="app-shell">
+    <aside class="site-sidebar" id="site-sidebar"></aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+    <div class="site-stage">
+      <header class="site-toolbar">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open tutor menu" aria-expanded="false">&#9776;</button>
+        <a class="toolbar-title" href="../../../"><strong id="toolbar-title">SmartStart Digital Electronics Tutor</strong><span>IEEE EDS Trinidad and Tobago Chapter Edition</span></a>
+        <span class="toolbar-status" id="toolbar-progress" hidden></span>
+      </header>
+
+      <main class="page-content">
+        <section class="activity-hero">
+          <div class="content-wrap">
+            <p class="eyebrow">Module 3 &middot; Interactive activity</p>
+            <h1>CMOS Logic Explorer</h1>
+            <p>Explore basics of CMOS logic and its application for NAND, NOT, NOR and 3-bit parity generator gates.</p>
+          </div>
+        </section>
+
+        <div class="content-wrap">
+          <p class="breadcrumbs"><a href="../../../">Home</a> / <a href="../../../modules/hardware-practice/">Digital Hardware Practice</a> / CMOS Logic Explorer</p>
+
+          <section class="activity-panel" aria-labelledby="idea-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 1</p><h2 id="idea-heading">NMOS and PMOS transistors</h2></div>
+              <p class="instruction">CMOS stands for Complementary Metal-Oxide-Semiconductor. Complemantary means that it uses both NMOS and PMOS transistors to implement logic functions.</p>
+            </div>
+            <p>CMOS logic gates are built from two complementary networks of transistors: a <strong>pull-up network</strong> of PMOS transistors, and a <strong>pull-down network</strong> of NMOS transistors. The pull-up network connects the output to the positive supply voltage when the output should be HIGH, while the pull-down network connects the output to ground when the output should be LOW.</p>
+            <p>In a CMOS gate, the pull-up and pull-down networks are designed such that they never conduct at the same time, which minimizes power consumption. The output is determined by the combination of inputs applied to the gate, which control the transistors in both networks.</p>
+            <div class ="callout">
+            <p>A PMOS transistor turns on when its <strong>gate voltage is sufficiently below its source voltage</strong>. Define the source-to-gate voltage as \(V_{SG} = V_S - V_G\).</p>
+            <p>A conducting channel forms between the source and drain when:
+             \[
+             V_{SG} &gt; |V_{TP}|
+             \]
+            where \(|V_{TP}|\) is the magnitude of the PMOS threshold voltage. In the ideal switch model, the transistor is off when \(V_{SG} \le |V_{TP}|\).</p>
+            <p>An NMOS transistor turns on when its <strong>gate voltage is sufficiently above its source voltage</strong>. Define the gate-to-source voltage as \(V_{GS} = V_G - V_S\).</p>
+            <p>A conducting channel forms between the source and drain when
+            \[
+            V_{GS} &gt; V_{TN},
+            \]
+            where \(V_{TN}\) is the NMOS threshold voltage. In the ideal switch model, the transistor is off when
+            \(V_{GS} \le V_{TN}\).
+           </p>
+           </div>
+           <p></p>
+              <div class="two-column" id="part-1-transistor-circuits">
+  <div class="diagram-box" data-mosfet="PMOS" data-on-input="0">
+    <svg viewBox="0 0 350 285" role="img" aria-labelledby="part-1-pmos-title">
+      <text class="svg-label" x="166" y="23" text-anchor="middle">VDD</text>
+      <g fill="none">
+        <path class="signal high" data-mosfet-path="" d="M166 33V65H148V109H166V143"/>
+        <path class="signal" data-resistor-path="" d="M166 143V172l-8 5 16 10-16 10 16 10-8 5V244"/>
+        <path class="signal high" data-output-path="" d="M166 143H226"/>
+        <path stroke="currentColor" stroke-width="3" d="M150 33H182 M91 87H120 M132 66V108 M150 244H182 M155 251H177 M161 258H171"/>
+        <circle stroke="currentColor" stroke-width="3" cx="126" cy="87" r="6"/>
+      </g>
+      <circle fill="currentColor" cx="166" cy="143" r="4"/>
+      <text class="svg-label" x="18" y="82" data-circuit-input="">A = LOW</text>
+      <text class="svg-label" x="191" y="92" data-circuit-state="">PMOS on</text>
+      <text class="svg-label" x="235" y="148" data-circuit-output="">B = HIGH</text>
+      <text class="svg-small" x="191" y="196">Pull-down resistor</text>
+      <text class="svg-label" x="166" y="280" text-anchor="middle">GND</text>
+    </svg>
+    <div class="action-row">
+      <button class="action-button primary" type="button"
+              aria-label="Apply input 1 to the PMOS circuit">Set input HIGH</button>
+    </div>
+  </div>
+
+  <div class="diagram-box" data-mosfet="NMOS" data-on-input="1">
+    <svg viewBox="0 0 350 285" role="img" aria-labelledby="part-1-nmos-title">
+      <text class="svg-label" x="166" y="23" text-anchor="middle">VDD</text>
+      <g fill="none">
+        <path class="signal" data-mosfet-path="" d="M166 143V173H148V217H166V244"/>
+        <path class="signal high" data-resistor-path="" d="M166 33V63l-8 5 16 10-16 10 16 10-8 5V143"/>
+        <path class="signal high" data-output-path="" d="M166 143H226"/>
+        <path stroke="currentColor" stroke-width="3" d="M150 33H182 M91 195H132 M132 174V216 M150 244H182 M155 251H177 M161 258H171"/>
+      </g>
+      <circle fill="currentColor" cx="166" cy="143" r="4"/>
+      <text class="svg-label" x="8" y="200" data-circuit-input="">A = LOW</text>
+      <text class="svg-label" x="191" y="200" data-circuit-state="">NMOS off</text>
+      <text class="svg-label" x="235" y="148" data-circuit-output="">B = HIGH</text>
+      <text class="svg-small" x="191" y="85">Pull-up resistor</text>
+      <text class="svg-label" x="166" y="280" text-anchor="middle">GND</text>
+    </svg>
+    <div class="action-row">
+      <button class="action-button primary" type="button"
+              aria-label="Apply input 1 to the NMOS circuit">Apply input 1</button>
+    </div>
+  </div>
+</div>
+           
+          </section>
+
+          <section class="activity-panel" aria-labelledby="twos-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 2</p><h2 id="twos-heading">CMOS inverter</h2></div>
+              <p class="instruction">NOT gates simply accept an input and outputs its opposite.</p>
+            </div>
+            <p>A <strong>CMOS inverter</strong> uses a PMOS to pull the output up to the supply voltage \(V_{DD}\) and an NMOS to pull it down to ground. Both gates receive the same input voltage \(V_{\mathrm{in}}\), and both drains connect to the output \(V_{\mathrm{out}}\).</p>
+            <p>
+             The PMOS source is at \(V_{DD}\), while the NMOS source is at
+             \(0\,\mathrm{V}\). That gives each transistor a different turn-on condition.
+           </p>
+
+          <div  class="callout">
+            \[
+            \begin{aligned}
+            \text{PMOS on:}\quad &amp; V_{SG} = V_{DD} - V_{\mathrm{in}} &gt; |V_{TP}| \\[4pt]
+            \text{NMOS on:}\quad &amp; V_{GS} = V_{\mathrm{in}} &gt; V_{TN}
+            \end{aligned}
+            \]
+          </div>
+          <p></p>
+            <div class="2-column two-column" data-cmos-inverter>
+  <div class="diagram-box">
+    <h3>CMOS inverter circuit</h3>
+
+    <svg viewBox="0 0 350 295" role="img"
+         aria-label="CMOS inverter with a PMOS connected to VDD and an NMOS connected to ground. Both gates share input A, and both drains share output Y.">
+      <text class="svg-label" x="166" y="23" text-anchor="middle">VDD</text>
+
+      <g fill="none">
+        <!-- PMOS from VDD to output Y -->
+        <path class="signal high" data-inverter-pmos=""
+              d="M166 33V65H148V109H166V143"/>
+
+        <!-- NMOS from output Y to ground -->
+        <path class="signal" data-inverter-nmos=""
+              d="M166 143V177H148V221H166V252"/>
+
+        <!-- Output wire -->
+        <path class="signal high" data-inverter-output-wire=""
+              d="M166 143H226"/>
+
+        <!-- Supply, shared input, gate plates, and ground -->
+        <path stroke="currentColor" stroke-width="3"
+              d="M150 33H182
+                 M104 143H112 M112 87V199 M112 87H120 M112 199H132
+                 M132 66V108 M132 178V220
+                 M150 252H182 M155 259H177 M161 266H171"/>
+
+        <!-- PMOS gate bubble -->
+        <circle stroke="currentColor" stroke-width="3"
+                cx="126" cy="87" r="6"/>
+      </g>
+
+      <circle fill="currentColor" cx="112" cy="143" r="4"/>
+      <circle fill="currentColor" cx="166" cy="143" r="4"/>
+
+      <text class="svg-label" x="8" y="148"
+            data-inverter-input="">A = LOW</text>
+      <text class="svg-label" x="235" y="148"
+            data-inverter-output="">Y = HIGH</text>
+      <text class="svg-label" x="191" y="92"
+            data-inverter-pmos-state="">PMOS on</text>
+      <text class="svg-label" x="191" y="204"
+            data-inverter-nmos-state="">NMOS off</text>
+      <text class="svg-label" x="166" y="288"
+            text-anchor="middle">GND</text>
+    </svg>
+
+    <div class="action-row">
+      <button class="action-button primary" type="button" data-inverter-toggle>
+        Set input HIGH
+      </button>
+    </div>
+
+    <p role="status" data-inverter-status>
+      Input LOW turns the PMOS on and the NMOS off. The PMOS pulls the output HIGH.
+    </p>
+  </div>
+
+  <div class="diagram-box"
+     style="display: grid; justify-items: center; align-content: center; text-align: center;">
+  <h3>NOT gate symbol</h3>
+
+  <svg viewBox="0 0 420 132" role="img"
+       aria-label="NOT gate symbol with input A and inverted output Y">
+    <g fill="none" stroke="currentColor" stroke-width="3">
+      <path class="signal low" data-not-input-wire="" d="M102 66H142"/>
+      <path d="M142 30V102L227 66Z"/>
+      <circle cx="234" cy="66" r="7"/>
+      <path class="signal high" data-not-output-wire="" d="M241 66H314"/>
+    </g>
+
+    <text class="svg-label" x="10" y="72"
+          data-not-input-label="">A = LOW</text>
+    <text class="svg-label" x="324" y="72"
+          data-not-output-label="">Y = HIGH</text>
+  </svg>
+
+  <div class="table-wrap" style="width: min(100%, 22rem); margin-top: 1rem;">
+    <table>
+      <caption>Inverter truth table</caption>
+      <thead>
+        <tr>
+          <th scope="col">Input A</th>
+          <th scope="col">Output Y</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight" data-inverter-row="LOW" aria-current="true">
+          <td>LOW</td>
+          <td>HIGH</td>
+        </tr>
+        <tr data-inverter-row="HIGH">
+          <td>HIGH</td>
+          <td>LOW</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  </div>
+  </section>
+
+          <section class="activity-panel" aria-labelledby="alu-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 3</p><h2 id="alu-heading">CMOS NAND and NOR gates
+              </h2></div>
+              <p class="instruction"><strong>NAND</strong> outputs 0 only when both inputs are 1. <strong>NOR</strong> outputs 1 only when both inputs are 0.</p>
+            </div>
+            <div>
+              <p>
+  A two-input CMOS gate has a <strong>PMOS pull-up network</strong> that
+  connects the output to \(V_{DD}\) (logic 1) and an
+  <strong>NMOS pull-down network</strong> that connects it to ground (logic 0).
+  A series path conducts when both transistors conduct. A parallel network
+  conducts when either branch conducts.
+</p>
+
+<h3>CMOS NAND</h3>
+<p>
+  The NMOS transistors are in <strong>series</strong>, so the pull-down path
+  is complete only when both inputs are 1. The PMOS transistors are in
+  <strong>parallel</strong>, so either input being 0 completes a pull-up path.
+</p>
+
+<div class="callout">
+  \[
+    Y_{\mathrm{NAND}} = \overline{A \land B}
+    = \overline{A} \lor \overline{B}
+  \]
+</div>
+
+<h3>CMOS NOR</h3>
+<p>
+  The NMOS transistors are in <strong>parallel</strong>, so either input
+  being 1 completes a pull-down path. The PMOS transistors are in
+  <strong>series</strong>, so the pull-up path is complete only when both
+  inputs are 0.
+</p>
+
+<div class="callout">
+  \[
+    Y_{\mathrm{NOR}} = \overline{A \lor B}
+    = \overline{A} \land \overline{B}
+  \]
+</div>
+            </div>
+           <div data-cmos-gates>
+  <div class="action-row" role="group" aria-label="Choose a CMOS gate">
+    <button class="action-button primary" type="button"
+            data-gate-mode="NAND" aria-pressed="true">NAND</button>
+    <button class="action-button secondary" type="button"
+            data-gate-mode="NOR" aria-pressed="false">NOR</button>
+  </div>
+
+  <div class="2-column two-column" style="margin-top: 1rem;">
+    <div class="diagram-box">
+      <h3 data-circuit-heading>CMOS NAND circuit</h3>
+      <svg viewBox="0 0 460 465" role="img" data-gate-circuit></svg>
+
+      <div class="action-row">
+        <button class="action-button primary" type="button"
+                data-gate-input="A">Set A HIGH</button>
+        <button class="action-button primary" type="button"
+                data-gate-input="B">Set B HIGH</button>
+      </div>
+
+      <p role="status" data-gate-status></p>
+    </div>
+
+    <div class="diagram-box"
+         style="display: grid; justify-items: center; align-content: center; text-align: center;">
+      <h3 data-symbol-heading>NAND gate symbol</h3>
+      <svg viewBox="0 0 420 132" role="img" data-gate-symbol></svg>
+
+      <div class="table-wrap" style="width: min(100%, 22rem); margin-top: 1rem;">
+        <table>
+          <caption data-gate-caption>NAND truth table</caption>
+          <thead>
+            <tr>
+              <th scope="col">Input A</th>
+              <th scope="col">Input B</th>
+              <th scope="col">Output Y</th>
+            </tr>
+          </thead>
+          <tbody data-gate-table></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+            </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 4</p><h2 id="check-heading">CMOS XOR Gate</h2></div>
+              <p class="instruction">A XOR gate produces a high (1) output only when the two inputs are different.</p>
+            </div>
+            <p>
+  The <strong>CMOS XOR gate</strong> in the parity circuit uses two
+  transmission gates as switches. One connects \(B\) to the output, and
+  the other connects its inverse, \(\overline{B}\). Each transmission
+  gate uses a PMOS and an NMOS in parallel so it can pass either a
+  logic 0 or a logic 1.
+</p>
+
+<p>
+  Two CMOS inverters generate \(\overline{A}\) and \(\overline{B}\).
+  The signals \(A\) and \(\overline{A}\) control which path conducts.
+</p>
+<div class = "callout"> 
+<ul>
+  <li><strong>When \(A=0\)</strong>, the output follows \(B\).</li>
+  <li><strong>When \(A=1\)</strong>, the output follows \(\overline{B}\).</li>
+</ul>
+
+<div>
+  \[
+  \begin{aligned}
+    Y &amp;=
+    \begin{cases}
+      B &amp; \text{if } A=0, \\
+      \overline{B} &amp; \text{if } A=1
+    \end{cases} \\[6pt]
+      &amp;= (\overline{A}\land B)\lor(A\land\overline{B}) \\
+      &amp;= A\oplus B.
+  \end{aligned}
+  \]
+</div>
+
+<p>
+  The circuit outputs <strong>1</strong> for \(01\) and \(10\),
+  and <strong>0</strong> for \(00\) and \(11\).
+</p>
+</div>
+<p></p>
+            <div class="2-column two-column" data-cmos-xor>
+  <div class="diagram-box">
+    <h3>CMOS XOR circuit</h3>
+    <svg viewBox="0 0 420 500" role="img" data-xor-circuit></svg>
+
+    <div class="action-row" role="group" aria-label="XOR inputs">
+      <button class="action-button primary" type="button"
+              data-xor-input="A">Set A HIGH</button>
+      <button class="action-button primary" type="button"
+              data-xor-input="B">Set B HIGH</button>
+    </div>
+
+    <p role="status" data-xor-status></p>
+  </div>
+
+  <div class="diagram-box"
+       style="display: grid; justify-items: center; align-content: center; text-align: center;">
+    <h3>XOR gate symbol</h3>
+
+    <svg viewBox="0 0 420 132" role="img" data-xor-symbol
+         aria-label="XOR gate. A is LOW, B is LOW, and Y is LOW.">
+      <g fill="none" stroke="currentColor" stroke-width="3">
+        <path class="signal low" data-xor-wire="A" d="M102 48H139"/>
+        <path class="signal low" data-xor-wire="B" d="M102 84H139"/>
+        <path d="M142 30Q200 27 234 66Q200 105 142 102Q165 66 142 30Z"/>
+        <path d="M130 30Q153 66 130 102"/>
+        <path class="signal low" data-xor-wire="Y" d="M234 66H314"/>
+      </g>
+
+      <text class="svg-label" x="10" y="54" data-xor-label="A">A = LOW</text>
+      <text class="svg-label" x="10" y="90" data-xor-label="B">B = LOW</text>
+      <text class="svg-label" x="324" y="72" data-xor-label="Y">Y = LOW</text>
+    </svg>
+
+    <div class="table-wrap" style="width: min(100%, 22rem); margin-top: 1rem;">
+      <table>
+        <caption>XOR truth table</caption>
+        <thead>
+          <tr>
+            <th scope="col">Input A</th>
+            <th scope="col">Input B</th>
+            <th scope="col">Output Y</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight" data-xor-row="LOW LOW" aria-current="true">
+            <td>LOW</td><td>LOW</td><td>LOW</td>
+          </tr>
+          <tr data-xor-row="LOW HIGH">
+            <td>LOW</td><td>HIGH</td><td>HIGH</td>
+          </tr>
+          <tr data-xor-row="HIGH LOW">
+            <td>HIGH</td><td>LOW</td><td>HIGH</td>
+          </tr>
+          <tr data-xor-row="HIGH HIGH">
+            <td>HIGH</td><td>HIGH</td><td>LOW</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+          </section>
+
+          <section class="activity-panel" aria-labelledby="check-heading">
+            <div class="section-heading">
+              <div><p class="step">Part 5</p><h2 id="check-heading">3-bit Parity Generator</h2></div>
+              <p class="instruction">A 3-bit parity generator produces an even parity bit for a 3-bit input.</p>
+            </div>
+            <p>A 3-bit even-parity generator uses two XOR gates to determine whether an extra 1 is needed to make the total number of 1s even.</p>
+            <p>
+  An XOR gate outputs 1 when its inputs differ. The first XOR combines
+  \(A\) and \(B\) to produce \(X\). A bar means <strong>NOT</strong>,
+  \(\land\) means <strong>AND</strong>, and \(\lor\) means <strong>OR</strong>.
+</p>
+
+<div>
+  \[
+    X = A \oplus B
+      = (\overline{A} \land B) \lor (A \land \overline{B})
+  \]
+</div>
+
+<p>
+  The second XOR keeps \(X\) when \(C=0\) and flips it when \(C=1\).
+</p>
+
+<div>
+  \[
+    P = \underbrace{(A \oplus B)}_{X} \oplus C
+      = (\overline{X} \land C) \lor (X \land \overline{C})
+  \]
+</div>
+<div class="callout">
+<p>
+  The complement
+  \(\overline{X} = (\overline{A} \land \overline{B}) \lor (A \land B)\)
+  is 1 when \(A\) and \(B\) match. Substituting the expressions for \(X\)
+  and \(\overline{X}\) gives
+</p>
+
+<div>
+  \[
+  \begin{aligned}
+    P ={}&amp; (\overline{A} \land \overline{B} \land C) \\
+         &amp;\lor (\overline{A} \land B \land \overline{C}) \\
+         &amp;\lor (A \land \overline{B} \land \overline{C}) \\
+         &amp;\lor (A \land B \land C).
+  \end{aligned}
+  \]
+</div>
+
+<p>
+  These four terms correspond to <strong>001, 010, 100, and 111</strong>,
+  so \(P=1\) exactly when the inputs contain an odd number of 1s.
+</p>
+</div>
+            <div data-cmos-parity style="display: grid; gap: 1rem;">
+  <!-- Top row: transistor circuits and input buttons -->
+  <div class="diagram-box">
+    <h3>CMOS 3-bit parity circuit</h3>
+    <p>X = A XOR B, then Y = X XOR C. An overbar marks an inverted input.</p>
+
+    <div class="2-column two-column">
+      <div>
+        <h4>Stage 1 &middot; A XOR B</h4>
+        <svg viewBox="0 0 420 500" role="img" data-parity-stage="1"></svg>
+      </div>
+
+      <div>
+        <h4>Stage 2 &middot; X XOR C</h4>
+        <svg viewBox="0 0 420 500" role="img" data-parity-stage="2"></svg>
+      </div>
+    </div>
+
+    <div class="action-row" role="group" aria-label="Parity inputs">
+      <button class="action-button primary" type="button"
+              data-parity-input="A">Set A HIGH</button>
+      <button class="action-button primary" type="button"
+              data-parity-input="B">Set B HIGH</button>
+      <button class="action-button primary" type="button"
+              data-parity-input="C">Set C HIGH</button>
+    </div>
+
+    <p role="status" data-parity-status></p>
+  </div>
+
+  <!-- Bottom row: simplified circuit and truth table -->
+  <div class="diagram-box 2-column two-column">
+    <div>
+      <h3>Simplified parity circuit</h3>
+      <svg viewBox="0 0 640 175" role="img" data-parity-symbol></svg>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <caption>3-bit parity truth table</caption>
+        <thead>
+          <tr>
+            <th scope="col">Input A</th>
+            <th scope="col">Input B</th>
+            <th scope="col">Input C</th>
+            <th scope="col">Output Y</th>
+          </tr>
+        </thead>
+        <tbody data-parity-table></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+          </section>
+
+          <nav class="page-nav" aria-label="Activity navigation">
+            <a href="../schmitt-protection-leds/"><small>Previous activity</small><strong>&larr; Schmitt Triggers and LEDs</strong></a>
+            <a href="../../../modules/sequential-logic/"><small>Next module</small><strong>Sequential Logic &rarr;</strong></a>
+          </nav>
+        </div>
+      </main>
+
+      <footer class="site-footer" id="site-footer">SmartStart Digital Electronics Tutor &middot; Neela Seegobin, original author &middot; Azim Abdool, web edition &middot; IEEE EDS Trinidad and Tobago Chapter</footer>
+    </div>
+  </div>
+
+</body>
+</html>
