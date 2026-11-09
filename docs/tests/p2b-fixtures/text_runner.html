@@ -21,8 +21,8 @@
       let htmlOutput = '';
 
       try {
-        // Test 1: Fetch and parse JSON Metadata Fixture inside p2b-fixtures
-        const response = await fetch('mock_datasheet.json');
+        // Test 1: Fetch and parse JSON Metadata 
+        const response = await fetch('../../../assets/p2b-datasheets/datasheets.json');
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         
