@@ -6,10 +6,12 @@
   <meta name="description" content="This activity explores the internal structure of CMOS logic gates, and how they are combined to form a simple circuit.">
   <title>CMOS Logic Explorer</title>
   <link rel="stylesheet" href="../../../assets/site.css">
+  <!-- Shared bit-switch styles from the Logic Fundamentals activity. -->
+  <link rel="stylesheet" href="../../../activities/logic-fundamentals/logic.css">
   <link rel="stylesheet" href="../../../activities/hardware-practice/hardware.css">
   <script src="../../../assets/site.js" defer></script>
   <script src="activity.js" defer></script>
-  <!-- fbsibf -->
+  
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
 </head>
 <body data-root="../../../" data-section="hardware-practice" data-activity="CMOS-logic" data-title="CMOS Logic Explorer">
@@ -41,7 +43,7 @@
               <div><p class="step">Part 1</p><h2 id="idea-heading">NMOS and PMOS transistors</h2></div>
               <p class="instruction">CMOS stands for Complementary Metal-Oxide-Semiconductor. Complemantary means that it uses both NMOS and PMOS transistors to implement logic functions.</p>
             </div>
-            <p>CMOS logic gates are built from two complementary networks of transistors: a <strong>pull-up network</strong> of PMOS transistors, and a <strong>pull-down network</strong> of NMOS transistors. The pull-up network connects the output to the positive supply voltage when the output should be HIGH, while the pull-down network connects the output to ground when the output should be LOW.</p>
+            <p>CMOS logic gates are built from two complementary networks of transistors: a <strong>pull-up network</strong> of PMOS transistors, and a <strong>pull-down network</strong> of NMOS transistors. The pull-up network connects the output to the positive supply voltage when the output should be 1, while the pull-down network connects the output to ground when the output should be 0.</p>
             <p>In a CMOS gate, the pull-up and pull-down networks are designed such that they never conduct at the same time, which minimizes power consumption. The output is determined by the combination of inputs applied to the gate, which control the transistors in both networks.</p>
             <div class ="callout">
             <p>A PMOS transistor turns on when its <strong>gate voltage is sufficiently below its source voltage</strong>. Define the source-to-gate voltage as \(V_{SG} = V_S - V_G\).</p>
@@ -72,15 +74,15 @@
         <circle stroke="currentColor" stroke-width="3" cx="126" cy="87" r="6"/>
       </g>
       <circle fill="currentColor" cx="166" cy="143" r="4"/>
-      <text class="svg-label" x="18" y="82" data-circuit-input="">A = LOW</text>
+      <text class="svg-label" x="18" y="82" data-circuit-input="">A = 0</text>
       <text class="svg-label" x="191" y="92" data-circuit-state="">PMOS on</text>
-      <text class="svg-label" x="235" y="148" data-circuit-output="">B = HIGH</text>
+      <text class="svg-label" x="235" y="148" data-circuit-output="">B = 1</text>
       <text class="svg-small" x="191" y="196">Pull-down resistor</text>
       <text class="svg-label" x="166" y="280" text-anchor="middle">GND</text>
     </svg>
     <div class="action-row">
       <button class="action-button primary" type="button"
-              aria-label="Apply input 1 to the PMOS circuit">Set input HIGH</button>
+              aria-label="Set input to 1 for the PMOS circuit">Set input to 1</button>
     </div>
   </div>
 
@@ -94,15 +96,15 @@
         <path stroke="currentColor" stroke-width="3" d="M150 33H182 M91 195H132 M132 174V216 M150 244H182 M155 251H177 M161 258H171"/>
       </g>
       <circle fill="currentColor" cx="166" cy="143" r="4"/>
-      <text class="svg-label" x="8" y="200" data-circuit-input="">A = LOW</text>
+      <text class="svg-label" x="8" y="200" data-circuit-input="">A = 0</text>
       <text class="svg-label" x="191" y="200" data-circuit-state="">NMOS off</text>
-      <text class="svg-label" x="235" y="148" data-circuit-output="">B = HIGH</text>
+      <text class="svg-label" x="235" y="148" data-circuit-output="">B = 1</text>
       <text class="svg-small" x="191" y="85">Pull-up resistor</text>
       <text class="svg-label" x="166" y="280" text-anchor="middle">GND</text>
     </svg>
     <div class="action-row">
       <button class="action-button primary" type="button"
-              aria-label="Apply input 1 to the NMOS circuit">Apply input 1</button>
+              aria-label="Set input to 1 for the NMOS circuit">Set input to 1</button>
     </div>
   </div>
 </div>
@@ -166,9 +168,9 @@
       <circle fill="currentColor" cx="166" cy="143" r="4"/>
 
       <text class="svg-label" x="8" y="148"
-            data-inverter-input="">A = LOW</text>
+            data-inverter-input="">A = 0</text>
       <text class="svg-label" x="235" y="148"
-            data-inverter-output="">Y = HIGH</text>
+            data-inverter-output="">Y = 1</text>
       <text class="svg-label" x="191" y="92"
             data-inverter-pmos-state="">PMOS on</text>
       <text class="svg-label" x="191" y="204"
@@ -179,12 +181,12 @@
 
     <div class="action-row">
       <button class="action-button primary" type="button" data-inverter-toggle>
-        Set input HIGH
+        Set input to 1
       </button>
     </div>
 
     <p role="status" data-inverter-status>
-      Input LOW turns the PMOS on and the NMOS off. The PMOS pulls the output HIGH.
+      Input 0 turns the PMOS on and the NMOS off. The PMOS pulls the output to 1.
     </p>
   </div>
 
@@ -202,9 +204,9 @@
     </g>
 
     <text class="svg-label" x="10" y="72"
-          data-not-input-label="">A = LOW</text>
+          data-not-input-label="">A = 0</text>
     <text class="svg-label" x="324" y="72"
-          data-not-output-label="">Y = HIGH</text>
+          data-not-output-label="">Y = 1</text>
   </svg>
 
   <div class="table-wrap" style="width: min(100%, 22rem); margin-top: 1rem;">
@@ -217,13 +219,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="highlight" data-inverter-row="LOW" aria-current="true">
-          <td>LOW</td>
-          <td>HIGH</td>
+        <tr class="highlight" data-inverter-row="0" aria-current="true">
+          <td>0</td>
+          <td>1</td>
         </tr>
-        <tr data-inverter-row="HIGH">
-          <td>HIGH</td>
-          <td>LOW</td>
+        <tr data-inverter-row="1">
+          <td>1</td>
+          <td>0</td>
         </tr>
       </tbody>
     </table>
@@ -278,10 +280,12 @@
             </div>
            <div data-cmos-gates>
   <div class="action-row" role="group" aria-label="Choose a CMOS gate">
-    <button class="action-button primary" type="button"
-            data-gate-mode="NAND" aria-pressed="true">NAND</button>
-    <button class="action-button secondary" type="button"
-            data-gate-mode="NOR" aria-pressed="false">NOR</button>
+    <span>NAND</span>
+    <button class="bit-switch" type="button" role="switch"
+            aria-label="Use NOR gate" aria-checked="false" data-gate-toggle>
+      <span aria-hidden="true"></span>
+    </button>
+    <span>NOR</span>
   </div>
 
   <div class="2-column two-column" style="margin-top: 1rem;">
@@ -291,9 +295,9 @@
 
       <div class="action-row">
         <button class="action-button primary" type="button"
-                data-gate-input="A">Set A HIGH</button>
+                data-gate-input="A">Set A to 1</button>
         <button class="action-button primary" type="button"
-                data-gate-input="B">Set B HIGH</button>
+                data-gate-input="B">Set B to 1</button>
       </div>
 
       <p role="status" data-gate-status></p>
@@ -325,7 +329,7 @@
           <section class="activity-panel" aria-labelledby="check-heading">
             <div class="section-heading">
               <div><p class="step">Part 4</p><h2 id="check-heading">CMOS XOR Gate</h2></div>
-              <p class="instruction">A XOR gate produces a high (1) output only when the two inputs are different.</p>
+              <p class="instruction">The XOR output is 1 only when its two inputs differ.</p>
             </div>
             <p>
   The <strong>CMOS XOR gate</strong> in the parity circuit uses two
@@ -372,9 +376,9 @@
 
     <div class="action-row" role="group" aria-label="XOR inputs">
       <button class="action-button primary" type="button"
-              data-xor-input="A">Set A HIGH</button>
+              data-xor-input="A">Set A to 1</button>
       <button class="action-button primary" type="button"
-              data-xor-input="B">Set B HIGH</button>
+              data-xor-input="B">Set B to 1</button>
     </div>
 
     <p role="status" data-xor-status></p>
@@ -385,7 +389,7 @@
     <h3>XOR gate symbol</h3>
 
     <svg viewBox="0 0 420 132" role="img" data-xor-symbol
-         aria-label="XOR gate. A is LOW, B is LOW, and Y is LOW.">
+         aria-label="XOR gate. A is 0, B is 0, and Y is 0.">
       <g fill="none" stroke="currentColor" stroke-width="3">
         <path class="signal low" data-xor-wire="A" d="M102 48H139"/>
         <path class="signal low" data-xor-wire="B" d="M102 84H139"/>
@@ -394,9 +398,9 @@
         <path class="signal low" data-xor-wire="Y" d="M234 66H314"/>
       </g>
 
-      <text class="svg-label" x="10" y="54" data-xor-label="A">A = LOW</text>
-      <text class="svg-label" x="10" y="90" data-xor-label="B">B = LOW</text>
-      <text class="svg-label" x="324" y="72" data-xor-label="Y">Y = LOW</text>
+      <text class="svg-label" x="10" y="54" data-xor-label="A">A = 0</text>
+      <text class="svg-label" x="10" y="90" data-xor-label="B">B = 0</text>
+      <text class="svg-label" x="324" y="72" data-xor-label="Y">Y = 0</text>
     </svg>
 
     <div class="table-wrap" style="width: min(100%, 22rem); margin-top: 1rem;">
@@ -410,17 +414,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="highlight" data-xor-row="LOW LOW" aria-current="true">
-            <td>LOW</td><td>LOW</td><td>LOW</td>
+          <tr class="highlight" data-xor-row="0 0" aria-current="true">
+            <td>0</td><td>0</td><td>0</td>
           </tr>
-          <tr data-xor-row="LOW HIGH">
-            <td>LOW</td><td>HIGH</td><td>HIGH</td>
+          <tr data-xor-row="0 1">
+            <td>0</td><td>1</td><td>1</td>
           </tr>
-          <tr data-xor-row="HIGH LOW">
-            <td>HIGH</td><td>LOW</td><td>HIGH</td>
+          <tr data-xor-row="1 0">
+            <td>1</td><td>0</td><td>1</td>
           </tr>
-          <tr data-xor-row="HIGH HIGH">
-            <td>HIGH</td><td>HIGH</td><td>LOW</td>
+          <tr data-xor-row="1 1">
+            <td>1</td><td>1</td><td>0</td>
           </tr>
         </tbody>
       </table>
@@ -502,11 +506,11 @@
 
     <div class="action-row" role="group" aria-label="Parity inputs">
       <button class="action-button primary" type="button"
-              data-parity-input="A">Set A HIGH</button>
+              data-parity-input="A">Set A to 1</button>
       <button class="action-button primary" type="button"
-              data-parity-input="B">Set B HIGH</button>
+              data-parity-input="B">Set B to 1</button>
       <button class="action-button primary" type="button"
-              data-parity-input="C">Set C HIGH</button>
+              data-parity-input="C">Set C to 1</button>
     </div>
 
     <p role="status" data-parity-status></p>
@@ -541,7 +545,7 @@
 
           <nav class="page-nav" aria-label="Activity navigation">
             <a href="../schmitt-protection-leds/"><small>Previous activity</small><strong>&larr; Schmitt Triggers and LEDs</strong></a>
-            <a href="../../../modules/sequential-logic/"><small>Next module</small><strong>Sequential Logic &rarr;</strong></a>
+            <a href="../p2b-datasheet-explorer/"><small>Next module</small><strong>DataSheet Explorer &rarr;</strong></a>
           </nav>
         </div>
       </main>
@@ -551,4 +555,4 @@
   </div>
 
 </body>
-</html>
+</html>`
